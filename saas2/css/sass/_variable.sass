@@ -1,0 +1,167 @@
+//======================
+//主框架設定 main
+//======================
+//案件框架:
+//瀏覽器寬度設定(名稱 寬度 左右間距總和)
+$inner: (fluid 100% 0,xl 1400 80,lg 1280 60,md 1024 60)
+
+//======================
+//距離設定
+//======================
+$baseGap: 10px  //主要距離大小,間距統一倍數
+
+//文字設定
+$font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif //文字字型
+$fontSize: 16px //主文字大小
+$fontSizeLevel: 0.5 //文字放大倍率
+$FontLevel: 5 //文字level生成數
+$lineHeightLevel: 1.5 //行距倍率
+$fontLh: calc($fontSize * $lineHeightLevel) //主文字行高
+$textColor: #000 //主文字顏色
+$textHColor: #777 //主文字滑入顏色
+$letterSpacing: 0.01em //文字間距
+//網站主架構顏色設定
+$white:    #fff
+$gray-100: #F3F3F3
+$gray-200: #e5e5e5
+$gray-300: #d0d0d0
+$gray-400: #bababa
+$gray-500: #999
+$gray-600: #777
+$gray-700: #555
+$gray-800: #343a40
+$gray-900: #333
+$black: #000000
+$main-color: #de995f
+$sub-color: #d16b18
+$third-color: #113946
+$fifth-color: #FAF6F0
+
+//======================
+//網格框架 grid
+//======================
+$gridXL: 1366
+$gridLg: 991
+$gridMd: 768
+$gridSm: 480
+$gridCols: 12 //網格欄數
+$grid-props: ('default': 1920,'-xl': $gridXL,'-lg': $gridLg,'-md': $gridMd,'-sm': $gridSm) //class 對應寬度設定
+
+//======================
+//定義默認變量
+//======================
+$default-grid-columns: 12
+$default-gutter: 10px
+
+
+//======================
+//表頭 header
+//======================
+$headerMode: 1 //header模式 1:選單同一行 2:選單在下方
+$headerOrder: ('logo': 1,'nav': 2,'search': 5,'social': 0,'hamburger': 6,'language': 3,'cart':4) //排序
+$view: ('search': 1,'socialItem': 2) //search:1為顯示0為不顯示，SocialItem 社群數目
+$logoHeight: ('mode1': 50px,'mode1Fixed': 50px,'mode2': 50px,'mode2Fixed': 50px) // mode1:logo高度 與 mode2:logo高度
+$logoWidth: 150px //LOGO寬度(像素)
+$logoAlign: flex-start //LOGO位置(justify-content)
+$socialHeight: 20px //社群icon高度不大於40px
+$language: 36px //語系
+$cart: 70px //詢價車
+$navFont: 18px //選單文字大小
+$navItem: 5 //選單標題數量
+$navItem-margin: 10px //選單間距
+$navAlign: center //nav選單排列位置(justify-content)
+$navHeight: 60px //mode2選單高度
+$navLayerWidth: 200px //滑入選單階層寬度
+$navColor: $textColor //選單文字顏色
+$navbgColor: $white //選單背景色
+$navHoverColor: $white //滑入顏色
+$navHoverbgColor: $gray-200 //滑入背景顏色
+$navBorderColor: $main-color //選單框顏色
+$navBtnWidth: 16px //下階層按鈕寬度
+$navBtnbgColor: $main-color //下階層按鈕背景顏色
+$headerRWD: 991 // 手機版變換寬度
+$headerPhoneHeight: 50px //手機版header 高度
+
+
+//======================
+//表單 form
+//======================
+$formHeight: 50px //輸入框高度
+$formColor: $gray-900 //輸入框文字顏色
+$formLineWidth: 1px  //輸入框框線粗細
+$formLineColor: $gray-400 //輸入框框線顏色
+$formBgColor: #f8f8f8  //輸入背景顏色
+$formBdRs: 0px //輸入框圓角
+$formShadow: #000 //輸入框選取陰影顏色
+$placeholderColor: #999 //輸入框placeholder文字顏色
+$legendColor: #000 //form 標題文字顏色
+$radioSize: 23px //radio 選項大小
+$radioBgColor: $formBgColor //radio 選項顏色
+$radioLineColor: $formLineColor //radio 選項邊框顏色
+$radioLineWidth: 1px //radio 選項邊框粗細
+$radioBdRs: 23px //radio 選項圓角
+$radioCheckColor: #555 //radio 選擇後顏色
+$checkboxSize: 20px //Checkbox 選項大小
+$checkboxBgColor: $formBgColor //Checkbox 選項顏色
+$checkboxLineWidth: 1px //Checkbox 選項邊框粗細
+$checkboxLineColor: $formLineColor //Checkbox 邊框顏色
+$checkboxBdRs: 3px //Checkbox 圓角大小
+$checkboxCheckColor: #555 //Checkbox 選擇後勾勾顏色
+$choiceBtnWidth: 150px //Checkbox radio 仿按鈕寬度
+$choiceBtnHeight: 50px //Checkbox radio 仿按鈕高度
+$choiceBtnColor: $formBgColor //Checkbox radio 仿按鈕顏色
+$choiceBtnTextColor: #555 //Checkbox radio 仿按鈕文字顏色
+$choiceBtnLineColor: $formLineColor //Checkbox radio 仿按鈕邊框顏色
+$choiceBtnLineWidth: 1px //Checkbox radio 仿按鈕邊框粗細
+$choiceBtnBdRs: 5px //Checkbox radio 仿按鈕圓角
+$choiceBtnCheckColor: $main-color //Checkbox radio 仿按鈕選擇後顏色
+$choiceBtnCheckTextColor: #fff //Checkbox radio 仿按鈕選擇後文字顏色
+$choiceBtnCheckLineColor: $main-color //Checkbox radio 仿按鈕選擇後邊框顏色
+$selectArrowWidth: 12px //select 三角形寬度
+$selectArrowHeight: 6px //select 三角形高度
+$selectArrowColor: #555 //select 三角形顏色
+$requiredColor: #ff0000 //必填顏色
+$tipsColor: #ff0000 //提示文字顏色
+$tipsIconSize: 20px //提示icon 大小
+$tipsIcon: '\e919' //提示icon
+$validIcon: '\e919' //feedback 提示 icon
+$errorColor: #ff0000 //feedback 錯誤提示顏色
+$errorIcon: '\f057' //feedback 錯誤提示icon
+$successColor: #1e9813 //feedback 成功提示顏色
+$successIcon: '\f058' //feedback 成通提示icon
+$textareaHeight: 150px //textarea 高度
+$resetColor: $white //認證碼reset顏色
+    
+
+
+//======================
+//按鈕 button
+//======================
+$btnWidth: 240px //定義按鈕寬度
+$btnHeight: 30px //定義按鈕高度
+$btnLineWidth: 2px //定義按鈕框線粗細
+$btnIconSize: 20px //定義按鈕icon 大小
+$btnSmWidth: 100px //定義小按鈕寬度
+$btnSmHeight: 40px //定義小按鈕高度
+$btnSmIconSize: 20px //定義小按鈕icon大小
+$btnDefaultColor: rgba($black,0) //原始按鈕顏色
+$btnDefaultLineColor: rgba($black,1) //原始按鈕框線顏色
+$btnDefaultTextColor: $black //原始按鈕文字顏色
+$btnDefaultHoverColor: $gray-500 //原始按鈕滑入顏色
+$btnDefaultHoverLineColor: $gray-500 //原始按鈕滑入框線顏色
+$btnDefaultHoverTextColor: $white //原始按鈕滑入文字顏色
+//按鈕名稱新增項目 (名稱 背景顏色 外框顏色 文字顏色)
+$btnConfig: (primary2 rgba($main-color,1) $main-color $white, other $gray-400 $gray-400 $white)
+
+
+
+//======================
+// 頁碼 pagination
+//======================
+$pageBg: $gray-200 //按鈕背景色
+$pageHoverBg: $gray-300 //滑鼠移至按鈕背景色
+$pageActiveBg: darken($main-color,0.2) //滑鼠按下的樣式
+$pageHoverColor: #fff //滑入與選取文字顏色
+$pageDisabled: #999 //禁用文字顏色
+
+

@@ -1,0 +1,41 @@
+//======================
+//按鈕 Button
+//======================
+%Btn
+    width: $btnWidth
+    // height: $btnHeight
+    margin: 5px
+    padding: 6px 10px
+    display: inline-block
+    // font-weight: 500
+    text-decoration: none
+    text-align: center
+    white-space: nowrap
+    vertical-align: middle
+    -ms-touch-action: manipulation
+    touch-action: manipulation
+    cursor: pointer
+    user-select: none
+    // overflow: hidden
+    border-width: $btnLineWidth
+    border-style: solid
+    border-radius: 50px
+    position: relative
+    appearance: none
+    transition: all .3s ease-in-out
+    &:focus,
+    &:active:focus
+        outline-offset: -2px
+        text-decoration: none
+    &:active
+        background-image: none
+        outline: 0
+
+//清除
+%clear
+    &:after
+        content: ""
+        display: table
+        clear: both
+%transition
+    transition: all 500ms ease-in-out

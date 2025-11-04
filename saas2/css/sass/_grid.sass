@@ -1,0 +1,67 @@
+//寬度
+=create-mq($breakpoint, $min-or-max)
+    @if ($breakpoint == 1920)
+        @content
+    @else
+        @media screen and (#{$min-or-max}-width: $breakpoint * 1px)
+            @content
+//產生col
+=create-col-classes($modifier, $cols, $breakpoint)
+    +create-mq($breakpoint, 'max')
+        .col#{$modifier}-offset0
+            margin-left: 0
+        @for $i from 1 through $cols
+            .col#{$modifier}#{$i}
+                // flex-basis: (100 / ($cols / $i) ) * 1%
+                width: calc(100 / calc($cols / $i)) * 1%
+                // width: span($i of $cols)
+            .col#{$modifier}-offset#{$i}
+                margin-left: calc(100 / calc($cols / $i)) * 1%
+        .start#{$modifier}
+            justify-content: flex-start
+            text-align: left
+        .center#{$modifier}
+            justify-content: center
+            text-align: center
+        .end#{$modifier}
+            justify-content: flex-end
+            text-align: right
+        .top#{$modifier}
+            align-items: flex-start
+        .middle#{$modifier}
+            align-items: center
+        .bottom#{$modifier}
+            align-items: flex-end
+        .around#{$modifier}
+            justify-content: space-around
+        .between#{$modifier}
+            justify-content: space-between
+        .self-start#{$modifier}
+            align-self: flex-start
+        .self-center#{$modifier}
+            align-self: center
+        .self-end#{$modifier}
+            align-self: flex-end
+
+
+//產生各寬度class
+@each $modifier , $breakpoint in $grid-props
+    @if ($modifier == 'default')
+        $modifier: '-xxl'
+    +create-mq($breakpoint - 1, 'max')
+        .hidden#{$modifier}-down
+            display: none !important
+    +create-mq($breakpoint, 'min')
+        .hidden#{$modifier}-up
+            display: none !important
+
+.row
+    display: flex
+    flex-wrap: wrap
+    align-content: flex-start
+    width: 100%
+    box-sizing: border-box
+
+@each $modifier , $breakpoint in $grid-props
+    +create-col-classes($modifier, $gridCols, $breakpoint)
+

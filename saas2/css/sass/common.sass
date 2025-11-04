@@ -1,0 +1,2792 @@
+@import variable
+@import function
+@import extend
+@import mixin
+@import header
+
+//header
+header
+    &.header__inner_after_control
+        .header__inner::after
+            display: block !important
+        .no-after::after
+            display: none
+    &.header-hidden
+        transform: translateY(-100%)
+    &.header-visible
+        transform: translateY(0)
+        transition: transform 0.8s ease-in-out
+        .no-after::after
+            display: none
+        .hide-element
+            display: none !important
+
+//topblock
+.topblock
+    padding: 7px 0
+    font-size: 14px
+    .left-info
+        width: 100%
+        li
+            display: inline-block
+            font-weight: 300
+            span
+                cursor: pointer
+            a
+                &:hover
+                    opacity: 0.7
+            &:first-child
+                margin-right: 30px
++rwd(400)
+    .topblock
+        .left-info
+            li
+                width: 100%
+                &:first-child
+                    margin-right: 0
+
+// footer
+.footer
+    position: relative
+    &:after
+        width: 100%
+        height: 100%
+        position: absolute
+        left: 0
+        top: 0
+        content: ""
+    .webeditor
+            padding: 0
+    .footer-common-editor1,.footer-common-copy,.footer-common-editor2
+        z-index: 1
++rwd(600)
+    .footer
+        padding-bottom: 60px
+// advbox
+.advbox
+    width: 100%
+    padding: 20px
+    position: fixed
+    left: 0
+    bottom: 0
+    z-index: 12
+    .cookies
+        margin-bottom: 10px
+    .cookies-btn
+        padding: 6px 15px
+        border-width: 1px
+        border-style: solid
+        display: inline-block
+        @extend %transition
+        &:hover
+            transform: translateX(3px)
+    .btnset
+        width: auto
+        margin: 0 0 5px 5px
+        padding: 6px 10px
+        background-color: $white
+        border-width: 1px
+        border-color: $white
+        border-radius: 0
+        box-shadow: 0 0 5px rgba($black,.5)
+        &:hover
+            transform: translateX(3px) translateY(0)
++rwd(480)
+    .advbox
+        .cookies-btn,.btnset
+            width: 100%
+            display: block
+        .cookies-btn
+            text-align: center
+        .btnset
+            margin: 10px 0 0
+            color: $black
+/**************************************************************************************/
+/* template start*/
+/*結構樣式：Header*/
+/* Position: header
+    No.: header-template1
+    Date: 2024/10/17
+    Author: designer12*/
+.header-template1
+    .header__inner
+        &:after
+            +calc('left','50% - 53%')
+            width: 106%
+            height: 100%
+            top: 0
+        .nav__box
+            flex: 1
++rwd(1440)
+    .header-template1
+        .header__inner
+            &:after
+                +calc('left','50% - 50%')
+                width: 100%
++rwd(1366)
+    .header-template1
+        .header__inner
+            &:after
+                +calc('left','50% - 48%')
+                width: 96%
+        .nav__name
+            padding: 20px
+        .nav__btn
+            right: 5px
++rwd(991)
+    .header-template1
+        .header__inner
+            .logo
+                flex: 1
+/* Position: header
+    No.: header-template2
+    Date: 2024/10/17
+    Author: designer12*/
+.header-template2
+    .topblock
+        .left-info
+            width: 100%
+    .header__inner
+        justify-content: center
+        &:after
+            +calc('left','50% - 50%')
+            width: 100%
+            height: 100%
+            top: 0
+        .logo
+            width: 100%
+            padding: 5px 0
+            justify-content: center
+        .nav__box
+            width: auto
+            .nav
+                >.nav__item
+                    margin: 0 0 0 $navItem-margin
+                    &:first-child
+                        margin-left: 0
+            .nav__name
+                width: 100%
+                padding: 10px 30px 12px
+                margin: 0
+        .nav__layer
+            top: 50px
+            .nav__item
+                .nav__layer
+                    top: 20px
+        .language
+            width: 40px
+            span
+                display: none
+            &__icon
+                width: 100%
+                display: flex !important
+                justify-content: center
+                font-size: 22px
+            .option
+                top: 160%
++rwd(991)
+    .header-template2
+        .header__inner
+            justify-content: flex-start
+            .logo
+                width: auto
+                flex: 1
+                justify-content: start
+            .nav__box
+                width: 100%
+                .nav
+                    > .nav__item
+                        margin-left: 0
+            .nav__layer
+                &--on
+                    top: 0
+                .nav__item
+                    .nav__layer
+                        top: 0
+            .language
+                &__icon
+                    &::after
+                        display: none
++rwd(480)
+    .header-template2
+        .topblock
+            .left-info
+                li
+                    width: 100%
+                    &:first-child
+                        margin-right: 0
+
+/* Position: header
+    No.: header-template3
+    Date: 2024/11/17
+    Author: designer12*/
+.header-template3
+    .header__inner
+        &:after
+            +calc('left','50% - 53%')
+            width: 106%
+            height: 100%
+            top: 0
+        .nav__box
+            flex: 1
+            .nav-item-pdt
+                position: initial
+                > .nav__layer
+                    width: 100vw
+                    max-width: 1440px
+                    //height: max-content
+                    top: auto
+                    left: 50% !important
+                    //bottom: 0
+                    transform: translate(-50%,0)
+                    flex-direction: row
+                    > .nav__item
+                        width: 25%
+                        padding: 10px 0
+                        .nav__btn
+                            display: none
+                        > .nav__name
+                            font-weight: 500
+                        .nav__layer
+                            width: 100%
+                            padding-left: 15px
+                            display: flex
+                            flex-wrap: nowrap
+                            position: initial
+                            left: 0
+                            flex-direction: column
+                            box-shadow: none
+                            .nav__item
+                                width: 100%
++rwd(1440)
+    .header-template3
+        .header__inner
+            &:after
+                +calc('left','50% - 50%')
+                width: 100%
++rwd(1366)
+    .header-template3
+        .header__inner
+            &:after
+                +calc('left','50% - 48%')
+                width: 96%
+        .nav__name
+            padding: 20px
+        .nav__btn
+            right: 5px
++rwd(991)
+    .header-template3
+        .header__inner
+            .logo
+                flex: 1
+            .nav__box
+                .nav-item-pdt
+                    position: relative
+                    >.nav__layer
+                        top: 0 !important
+                        transform: translateX(0)
+                        left: 100% !important
+                        flex-direction: column
+                        overflow: hidden
+                        &--on
+                            left: 0 !important
+                        > .nav__item
+                            width: 100%
+                            padding: 0
+                            .nav__layer
+                                padding-left: 0
+                                position: fixed
+                                left: 100%
+                                &--on
+                                    max-width: 100%
+                                    left: 0
+            .nav__name
+                padding: 10px 15px
+
+/* Position: header
+    No.: header-template4
+    Date: 2024/12/04
+    Author: designer11*/
+.header-template4
+    .header__inner
+        &:after
+            +calc('left','50% - 53%')
+            width: 106%
+            height: 100%
+            top: 0
+    .header__search-icon
+        width: 36px
+        height: 36px
+        padding: 5px
+        border-radius: 50%
+        font-size: 16px
+    .header__search-form--on
+        background: #fff
+        padding: 5px 48px 5px 5px
+        height: 48px
+        .header__search-btn
+            position: absolute
+            right: 0
+            top: 0
+            display: flex
+            align-items: center
+            justify-content: center
+            width: 48px
+            height: 48px
+            background-color: whitesmoke
+    .header__search-icon:hover
+        opacity: .9
+    .nav__box
+        flex: 1
+    .nav__name::after
+        display: none !important
+    .nav__item
+        .nav__item--on
+            .nav__layer
+                top: 0
++rwd(1440)
+    .header-template4
+        .header__inner
+            &:after
+                +calc('left','50% - 50%')
+                width: 100%
++rwd(1366)
+    .header-template4
+        .header__inner
+            &:after
+                +calc('left','50% - 48%')
+                width: 96%
+        .nav__name
+            padding: 20px
+        .nav__btn
+            right: 5px
++rwd(991)
+    .header-template4
+        .logo
+            flex: 1
+        .header__search-icon
+            width: 24px
+            height: 24px
+            padding: 5px
+            border-radius: 50%
+            font-size: 14px
+        .header__search-form--on
+            padding-left: 16px
+        .header__search-form
+            width: 100vw
+            height: 100vh
+            padding: 10px
+            left: 0
+            .header__search-btn
+                height: 70px
+                position: initial
+                top: initial
+.header-template4.header--unfixed
+    background-color: transparent
+    .nav__btn::after
+        color: #fff
+    .header__inner:after,.topblock,.nav__box
+        background-color: transparent
+    .nav__item
+        a.nav__name
+            color: #fff
+        a.nav__name.active
+            color: #d5d5d5
+    .language,.cart-btn,.header__search-icon i,.topblock .left-info li,.topblock .left-info li a
+        color: #fff !important
+    .nav__btn-icon::after
+        border-top-color: #fff
++rwd(991)
+    .header-template4.header--unfixed
+        .hamburger
+            span
+                background-color: #fff
+            .a-cover
+                background-color: transparent
+
+/* Position: header
+    No.: header-template5
+    Date: 2025/01/07
+    Author: designer12*/
+.header-template5
+    .topblock
+        .wrapper
+            padding: 0 230px 0 20px
+            max-width: 100%
+    .header__inner
+        padding: 5px 20px
+        max-width: 100%
+        &:after
+            +calc('left','50% - 50%')
+            width: 100%
+            height: 100%
+            top: 0
+        .nav__box
+            flex: 1
+            justify-content: flex-end
+        .language,.cart,.header__search
+            position: fixed
+            top: 5px
+        .header__search
+            height: 24px
+            right: 20px
+        .cart
+            right: 56px
+        .language
+            right: 126px
+            .option
+                top: 170%
++rwd(991)
+    .header-template5
+        .topblock
+            .wrapper
+                padding-right: 0
+        .header__inner
+            .language,.cart,.header__search
+                position: relative
+                top: inherit
+                right: inherit
+            .logo
+                flex: 1
+
+/* Position: header
+    No.: header-template6
+    Date: 2025/01/07
+    Author: designer12*/
+.header-template6
+    .topblock
+        .wrapper
+            text-align: right
+            .left-info
+                li
+                    text-shadow: -1px -1px 3px #fff, -1px 1px 3px #fff, 1px -1px 3px #fff, 1px 1px 3px #fff
+    .header__inner
+        justify-content: center
+        &:after
+            +calc('left','50% - 55%')
+            width: 110%
+            height: 100%
+            top: 0
+            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)
+        .nav__box
+            padding: 0 20px
+    &.header--fixed
+        box-shadow: none
++rwd(1440)
+    .header-template6
+        .header__inner
+            &:after
+                +calc('left','50% - 51%')
+                width: 102%
++rwd(1366)
+    .header-template6
+        .header__inner
+            &:after
+                +calc('left','50% - 50%')
+                width: 100%
+        .nav__name
+            padding: 20px
+        .nav__btn
+            right: 5px
++rwd(991)
+    .header-template6
+        .header__inner
+            justify-content: start
+            &:after
+                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+            .logo
+                flex: 1
+            .nav__box
+                padding: 50px 0 0
+            .nav__name
+                padding: 10px 15px
++rwd(480)
+    .header-template6
+        .topblock
+            .wrapper
+                text-align: left
+
+/* Position: header
+    No.: header-template7
+    Date: 2025/01/07
+    Author: designer12*/
+.header-template7
+    .topblock
+        .wrapper
+            text-align: right
+            .left-info
+                li
+                    text-shadow: -1px -1px 3px #fff, -1px 1px 3px #fff, 1px -1px 3px #fff, 1px 1px 3px #fff
+    .header__inner
+        justify-content: center
+        &:after
+            +calc('left','50% - 55%')
+            width: 110%
+            height: 100%
+            top: 0
+            clip-path: polygon(3% 0, 97% 0, 100% 50%, 97% 100%, 3% 100%, 0% 50%)
+        .nav__box
+            padding: 0 20px
+    &.header--fixed
+        box-shadow: none
++rwd(1440)
+    .header-template7
+        .header__inner
+            &:after
+                +calc('left','50% - 51%')
+                width: 102%
++rwd(1366)
+    .header-template7
+        .header__inner
+            &:after
+                +calc('left','50% - 48%')
+                width: 96%
+        .nav__name
+            padding: 20px
+        .nav__btn
+            right: 5px
++rwd(991)
+    .header-template7
+        .header__inner
+            justify-content: start
+            &:after
+                +calc('left','50% - 50%')
+                width: 100%
+                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+            .logo
+                flex: 1
+            .nav__box
+                padding: 50px 0 0
+            .nav__name
+                padding: 10px 15px
++rwd(480)
+    .header-template7
+        .topblock
+            .wrapper
+                text-align: left
+
+/* Position: header
+    No.: header-template8
+    Date: 2025/01/07
+    Author: designer12*/
+.header-template8
+    .topblock
+        .wrapper
+            .left-info
+                li
+                    text-shadow: -1px -1px 3px #fff, -1px 1px 3px #fff, 1px -1px 3px #fff, 1px 1px 3px #fff
+    .header__inner
+        &:after
+            +calc('left','50% - 55%')
+            width: 110%
+            height: 100%
+            top: 0
+            clip-path: polygon(1.5% 0, 98.5% 0, 100% 20%, 100% 80%, 98.5% 100%, 1.5% 100%, 0 80%, 0 20%)
+        .nav__box
+            padding: 0 20px
+            flex: 1
+    &.header--fixed
+        box-shadow: none
++rwd(1440)
+    .header-template8
+        .header__inner
+            &:after
+                +calc('left','50% - 48%')
+                width: 96%
++rwd(1366)
+    .header-template8
+        .nav__name
+            padding: 20px
+        .nav__btn
+            right: 5px
++rwd(991)
+    .header-template8
+        .header__inner
+            justify-content: start
+            &:after
+                +calc('left','50% - 50%')
+                width: 100%
+                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+            .logo
+                flex: 1
+            .nav__box
+                padding: 50px 0 0
+            .nav__name
+                padding: 10px 15px
+
+/* Position: header
+    No.: header-template9
+    Date: 2025/01/07
+    Author: designer12*/
+.header-template9
+    .topblock
+        .wrapper
+            .left-info
+                li
+                    text-shadow: -1px -1px 3px #fff, -1px 1px 3px #fff, 1px -1px 3px #fff, 1px 1px 3px #fff
+    .header__inner
+        &:after
+            +calc('left','50% - 55%')
+            width: 110%
+            height: 100%
+            top: 0
+            clip-path: polygon(100% 0%, 97% 50%, 100% 100%, 3% 100%, 0% 50%, 3% 0)
+        .nav__box
+            padding: 0 20px
+            flex: 1
+    &.header--fixed
+        box-shadow: none
++rwd(1440)
+    .header-template9
+        .header__inner
+            &:after
+                +calc('left','50% - 50%')
+                width: 100%
++rwd(1366)
+    .header-template9
+        .nav__name
+            padding: 20px
+        .nav__btn
+            right: 5px
++rwd(991)
+    .header-template9
+        .header__inner
+            justify-content: start
+            &:after
+                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+            .logo
+                flex: 1
+            .nav__box
+                padding: 50px 0 0
+            .nav__name
+                padding: 10px 15px
+
+/* Position: header
+    No.: header-template10
+    Date: 2025/01/07
+    Author: designer12*/
+.header-template10
+    .topblock
+        .wrapper
+            .left-info
+                li
+                    text-shadow: -1px -1px 3px #fff, -1px 1px 3px #fff, 1px -1px 3px #fff, 1px 1px 3px #fff
+    .header__inner
+        &:after
+            +calc('left','50% - 53%')
+            width: 106%
+            height: 100%
+            top: 0
+            border-radius: 10px
+        .nav__box
+            padding: 0 20px
+            flex: 1
+    &.header--fixed
+        box-shadow: none
++rwd(1440)
+    .header-template10
+        .header__inner
+            &:after
+                +calc('left','50% - 50%')
+                width: 100%
++rwd(1366)
+    .header-template10
+        .nav__name
+            padding: 20px
+        .nav__btn
+            right: 5px
++rwd(991)
+    .header-template10
+        .header__inner
+            justify-content: start
+            &:after
+                border-radius: 0
+            .logo
+                flex: 1
+            .nav__box
+                padding: 50px 0 0
+            .nav__name
+                padding: 10px 15px
+
+/* Position: header
+    No.: header-template11
+    Date: 2025/01/07
+    Author: designer12*/
+.header-template11
+    .topblock
+        .wrapper
+            .left-info
+                li
+                    text-shadow: -1px -1px 3px #fff, -1px 1px 3px #fff, 1px -1px 3px #fff, 1px 1px 3px #fff
+    .header__inner
+        &:after
+            +calc('left','50% - 55%')
+            width: 110%
+            height: 100%
+            top: 0
+            clip-path: ellipse(50% 200% at 50% 50%)
+        .nav__box
+            padding: 0 20px
+            flex: 1
+    &.header--fixed
+        box-shadow: none
++rwd(1440)
+    .header-template11
+        .header__inner
+            &:after
+                +calc('left','50% - 50%')
+                width: 100%
++rwd(1366)
+    .header-template11
+        .nav__name
+            padding: 20px
+        .nav__btn
+            right: 5px
++rwd(991)
+    .header-template11
+        .header__inner
+            justify-content: start
+            &:after
+                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+            .logo
+                flex: 1
+            .nav__box
+                padding: 50px 0 0
+            .nav__name
+                padding: 10px 15px
+
+/* Position: header
+    No.: header-template12
+    Date: 2025/01/08
+    Author: designer12*/
+.header-template12
+    .topblock
+        .left-info
+            width: 100%
+            text-align: left
+    .header__inner
+        max-width: 100%
+        padding-bottom: 0 !important
+        justify-content: center
+        &:after
+            +calc('left','50% - 50%')
+            width: 100%
+            height: 50px
+            bottom: 0
+        .logo
+            width: 100%
+            padding: 5px 0
+            margin-bottom: 5px
+            justify-content: center
+        .nav__box
+            width: auto
+            .nav
+                >.nav__item
+                    margin: 0 0 0 $navItem-margin
+                    &:first-child
+                        margin-left: 0
+            .nav__name
+                width: 100%
+                padding: 10px 30px 12px
+                margin: 0
+        .nav__layer
+            top: 50px
+            .nav__item
+                .nav__layer
+                    top: 20px
+        .language
+            width: 40px
+            span
+                display: none
+            &__icon
+                width: 100%
+                display: flex !important
+                justify-content: center
+                font-size: 22px
+            .option
+                top: 160%
++rwd(991)
+    .header-template12
+        .header__inner
+            justify-content: flex-start
+            &:after
+                display: none
+            .logo
+                width: auto
+                flex: 1
+                justify-content: start
+            .nav__box
+                width: 100%
+                .nav
+                    > .nav__item
+                        margin-left: 0
+            .nav__layer
+                &--on
+                    top: 0
+                .nav__item
+                    .nav__layer
+                        top: 0
+            .language
+                &__icon
+                    &::after
+                        display: none
++rwd(480)
+    .header-template12
+        .topblock
+            .left-info
+                li
+                    width: 100%
+                    &:first-child
+                        margin-right: 0
+
+/* Position: header
+    No.: header-template13
+    Date: 2025/01/08
+    Author: designer12*/
+.header-template13
+    .topblock
+        .left-info
+            width: 100%
+            text-align: right
+    .header__inner
+        max-width: 100%
+        padding-bottom: 0 !important
+        justify-content: center
+        &:before
+            width: 15%
+            height: 50px
+            position: absolute
+            right: 0
+            bottom: 0
+            content: ""
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%)
+            background-color: rgba($white,.5)
+        &:after
+            +calc('left','50% - 50%')
+            width: 100%
+            height: 50px
+            bottom: 0
+        .logo
+            width: 100%
+            padding: 5px 0
+            margin-bottom: 5px
+            justify-content: center
+        .nav__box
+            width: auto
+            .nav
+                >.nav__item
+                    margin: 0 0 0 $navItem-margin
+                    &:first-child
+                        margin-left: 0
+            .nav__name
+                width: 100%
+                padding: 10px 18px 12px
+                margin: 0
+            .nav__btn
+                width: 12px
+                right: 2px
+                &-icon
+                    &:after
+                        border-width: 8px 6px 0 6px
+        .nav__layer
+            top: 50px
+            .nav__item
+                .nav__layer
+                    top: 20px
+        .language
+            width: 40px
+            span
+                display: none
+            &__icon
+                width: 100%
+                display: flex !important
+                justify-content: center
+                font-size: 22px
+            .option
+                top: 160%
++rwd(991)
+    .header-template13
+        .header__inner
+            justify-content: flex-start
+            &:before,&:after
+                display: none
+            .logo
+                width: auto
+                flex: 1
+                justify-content: start
+            .nav__box
+                width: 100%
+                .nav
+                    > .nav__item
+                        margin-left: 0
+                .nav__btn
+                    width: 50px
+                    right: 5px
+                    &-icon
+                        &:after
+                            border-width: 2px 2px 0 0
+            .nav__layer
+                &--on
+                    top: 0
+                .nav__item
+                    .nav__layer
+                        top: 0
+            .language
+                &__icon
+                    &::after
+                        display: none
++rwd(480)
+    .header-template13
+        .topblock
+            .left-info
+                li
+                    width: 100%
+                    &:first-child
+                        margin-right: 0
+
+
+/* Position: header
+    No.: header-template14
+    Date: 2025/02/08
+    Author: designer12*/
+.header-template14
+    min-width: 200px
+    width: min-content
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    z-index: 3
+    .topblock
+        padding: 12px 0
+        order: 2
+        .left-info
+            padding: 0 10px
+    .header__inner
+        margin-top: 10px
+        justify-content: center
+        align-content: space-between
+        order: 1
+        .logo
+            width: 100%
+            justify-content: center
+        .logo__img
+            img
+                margin: 0 5px
+        .nav__box
+            width: 100%
+            height: auto
+            padding: 10px 0
+        .nav__item
+            width: 100%
+        .nav__name
+            width: 100%
+            padding: 20px 0
+            margin: 0
+            &:after
+                height: 1px
+                left: 50%
+                transform: translateX(-50%)
+            &:hover
+                &:after
+                    width: 60%
+            &.active
+                &:after
+                    width: 60%
+        .nav__btn-icon::after
+            transform: rotate(-90deg)
+        .nav__layer
+            padding: 7px 0
+            top: -7px
+            .nav__item
+                .nav__name
+                    padding: 12px 25px
+        .language
+            .option
+                width: 140px
+                padding: 10px !important
+                right: inherit
+                left: -100px
+                top: 90%
+                display: none
+                &:before
+                    right: inherit
+                    top: inherit
+                    left: 15px
+                    bottom: -7px
+                    transform: rotate(180deg)
+                li
+                    padding: 3px 12px
+            &:hover
+                .option
+                    left: 0
+                    top: inherit
+                    bottom: 90%
+                    display: block
+        .language,.cart
+            height: 50px
+            z-index: 5
+        .header__search--on
+            z-index: 12
+        .header__search
+            height: 50px
+    .header__search-icon
+        display: flex !important
+        .icon-x
+            z-index: 99
+            position: fixed
+            left: 50%
+            top: 40%
+            transform: translateX(-50%)
+            font-size: 30px
+            color: #ffffff
+            background: transparent
+    .header__search-form
+        width: 100vw
+        height: 100vh
+        top: 0
+        left: 0
+        box-shadow: none
+        display: none
+        align-items: center
+        &--on
+            display: flex
+        &:after
+            width: 100%
+            height: 100%
+            position: absolute
+            top: 0
+            left: 0
+            background-color: rgba($black,0.75) !important
+            content: ""
+        .header__search-input,.header__search-btn
+            z-index: 1
+        .header__search-input
+            +calc('width','100% - 70px')
+            height: auto
+            padding: 15px
+        .header__search-btn
+            width: 70px
+            height: 70px
+            position: sticky
+    + .main
+        .swiper
+            .swiper-wrapper
+                .swiper-slide
+                    .ind-banner__textbox
+                        height: 75%
+                        margin-top: 5%
++rwd(1480)
+    .header-template14
+        .topblock
+            .wrapper
+                padding: 0
+        .header__inner
+            padding: 0
++rwd(1366)
+    .header-template14
+        .header__inner
+            .nav__name
+                padding: 15px 0
++rwd(991)
+    .header-template14
+        width: 100%
+        height: auto
+        .topblock
+            padding: 7px 0
+            order: 1
+            .wrapper
+                padding: 0 15px
+        .header__inner
+            padding: 0 15px
+            margin-top: 0
+            justify-content: flex-start
+            order: 2
+            .logo
+                width: auto
+                flex: 1
+                justify-content: flex-start
+            .nav__box
+                height: 100%
+                padding-top: 50px
+            .language
+                height: auto
+                .option
+                    top: 130% !important
+                    bottom: inherit !important
+                    &:before
+                        left: 10px
+                        top: -7px
+                        bottom: inherit
+                        transform: rotate(0deg)
+                    &--on
+                        right: -10px
+                        bottom: inherit !important
+            .header__search,.cart
+                height: auto
+            .hamburger
+                z-index: 1
+                &--on
+                    z-index: 20
+            .nav
+                > .nav__item
+                    > .nav__layer
+                        left: 100%
+                        top: 0
+                        &--on
+                            left: 0 !important
+            .nav__name
+                padding: 10px 15px
+            .nav__btn-icon::after
+                transform: rotate(-135deg)
+            .nav__layer
+                padding: 0
+        + .main
+            .swiper
+                .swiper-wrapper
+                    .swiper-slide
+                        .ind-banner__textbox
+                            height: auto
+                            margin-top: 0
+
+/* Position: header
+    No.: header-template15
+    Date: 2025/02/26
+    Author: designer12*/
+.header-template15
+    min-width: 90px
+    width: min-content
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    .topblock
+        display: none
+        //padding: 12px 0
+        //order: 2
+        //.left-info
+        //    padding: 0 10px
+        //    display: flex
+        //    li
+        //        width: 50%
+        //        writing-mode: vertical-lr
+        //        display: flex
+        //        align-items: center
+        //        &:first-child
+        //            margin-right: 0
+    .header__inner
+        margin-top: 15px
+        flex-direction: column
+        justify-content: center
+        order: 1
+        .logo
+            width: 100%
+            margin-bottom: 15px
+            justify-content: center
+        .nav__box
+            width: 320px
+            height: 100%
+            padding-top: 50px
+            overflow-x: hidden
+            overflow-y: auto
+            justify-content: flex-start
+            align-items: flex-start
+            position: fixed
+            top: 0
+            left: -100%
+            z-index: 20
+            transition: all 0.3s ease-in-out
+            &--on
+                left: 0
+            .nav
+                width: 100%
+                padding-left: 0
+                align-items: flex-start
+                align-content: flex-start
+            .nav__item
+                width: 100%
+                max-width: 100%
+                display: block
+                .nav__layer
+                    width: 100%
+                    position: static
+                    top: inherit
+                    box-shadow: none
+                    z-index: 3
+                    transition: left 0.3s ease-out
+                    //&:active
+                    //    display: block
+                    .nav__item
+                        .nav__layer
+                            padding-left: 20px
+                        .nav__btn
+                            height: 42px
+                        //    &-icon
+                        //        transform: rotate(180deg)
+                        //        &::after
+                        //            transform: rotate(0deg)
+                        //&--on
+                        //    .nav__btn
+                        //        &-icon
+                        //            transform: rotate(0deg)
+            .nav
+                >.nav__item
+                    .nav__btn
+                        &-icon
+                            //transform: rotate(180deg)
+                            transition: all 500ms ease-in-out
+                    //&--on
+                    //    .nav__btn
+                    //        &-icon
+                    //            transform: rotate(0deg)
+            .nav__name
+                &:after
+                    height: 1px
+                &.active, &:hover
+                    &:after
+                        width: 70%
+                        height: 1px
+        .language,.header__search,.cart,.hamburger
+            height: 50px
+        .language
+            //order: 3
+            z-index: 5
+            .option
+                right: inherit
+                left: -10px
+                top: 100%
+                display: none
+                &:before
+                    left: 20px
+                    right: inherit
+        //.header__search
+        //    order: 4
+        .cart
+            z-index: 4
+            //order: 5
+            .cart-btn
+                flex-direction: column
+                .text
+                    margin-right: 0
+        .hamburger
+            display: block
+            //order: 2
+            &--on
+                height: 50px
+                position: fixed
+                top: 0
+                +calc('left','320px - 50px')
+                z-index: 999
+                span
+                    &:nth-child(2)
+                        transform: translateY(0) rotate(45deg)
+                    &:nth-child(3)
+                        transform: translateY(0) rotate(-45deg)
+                    &:nth-child(4)
+                        opacity: 0
+                        transform: translateX(100%)
+            span
+                transition: all 0.8s linear
+                &.a-cover
+                    background-color: transparent
+    .header__search-icon
+        display: flex !important
+        .icon-x
+            z-index: 99
+            position: fixed
+            left: 50%
+            top: 40%
+            transform: translateX(-50%)
+            font-size: 30px
+            color: #ffffff
+            background: transparent
+    .header__search-form
+        width: 100vw
+        height: 100vh
+        top: 0
+        left: 0
+        box-shadow: none
+        display: none
+        align-items: center
+        &--on
+            display: flex
+        &:after
+            width: 100%
+            height: 100%
+            position: absolute
+            top: 0
+            left: 0
+            background-color: rgba($black,0.75) !important
+            content: ""
+        .header__search-input,.header__search-btn
+            z-index: 1
+        .header__search-input
+            +calc('width','100% - 70px')
+            height: auto
+            padding: 15px
+        .header__search-btn
+            width: 70px
+            height: 70px
+            position: sticky
++rwd(992,min)
+    .header-template15
+        .header__inner
+            padding: 5px 0 !important
+            .nav__box
+                .nav__item
+                    margin-left: 0
+                    .nav__layer
+                        padding-left: 10px
+                        .nav__item
+                            .nav__name
+                                margin: 0 0 0 10px
+                            .nav__layer
+                                padding-left: 10px !important
+                    //電腦版選單click
+                    &--on
+                        > .nav__layer
+                            display: none
+                .nav__layer
+                    display: none
+                    &.nav__layer--on
+                        display: block
+            .language
+                &:hover
+                    .option
+                        display: block
+            .cart
+                .cart-btn
+                    .text
+                        margin-left: 0
++rwd(991)
+    .header-template15
+        min-width: inherit
+        width: 100%
+        height: inherit
+        .topblock
+            padding: 7px 0
+            order: 1
+            .left-info
+                display: block
+                li
+                    width: auto
+                    display: inline-block
+                    writing-mode: inherit
+                    &:first-child
+                        margin-right: 30px
+        .header__inner
+            margin-top: 0
+            flex-direction: row
+            order: 2
+            .logo
+                width: auto
+                margin-bottom: 0
+                flex: 1
+                justify-content: flex-start
+            .nav__box
+                width: 100%
+                left: inherit
+                right: -100%
+                &--on
+                    left: inherit
+                    right: 0
+                .nav__item
+                    .nav__layer
+                        position: fixed
+                        top: 0
+                        overflow: hidden
+                        .nav__item
+                            .nav__btn
+                                &-icon
+                                    transform: rotate(45deg)
+            .language
+                .option
+                    &--on
+                        display: block
+            .cart
+                z-index: 5
+                .cart-btn
+                    flex-direction: row
+            .hamburger
+                &--on
+                    left: inherit
+                    right: 20px
+        //.header__search-form
+        //    &--on
+        //        z-index: 12
++rwd(400)
+    .header-template15
+        .topblock
+            .left-info
+                li
+                    width: 100%
+                    &:first-child
+                        margin-right: 0
+
+/* Position: header
+    No.: header-template16
+    Date: 2025/03/06
+    Author: designer11*/
+.header-template16
+    padding-bottom: 29px
+    transition: all .2s ease-in-out
+    .header__search-icon
+        width: max-content
+    .header__inner
+        position: relative
+        padding: 10px !important
+        &:after
+            +calc('left','50% - 53%')
+            width: 106%
+            height: 100%
+            top: 0
+        .nav__box
+            order: 5
+            width: 100%
+            border-radius: 32px
+            position: absolute
+            left: 50%
+            top: 100%
+            transform: translate(-50%,0px)
+            height: max-content
+            box-shadow: 0px 6px 13px 0px rgba(19, 20, 21, .15)
+            transition: all .2s ease-in-out
+        .language
+            order: 2
+            margin-left: auto
+        .cart
+            order: 3
+        .header__search
+            order: 4
+        .nav__name
+            padding: 15px 30px
+        .nav__layer
+            top: 58px
+            .nav__item
+                .nav__layer
+                    top: 20px
++rwd(1440)
+    .header-template16
+        .header__inner
+            &:after
+                +calc('left','50% - 50%')
+                width: 100%
+            .nav__box
+                width: calc(100% - 80px)
++rwd(1366)
+    .header-template16
+        .header__inner
+            &:after
+                +calc('left','50% - 48%')
+                width: 96%
+
+        .nav__name
+            padding: 20px
+        .nav__btn
+            right: 5px
+
++rwd(991)
+    .header-template16
+        padding-bottom: 0
+        .header__inner
+            .nav__layer
+                top: 0
+                .nav__item
+                    .nav__layer
+                        top: 0
+            .logo
+                flex: 1
+            //手機背景綁主色
+            .nav__box
+                width: 100%
+                height: 100%
+                padding-top: $headerPhoneHeight
+                position: fixed
+                top: 0
+                left: 100%
+                transform: translate(0,0)
+                transition: all .5s ease-in-out
+                border-radius: 0
+                background: #30466c
+                overflow-y: hidden
+            .nav__box--on
+                left: 0
+            .nav
+                width: 100%
+
+.header-template16.header--fixed
+    padding-bottom: 54px
+    transition: all .2s ease-in-out
+    .nav__box
+        width: 100vw
+        border-radius: 0px
+        //left: 50%
+        //top: 100%
+        transform: translate(-50%,0px)
+        height: max-content
+        transition: all .2s ease-in-out
++rwd(991)
+    .header-template16.header--fixed
+        padding-bottom: 0
+        .nav__box
+            width: 100%
+            height: 100%
+            padding-top: $headerPhoneHeight
+            position: fixed
+            top: 0
+            left: 100%
+            transform: translate(0,0)
+            transition: all .5s ease-in-out
+            border-radius: 0
+            overflow-y: hidden
+        .nav__box--on
+            left: 0
+        .nav
+            width: 100%
+        .header__inner
+            .logo
+                flex: 1
+            .nav__layer
+                top: 0
+                .nav__item
+                    .nav__layer
+                        top: 0
+
+
+/* Position: header
+    No.: header-template17
+    Date: 2025/03/11
+    Author: designer11*/
+.header-template17
+    background: transparent !important
+    .header__search-icon
+        width: max-content
+    .topblock
+        margin-bottom: 8px
+        .wrapper
+            text-align: right
+    .wrapper
+        max-width: 100%
+        padding: 0px 24px !important
+        .left-info
+            li
+                text-shadow: -1px -1px 3px #fff, -1px 1px 3px #fff, 1px -1px 3px #fff, 1px 1px 3px #fff
+
+    .header__inner
+        .nav__box
+            padding: 0px 0px !important
+        .nav__layer
+            top: 48px
+            border-radius: 0px 0px 8px 8px
+            .nav__layer
+                top: 24px
+                border-radius: 8px
+        .nav__name
+            padding: 10px 30px
+        .nav-item:nth-child(1)
+            .nav__name
+                padding-left: 20px !important
+        .header__search
+            margin-right: 8px
+        .nav__box
+            margin-left: auto
+            margin-right: 48px
+            border-radius: 48px
+            padding: 0px 20px
+        &:after
+            +calc('left','50% - 55%')
+            width: 160px
+            height: 100%
+            left: unset
+            right: 24px
+            border-radius: 48px
+    &.header--fixed
+        box-shadow: none
+
++rwd(1366)
+    .header-template17
+        .header__inner
+            .nav__name
+                font-size: 17px
+                padding: 10px 20px
+                padding-left: 10px !important
+            .nav__box
+                margin-right: 24px
+        .header__search-icon
+            font-size: 18px
+        .nav__btn
+            right: 5px
++rwd(991)
+    .header-template17
+        .header__inner
+            justify-content: start
+            &:after
+                width: 200px
+            .header__search
+                margin-right: 0px
+            .hamburger
+                margin-right: 12px
+            .logo
+                flex: 1
+            .nav__box
+                padding-top: 50px !important
+                margin-right: 0
+                border-radius: 0
+            .nav__name
+                padding: 10px 15px
+            .nav__layer
+                top: 0
+                .nav__layer
+                    top: 0
+
+
+/* Position: header
+    No.: header-template18
+    Date: 2025/03/24
+    Author: designer11*/
+.header-template18
+    background: transparent !important
+    .header__search-form
+        z-index: 12
+    .header__inner
+        .header__search--on
+            z-index: 13 !important
+    .header__search-icon
+        width: max-content
+        margin-left: 8px
+    .logo__img
+        padding: 10px 24px
+        border-radius: 48px
+        box-shadow: 0px 0px 5px 2px #c2c2c2b8
+    .topblock
+        margin-bottom: 8px
+        .wrapper
+            text-align: right
+    .wrapper
+        max-width: 100%
+        padding: 0px 24px !important
+        .left-info
+            li
+                text-shadow: -1px -1px 3px #fff, -1px 1px 3px #fff, 1px -1px 3px #fff, 1px 1px 3px #fff
+
+    .header__inner
+        .nav__layer
+            top: 48px
+            border-radius: 0px 0px 8px 8px
+            .nav__layer
+                top: 24px
+                border-radius: 8px
+        .nav__name
+            padding: 10px 30px
+            position: relative
+            z-index: 1
+            &::after
+                height: 100%
+            &:hover::after
+                border-radius: 48px
+                z-index: -1
+                height: 100%
+        .nav__name.active
+            &::after
+                border-radius: 48px
+                z-index: -1
+                height: 100%
+        .nav-item:nth-child(1)
+            .nav__name
+                padding-left: 20px !important
+        .header__search
+            margin-right: 20px
+            z-index: 2
+        .nav__box
+            margin-left: auto
+            margin-right: -160px
+            border-radius: 48px
+            padding: 10px 240px 10px 10px
+            box-shadow: 0px 0px 5px 2px #c2c2c2b8
+        &:after
+            +calc('left','50% - 55%')
+            width: 160px
+            height: 48px
+            left: unset
+            right: 36px
+            border-radius: 48px
+            z-index: 1
+    &.header--fixed
+        box-shadow: none
++rwd(1280,min)
+    .header-template18
+        .header__search-form
+            width: calc(100% - 48px)
+            left: 24px
+            .header__inner
+                .nav__layer
+                    top: 40px
+                    .nav__layer
+                        top: 15px
++rwd(991,min)
+    .header-template18
+        .header__search-form
+            width: calc(100% - 32px)
+            height: calc(100% - 36px)
+            left: 16px
+            top: 39px
+            border-radius: 48px
+            display: flex
+            justify-content: center
+            align-items: center
+            padding: 10px 80px 10px 24px
+            transition: .3s all ease-in-out
+        .header__search--on
+            border-radius: 48px
+            background-color: #eae3e3
+            width: 36px
+            height: 36px
+            z-index: 12 !important
+        .header__search-btn
+            position: relative
+            top: 0
+            right: 0
++rwd(1400)
+    .header-template18
+        .header__inner
+            .nav__name
+                padding: 10px 22px
++rwd(1280)
+    .header-template18
+        .wrapper
+            padding: 0 16px !important
+        .logo__img
+            padding: 10px 15px
+        .header__inner
+            &::after
+                width: 160px
+                height: 36px
+                right: 28px
+            .nav__layer
+                top: 38px
+            .nav__box
+                padding-right: 180px
+            .nav__name
+                font-size: 16px
+                padding: 5px 16px
+            .nav__box
+                padding: 8px 170px 8px 10px
+        .header__search-icon
+            font-size: 18px
+        .nav__btn
+            right: 4px
++rwd(991)
+    .header-template18
+        .header__search-icon
+            margin-left: 0
+        .header__search-form:after
+            background-color: rgba(0, 0, 0, 0.7) !important
+        .header__search-icon .icon-x
+            position: relative
+            left: unset
+            top: unset
+            transform: translateX(0)
+            color: #333 !important
+        .header__search-form
+            width: 100%
+            height: 100vh
+            left: 0
+            top: 0
+            padding: 10px 24px 10px 24px
+            border-radius: 0
+        .header__inner
+            &::after
+                width: 200px
+                height: 100%
+                right: 16px
+            .header__search--on
+                position: fixed
+                right: 16px
+                top: 16px
+                background-color: whitesmoke
+                z-index: 66
+                border-radius: 50%
+                width: 40px
+                height: 40px
+                display: flex
+                justify-content: center
+                align-items: center
+        .hamburger
+            z-index: 5
+        .hamburger--on
+            z-index: 20
+        .header__inner
+            justify-content: start
+            .header__search
+                margin-right: 0px
+            .hamburger
+                margin-right: 12px
+            .logo
+                flex: 1
+            .nav__box
+                padding-top: 50px !important
+                padding-right: 16px !important
+                margin-right: 0
+                border-radius: 0
+            .nav__name
+                padding: 10px 15px
+            .nav__layer
+                top: 0
+                .nav__layer
+                    top: 0
+
+/* Position: header
+    No.: header-template19
+    Date: 2025/04/10
+    Author: designer11*/
+.header-template19
+    padding-bottom: 29px
+    transition: all .2s ease-in-out
+    .header__inner
+        position: relative
+        padding: 10px !important
+        &:after
+            +calc('left','50% - 53%')
+            width: 106%
+            height: 100%
+            top: 0
+        .nav__box
+            order: 5
+            width: 100%
+            position: absolute
+            left: 50%
+            top: 100%
+            transform: translate(-50%,0px)
+            height: max-content
+            box-shadow: 0px 6px 13px 0px rgba(19, 20, 21, .15)
+            transition: all .2s ease-in-out
+        .language
+            order: 2
+            margin-left: auto
+        .cart
+            order: 3
+        .header__search
+            order: 4
+        .nav__name
+            padding: 15px 30px
+        .nav__layer
+            top: 58px
+            .nav__item
+                .nav__layer
+                    top: 20px
++rwd(1440)
+    .header-template19
+        .header__inner
+            &:after
+                +calc('left','50% - 50%')
+                width: 100%
+            .nav__box
+                width: calc(100% - 80px)
++rwd(1366)
+    .header-template19
+        .header__inner
+            &:after
+                +calc('left','50% - 48%')
+                width: 96%
+
+        .nav__name
+            padding: 20px
+        .nav__btn
+            right: 5px
+
++rwd(991)
+    .header-template19
+        padding-bottom: 0
+        .header__inner
+            .logo
+                flex: 1
+            //手機背景綁主色
+            .nav__box
+                width: 100%
+                height: 100%
+                padding-top: $headerPhoneHeight
+                position: fixed
+                top: 0
+                left: 100%
+                transform: translate(0,0)
+                transition: all .5s ease-in-out
+                border-radius: 0
+                overflow-y: hidden
+            .nav__box--on
+                left: 0
+            .nav
+                width: 100%
+
+.header-template19.header--fixed
+    padding-bottom: 0px
+    transition: all .2s ease-in-out
+    .nav__box
+        border-radius: 0px
+        //left: 50%
+        //top: 100%
+        transform: translate(-50%,0px)
+        height: max-content
+        transition: all .2s ease-in-out
++rwd(991)
+    .header-template19.header--fixed
+        padding-bottom: 0
+        .nav__box
+            width: 100%
+            height: 100%
+            padding-top: $headerPhoneHeight
+            position: fixed
+            top: 0
+            left: 100%
+            transform: translate(0,0)
+            transition: all .5s ease-in-out
+            border-radius: 0
+            overflow-y: hidden
+        .nav__box--on
+            left: 0
+        .nav
+            width: 100%
+        .header__inner
+            .logo
+                flex: 1
+
+/* Position: header
+    No.: header-template20
+    Date: 2025/04/17
+    Author: designer12*/
+.header-template20
+    @extend %transition
+    .topblock
+        .left-info
+            li
+                text-shadow: -1px -1px 3px #777, -1px 1px 3px #777, 1px -1px 3px #777, 1px 1px 3px #777
+    .header__inner
+        padding: 0 15px !important
+        @extend %transition
+        &:after
+            height: 100%
+            right: 0
+            @extend %transition
+        .nav__box
+            flex: 1
+            background: transparent
+        .nav__name
+            &:before
+                width: 0
+                height: 2px
+                position: absolute
+                top: 0
+                right: 0
+                content: ""
+                background: #fff
+                @extend %transition
+            &:hover
+                &:before
+                    width: 100%
+            &.active
+                &:before
+                    width: 100%
+        .cart
+            .cart-drawer
+                height: 100vh
+    &.header--fixed
+        box-shadow: none
+        transform: translateY(-35px)
+        .header__inner
+            max-width: 100%
+            transition: max-width .6s ease-in-out
+            &:after
+                width: 100%
+            .cart
+                .cart-drawer
+                    transform: translateY(35px)
+    &.header--unfixed
+        .header__inner
+            border: 1px $white solid
+            border-width: 1px 0
+            &:after
+                width: 175px
++rwd(1440)
+    .header-template20
+        .header__inner
+            padding: 0 40px !important
+        &.header--unfixed
+            .header__inner
+                &:after
+                    width: 215px
++rwd(1280)
+    .header-template20
+        .header__inner
+            padding: 0 20px !important
+            justify-content: center
+        &.header--unfixed
+            .header__inner
+                &:after
+                    width: 180px
++rwd(991)
+    .header-template20
+        .header__inner
+            padding: 5px 40px !important
+            justify-content: start
+            .logo
+                flex: 1
+            .nav__box
+                height: 100vh
+            .nav__box--turnover
+                .nav__layer
+                    height: 100vh
+            .nav__name
+                &:before
+                    display: none
+            .header__search
+                &--on
+                    .header__search-icon
+                        height: 100vh
+        &.header--fixed
+            transform: translateY(0)
+            .header__inner
+                .cart
+                    .cart-drawer
+                        transform: translateY(0)
+                .header__search-icon
+                    .icon-x
+                        transform: translateX(-50%) translateY(-20px)
+        &.header--unfixed
+            .header__inner
+                &:after
+                    width: 250px
++rwd(480)
+    .header-template20
+        .header__inner
+            padding: 5px 20px !important
+        &.header--unfixed
+            .header__inner
+                &:after
+                    width: 205px
+
+/* Position: header
+    No.: header-template20
+    Date: 2025/04/18
+    Author: designer12*/
+.header-template21
+    display: flex
+    flex-wrap: wrap
+    flex-direction: column
+    align-items: flex-end
+    @extend %transition
+    .topblock
+        width: 50%
+        padding: 7px 20px
+        border-bottom: 1px #fff solid
+        background: transparent
+        @extend %transition
+    .header__inner
+        max-width: none
+        padding: 0 40px
+        .logo
+            @extend %transition
+            .logo__img
+                img
+                    @extend %transition
+        .nav__box
+            flex: 1
+            position: relative
+            justify-content: flex-start
+            @extend %transition
+            &:after
+                width: 1px
+                height: 100%
+                position: absolute
+                right: 20px
+                content: ""
+                background-color: #fff
+                @extend %transition
+        .nav__name
+            &.active
+                color: #fff
+                &:after
+                    background: #fff
+        .cart
+            .cart-drawer
+                height: 100vh
+    &.header--unfixed
+        background-color: transparent !important
+        .header__inner
+            .logo
+                transform: translate(20px,-12px)
+                .logo__img
+                    img
+                        transform: scale(1.5)
+    &.header--fixed
+        box-shadow: none
+        transform: translateY(-36px)
+        .header__inner
+            .logo
+                transform: translate(0)
+                .logo__img
+                    img
+                        transform: scale(1)
+            .cart
+                .cart-drawer
+                    transform: translateY(36px)
++rwd(1440)
+    .header-template21
+        .topblock
+            .wrapper
+                padding: 0
+        &.header--unfixed
+            .header__inner
+                .logo
+                    transform: translate(0,-12px)
+                    .logo__img
+                        img
+                            transform: scale(1.25)
++rwd(1280)
+    .header-template21
+        .header__inner
+            .nav__box
+                .nav
+                    >.nav__item
+                        >.nav__name
+                            padding: 20px
++rwd(991)
+    .header-template21
+        .topblock
+            padding: 7px 40px
+        .header__inner
+            .logo
+                flex: 1
+            .nav__box
+                height: 100vh
+                position: fixed
+                &:after
+                    display: none
+                .nav
+                    >.nav__item
+                        >.nav__name
+                            padding: 10px 15px
+                    .nav__item
+                        .nav__layer
+                            height: 100vh
+        &.header--unfixed
+            .header__inner
+                .logo
+                    transform: translate(0)
+                    .logo__img
+                        img
+                            transform: scale(1)
+        &.header--fixed
+            transform: translateY(0)
+            .header__inner
+                .cart
+                    .cart-drawer
+                        transform: translateY(0)
+                .header__search-icon
+                    .icon-x
+                        transform: translateX(-50%) translateY(35vh)
++rwd(480)
+    .header-template21
+        .topblock
+            padding: 7px 15px
+        .header__inner
+            padding-left: 15px
+            padding-right: 15px
+
+/* Position: header
+    No.: header-template22
+    Date: 2024/12/04
+    Author: designer11*/
+.header-template22
+    .logo
+        width: 100%
+    .header__inner
+        &:after
+            width: 100vw
+            height: 68px
+            left: 50%
+            transform: translateX(-50%)
+            bottom: 0
+            background-color: #aaaaaa
+    .header__search-icon
+        width: 36px
+        height: 36px
+        padding: 5px
+        border-radius: 50%
+        font-size: 16px
+    .header__search-form--on
+        background: #fff
+        padding: 5px 48px 5px 5px
+        height: 48px
+        .header__search-btn
+            position: absolute
+            right: 0
+            top: 0
+            display: flex
+            align-items: center
+            justify-content: center
+            width: 48px
+            height: 48px
+            background-color: whitesmoke
+    .header__search-icon:hover
+        opacity: .9
+    .nav__box
+        flex: 1
+    .nav__name::after
+        display: none !important
+    .nav__item
+        .nav__item--on
+            .nav__layer
+                top: 0
++rwd(1366)
+    .header-template22
+        .nav__name
+            padding: 20px
+        .nav__btn
+            right: 5px
++rwd(991)
+    .header-template22
+        .logo
+            flex: 1
+        .header__search-icon
+            width: 24px
+            height: 24px
+            padding: 5px
+            border-radius: 50%
+            font-size: 14px
+        .header__search-form--on
+            padding-left: 16px
+        .header__search-form
+            width: 100vw
+            height: 100vh
+            padding: 10px
+            left: 0
+            .header__search-btn
+                height: 70px
+                position: initial
+                top: initial
+.header-template22.header--unfixed
+    background-color: transparent
+    .nav__btn::after
+        color: #fff
+    .header__inner:after,.topblock,.nav__box
+        background-color: transparent
+    .nav__item
+        a.nav__name
+            color: #fff
+        a.nav__name.active
+            color: #d5d5d5
+    .language,.cart-btn,.header__search-icon i,.topblock .left-info li,.topblock .left-info li a
+        color: #fff !important
+    .nav__btn-icon::after
+        border-top-color: #fff
++rwd(991)
+    .header-template22.header--unfixed
+
+        .hamburger
+            span
+                background-color: #fff
+            .a-cover
+                background-color: transparent
+
+
+
+
+/*結構樣式：Footer*/
+/* Position: footer
+    No.: footer-template1
+    Date: 2024/10/17
+    Author: designer12*/
+.footer-template1
+    flex-direction: column
+    .footer-common-copy
+        .wrapper
+            flex-direction: column
+        .copy
+            margin: 0.7rem 0
+            text-align: center
+            font-size: 14px
+            span
+                margin-left: 10px
+        .social
+            a
+                margin-right: 7px
+                font-size: 20px
+                font-weight: 700
+                display: inline-block
+                @extend %transition
+                &:hover
+                    text-decoration: none
+                    transform: translateY(-3px)
+    .footer-common-editor1
+        order: 1
+    .footer-common-copy
+        order: 2
+    .footer-common-editor2
+        order: 3
++rwd(991)
+    .footer-template1
+        .footer-common-copy
+            .social
+                text-align: center
+
+/* Position: footer
+    No.: footer-template2
+    Date: 2024/10/17
+    Author: designer12*/
+.footer-template2
+    flex-direction: column
+    .footer-common-copy
+        .wrapper
+            flex-direction: row
+        .copy
+            width: 50%
+            text-align: right
+            font-size: 14px
+            span
+                margin-left: 10px
+        .social
+            width: 50%
+            a
+                margin-right: 7px
+                font-size: 20px
+                font-weight: 700
+                display: inline-block
+                @extend %transition
+                &:hover
+                    text-decoration: none
+                    transform: translateY(-3px) rotate(360deg)
+    .footer-common-editor1
+        order: 2
+    .footer-common-copy
+        order: 3
+    .footer-common-editor2
+        order: 1
++rwd(991)
+    .footer-template2
+        .footer-common-copy
+            .wrapper
+                padding-bottom: 20px
+            .copy,.social
+                width: 100%
+                text-align: center
+            .social
+                margin-bottom: 10px
+
+     
+/* Position: footer
+    No.: footer-template3
+    Date: 2024/10/29
+    Author: designer12*/
+.footer-template3
+    flex-direction: column
+    .footer-common-copy
+        .wrapper
+            flex-direction: column
+        .copy
+            margin: 0.7rem 0
+            text-align: center
+            font-size: 14px
+            span
+                margin-left: 10px
+        .social
+            text-align: center
+            a
+                margin-right: 7px
+                font-size: 20px
+                font-weight: 700
+                display: inline-block
+                @extend %transition
+                &:hover
+                    text-decoration: none
+                    transform: translateY(-3px)
+    .footer-common-editor1
+        order: 1
+    .footer-common-copy
+        order: 2
+    .footer-common-editor2
+        order: 3
++rwd(991)
+    .footer-template1
+        .footer-common-copy
+            .social
+                text-align: center
+/* Position: footer
+    No.: footer-template4
+    Date: 2024/12/09
+    Author: designer11*/
+.footer-template4
+    .webeditor
+        width: 100%
+    .footer-common-editor2
+        width: 100%
+        order: 1
+    .footer-common-copy
+        order: 3
+        width: 100%
+        display: flex
+        flex-wrap: wrap
+        padding-top: 8px
+        .copy
+            width: 100%
+            margin: 0.7rem 0
+            text-align: center
+            font-size: 14px
+            span
+                margin-left: 10px
+        .social
+            width: 100%
+            text-align: center
+            a
+                margin-right: 6px
+                font-size: 20px
+                font-weight: 700
+                display: inline-block
+                @extend %transition
+                &:hover
+                    text-decoration: none
+                    transform: translateY(-3px)
+    .footer-common-editor1
+        order: 2
+
+/* Position: footer
+    No.: footer-template5
+    Date: 2024/04/11
+    Author: designer11*/
+.footer-template5
+    .webeditor
+        width: 100%
+    .footer-common-editor2
+        width: 100%
+        order: 1
+    .footer-common-copy
+        order: 3
+        width: 100%
+        display: flex
+        flex-direction: row-reverse
+        justify-content: space-between
+        align-items: center
+        flex-wrap: wrap
+        padding-top: 8px
+        .flex
+            justify-content: space-between
+        .copy
+            width: max-content
+            margin: 0.7rem 0
+            text-align: center
+            font-size: 14px
+            span
+                margin-left: 10px
+        .social
+            width: max-content
+            text-align: center
+            a
+                margin-right: 6px
+                font-size: 20px
+                font-weight: 700
+                display: inline-block
+                @extend %transition
+                &:hover
+                    text-decoration: none
+                    transform: translateY(-3px)
+    .footer-common-editor1
+        order: 2
+
+/*結構樣式：首頁h1*/
+/* Position: index-h1
+    No.: index-h1-template1
+    Date: 2024/12/16
+    Author: designer12*/
+.index-h1-template1
+    padding: 40px 15px
+/* Position: index-h1
+    No.: index-h1-template2
+    Date: 2024/12/16
+    Author: designer12*/
+.index-h1-template2
+    padding: 20px 15px 0
+    margin-bottom: -20px !important
+
+/*結構樣式：內頁h1*/
+/* Position: main-h1
+    No.: main-h1-template1
+    Date: 2024/12/18
+    Author: designer12*/
+.main-h1-template1
+    width: 70%
+    top: 50%
+    left: 15%
+    text-align: left
+    transform: translateY(-50%)
++rwd(1440)
+    .main-h1-template1
+        width: 90%
+        left: 5%
++rwd(1280)
+    .main-h1-template1
+        top: 55%
++rwd(991)
+    .main-h1-template1
+        top: 65%
++rwd(768)
+    .main-h1-template1
+        top: 50%
++rwd(480)
+    .main-h1-template1
+        top: 65%
+
+
+/* Position: main-h1
+    No.: main-h1-template2
+    Date: 2024/12/18
+    Author: designer12*/
+.main-h1-template2
+    width: 70%
+    top: 50%
+    left: 15%
+    text-align: center
+    transform: translateY(-50%)
++rwd(1440)
+    .main-h1-template2
+        width: 90%
+        left: 5%
++rwd(1280)
+    .main-h1-template2
+        top: 55%
++rwd(991)
+    .main-h1-template2
+        top: 65%
++rwd(768)
+    .main-h1-template2
+        top: 50%
++rwd(480)
+    .main-h1-template2
+        top: 65%
+
+/* Position: main-h1
+    No.: main-h1-template3
+    Date: 2025/01/17
+    Author: designer12*/
+.main-h1-template3
+    width: 70%
+    bottom: 6%
+    right: 15%
+    text-align: right
+    opacity: .4
++rwd(1440)
+    .main-h1-template3
+        width: 90%
+        left: 5%
+
+/* Position: main-h1
+    No.: main-h1-template4
+    Date: 2025/01/17
+    Author: designer12*/
+.main-h1-template4
+    width: 70%
+    bottom: 15%
+    left: 15%
+    text-align: left
+    padding: 15px 40px
+    text-shadow: none !important
+    background: linear-gradient(to right, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 95%,rgba(0,0,0,0) 100%) /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    position: relative
+    &:before
+        width: 10px
+        height: 100%
+        position: absolute
+        left: 0
+        top: 0
+        content: ""
+        background-color: #de995f
++rwd(1440)
+    .main-h1-template4
+        width: 90%
+        left: 5%
++rwd(991)
+    .main-h1-template4
+        bottom: 10%
+        padding: 15px 30px
++rwd(768)
+    .main-h1-template4
+        bottom: 15%
++rwd(375)
+    .main-h1-template4
+        bottom: 5%
+        padding: 7px 15px
+        &:before
+            width: 6px
+
+/*結構樣式：首頁模組特效*/
+/* Position: ind-category、ind-product、ind-news
+    No.: index-list-effect-1
+    Date: 2025/01/09
+    Author: designer12*/
+.index-list-effect-1
+    .img
+        &:hover
+            box-shadow: 0 8px 20px rgba($black,.3)
+            img
+                transform: scale(1) !important
+
+/* Position: ind-category、ind-product、ind-news
+    No.: index-list-effect-2
+    Date: 2025/01/09
+    Author: designer12*/
+.index-list-effect-2
+    .img
+        &:hover
+            box-shadow: none !important
+            img
+                transform: scale(1.05) !important
+
+/* Position: ind-category、ind-product、ind-news
+    No.: index-list-effect-3
+    Date: 2025/01/09
+    Author: designer12*/
+.index-list-effect-3
+    .product__item,.news__item
+        position: relative
+    .product__item .text,.news__item .info
+        +calc('width','100% - 60px')
+        +calc('height','100% - 60px')
+        padding: 20px
+        position: absolute
+        left: 30px
+        top: 30px
+        background-color: rgba($black,.2)
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        @extend %transition
+        &:hover
+            background-color: rgba($black,.5)
+    .product__item
+        .img
+            margin-bottom: 0
+        .text
+            .title,.model
+                text-shadow: -1px -1px 3px $white, -1px 1px 3px $white, 1px -1px 3px $white, 1px 1px 3px $white
+                +ellipsis(2)
+            .model
+                font-weight: 500
+    .news__item
+        .img
+            margin-bottom: 0
+        .info
+            .title,.date
+                text-shadow: -1px -1px 3px $white, -1px 1px 3px $white, 1px -1px 3px $white, 1px 1px 3px $white
+            .description
+                display: none !important
+
+/*結構樣式：首頁 banner position*/
+/* Position: ind-banner
+    No.: index-banner-position-1
+    Date: 2025/01/20
+    Author: designer12*/
+.index-banner-position-1
+    justify-content: left !important
+    align-items: flex-start !important
+
+/* Position: ind-banner
+    No.: index-banner-position-2
+    Date: 2025/01/20
+    Author: designer12*/
+.index-banner-position-2
+    justify-content: center !important
+    align-items: flex-start !important
+
+/* Position: ind-banner
+    No.: index-banner-position-3
+    Date: 2025/01/20
+    Author: designer12*/
+.index-banner-position-3
+    justify-content: flex-end !important
+    align-items: flex-start !important
+
+/* Position: ind-banner
+    No.: index-banner-position-4
+    Date: 2025/01/20
+    Author: designer12*/
+.index-banner-position-4
+    justify-content: flex-start !important
+    align-items: center !important
+
+/* Position: ind-banner
+    No.: index-banner-position-5
+    Date: 2025/01/20
+    Author: designer12*/
+.index-banner-position-5
+    justify-content: center !important
+    align-items: center !important
+
+/* Position: ind-banner
+    No.: index-banner-position-6
+    Date: 2025/01/20
+    Author: designer12*/
+.index-banner-position-6
+    justify-content: flex-end !important
+    align-items: center !important
+
+/* Position: ind-banner
+    No.: index-banner-position-7
+    Date: 2025/01/20
+    Author: designer12*/
+.index-banner-position-7
+    justify-content: flex-start !important
+    align-items: flex-end !important
+
+/* Position: ind-banner
+    No.: index-banner-position-8
+    Date: 2025/01/20
+    Author: designer12*/
+.index-banner-position-8
+    justify-content: center !important
+    align-items: flex-end !important
+
+/* Position: ind-banner
+    No.: index-banner-position-9
+    Date: 2025/01/20
+    Author: designer12*/
+.index-banner-position-9
+    justify-content: flex-end !important
+    align-items: flex-end !important
+
+/* Position: ind-bg-after
+    No.: index-bg-after-1
+    Date: 2025/04/10
+    Author: designer11
+.index-bg-after-1
+    position: relative
+    overflow: hidden
+    &::after
+        content: ""
+        background-color: #eeeeee
+        opacity: 1
+        width: 500%
+        height: 200%
+        position: absolute
+        left: 70%
+        transform: translateX(-50%) rotate(376deg)
+        z-index: -1
+        bottom: 40%
+
+/* Position: ind-bg-after
+    No.: index-bg-after-2
+    Date: 2025/04/10
+    Author: designer11
+.index-bg-after-2
+    position: relative
+    overflow: hidden
+    &::after
+        content: ""
+        background-color: #eeeeee
+        opacity: 1
+        width: 500%
+        height: 200%
+        position: absolute
+        left: 70%
+        transform: translateX(-50%) rotate(352deg)
+        z-index: -1
+        top: 40%
+
+

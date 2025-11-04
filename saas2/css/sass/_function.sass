@@ -1,0 +1,12 @@
+//rem算式
+@function toRem($size)
+    $remSize: calc(round(calc($size / $fontSize) * 1000) / 1000)
+    @return $remSize * 1rem
+
+
+// 計算列的寬度
+@function span($columns, $total-columns: $default-grid-columns, $gutter: $default-gutter)
+    @return calc((#{$columns} / #{$total-columns}) * 100% - #{$gutter})
+// 計算 gutter 間距
+@function gutter($gutter: $default-gutter)
+    @return $gutter

@@ -1,0 +1,49 @@
+
+.btnbox
+    width: 100%
+    padding: 30px 0
+    text-align: center
+
+/* button-set */
+.btnset
+    @extend %Btn
+    // background-color: $btnDefaultColor
+    // border-color: $btnDefaultLineColor
+    // color: $btnDefaultTextColor
+    &:hover
+        // background-color: $btnDefaultHoverColor
+        // border-color: $btnDefaultHoverLineColor
+        // color: $btnDefaultHoverTextColor
+        transform: translateY(-2px)
+        &::before,&::after
+            background: $gray-300
+    //     &::after
+    //         width: 0
+    &__icon
+        margin: -5px 0 0 5px
+        display: inline-block
+        vertical-align: middle
+        font-size: $btnIconSize
+    span
+        display: inline-block
+        vertical-align: middle
+        line-height: $btnIconSize
+    &--sm
+        width: $btnSmWidth
+        height: $btnSmHeight
+        margin: 5px
+        padding: calc(($btnSmHeight - $btnSmIconSize) / 2) 10px
+        &__icon
+            font-size: $btnSmIconSize
+        span
+            line-height: $btnSmIconSize
+    @each $b_Name, $b_BgC, $b_BdrC, $b_TextC in $btnConfig
+        &--#{$b_Name}
+            background-color: $b_BgC
+            border-color: $b_BdrC
+            color: $b_TextC
+    &--full
+        width: calc(100% - #{$btnLineWidth}*2)
++rwd(480)
+    .btnbox
+        padding: 20px 0

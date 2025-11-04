@@ -1,0 +1,743 @@
+
+//表頭模式
+@if $headerMode == 1
+    .logo
+        //width: $logoWidth
+        // height: map-get($logoHeight, "mode1")
+        order: map-get($headerOrder, "logo")
+    .nav__box
+        // width: calc(100% - #{map-get($view, "search") * 50px + map-get($view, "socialItem") * 40px + $logoWidth})
+        width: auto
+        order: map-get($headerOrder, "nav")
+    .nav
+        justify-content: $navAlign
+    .nav__name
+        justify-content: flex-end
+    .nav__layer
+        max-height: calc(100vh - #{map-get($logoHeight, "mode1")})
+        // top: map-get($logoHeight, "mode1")
+        top: 68px
+    .header__search
+        order: map-get($headerOrder, "search")
+    .header__search-form
+        // top: map-get($logoHeight, "mode1")
+        //bottom: 0
+        opacity: 0
+    .header__social-box
+        order: map-get($headerOrder, "social")
+    .language
+        order: map-get($headerOrder, "language")
+    .cart
+        order: map-get($headerOrder, "cart")
+    .hamburger
+        order: map-get($headerOrder, "hamburger")
+    .header--fixed
+        // .logo
+        //     height: map-get($logoHeight, "mode1Fixed")
+        .nav__layer
+            max-height: calc(100vh - #{map-get($logoHeight, "mode1Fixed")})
+            // top: map-get($logoHeight, "mode1Fixed")
+            top: 68px
+
+@if $headerMode == 2
+    .logo
+        width: calc(100% - #{map-get($view, "textbtnItem") * 100px + map-get($view, "socialItem") * 50px})
+        height: map-get($logoHeight, "mode2")
+        order: map-get($headerOrder, "logo")
+    .nav__box
+        width: 100%
+        height: $navHeight
+        order: map-get($headerOrder, "nav")
+    .nav
+        justify-content: $navAlign
+    .nav__name
+        justify-content: center
+    .nav__layer
+        max-height: calc(100vh - #{map-get($logoHeight, "mode2") + $navHeight})
+        // top: $navHeight
+        top: 59px
+    .header__search
+        order: map-get($headerOrder, "search")
+    .header__search-form
+        top: map-get($logoHeight, "mode2") + $navHeight
+    .header__social-box
+        order: map-get($headerOrder, "social")
+    .hamburger
+        order: map-get($headerOrder, "hamburger")
+    .header__seo
+        order: map-get($headerOrder, "seo")
+    .header--fixed
+        .logo
+            height: map-get($logoHeight, "mode2Fixed")
+        .nav__layer
+            max-height: calc(100vh - #{map-get($logoHeight, "mode2Fixed") + $navHeight})
+            // top: $navHeight
+            top: 59px
+        .header__search-form
+            top: map-get($logoHeight, "mode2Fixed") + $navHeight
+    +rwd($headerRWD)
+        .header
+            align-items: stretch
+            >div
+                align-items: stretch
+//header
+.header
+    width: 100%
+    position: fixed
+    z-index: 3
+.header__inner
+    padding-top: 5px !important
+    padding-bottom: 5px !important
+    align-items: center
+    justify-content: space-between
+    position: relative
+    &:after
+        position: absolute
+        content: ""
+        z-index: -1
+.logo
+    align-content: center
+    h1
+        margin-left: 10px
+        font-size: 12px
+        align-items: flex-end
+.logo__img
+    // height: 100%
+    align-items: center
+    @if $logoAlign == center
+        @if map-get($headerOrder, "logo") > map-get($headerOrder, "search") 
+            padding: 5px 0 5px #{map-get($view, "socialItem") * 40px - map-get($view, "search") * 50px}
+        @else
+            padding: 5px #{map-get($view, "socialItem") * 40px - map-get($view, "search") * 50px} 5px 0
+    @else
+        padding: 0 0
+    display: flex
+    align-items: center
+    justify-content: $logoAlign
+    img
+        height: auto !important
+        display: block
+.header--fixed
+    position: fixed
+    top: 0
+    box-shadow: 0 0 9px rgba($black,0.2)
+    z-index: 12
+//header 主選單
+.nav__box
+    height: 100%
+    align-items: center
+    justify-content: $navAlign
+.nav__item
+    width: auto
+    // max-width: 100 / $navItem * 1%
+    height: 100%
+    position: relative
+    +font-size($navFont,($navFont+10px))
+.nav__item--on
+    >.nav__name
+        &::after
+            width: 100%
+    >.nav__layer
+        display: flex
+        flex-wrap: wrap
+        flex-direction: column
+        .nav__name
+            margin: 0
+.nav__name
+    +calc('width','100% - 10px')
+    padding: 20px 30px
+    margin: 0 5px
+    // color: $navColor
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    position: relative
+    &::after
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 0
+        height: 4px
+        content: ""
+        @extend %transition
+    &.active,&:hover
+        &::after
+            position: absolute
+            bottom: 0
+            left: 0
+            width: 100%
+            height: 4px
+            // background: $main-color
+            content: ""
+    //&.active
+    //    &:hover
+    //        text-shadow: none
+    &:hover
+        //color: currentColor
+        //text-shadow: -1px -1px 3px rgba($black,.15), -1px 1px 3px rgba($black,.15), 1px -1px 3px rgba($black,.15), 1px 1px 3px rgba($black,.15)
+        opacity: 0.75
+.nav__item-div
+    position: relative
+.nav__btn
+    width: $navBtnWidth
+    height: 100%
+    justify-content: center
+    align-items: center
+    cursor: pointer
+    // display: none !important
+    position: absolute
+    right: 10px
+    top: 0
+    z-index: 1
+    &-icon
+        width: 100%
+        height: 100%
+        display: block
+        position: relative
+        &::after
+            content: ''
+            width: 0px
+            height: 0px
+            margin: auto
+            border-style: solid
+            border-width: 10px 8px 0 8px
+            // border-color: $navBorderColor transparent transparent transparent
+            border-left-color: transparent
+            border-right-color: transparent
+            border-bottom-color: transparent
+            position: absolute
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            transform: rotate(0deg)
+.nav__layer
+    width: $navLayerWidth
+    display: none
+    position: absolute
+    left: 0
+    z-index: 9
+    //color: $navColor
+    //background-color: $navbgColor
+    box-shadow: 3px 3px 7px rgba($black,0.2)
+    .nav__item
+        width: 100%
+        max-width: 100%
+        display: flex
+        flex-wrap: wrap
+        // border-bottom: 1px solid $navBorderColor
+        &::before,&::after
+            display: none
+        .nav__layer
+            top: 20px
+            +calc('left','100% + 1px')
+        .nav__btn
+            border-bottom-width: 0
+            display: flex
+            &-icon
+                &::after
+                    transform: rotate(-90deg)
+        .nav__name
+            width: 100%
+            padding: 7px 25px
+            align-items: flex-start
+            position: relative
+            //color: $navColor
+            font-size: 16px
+            @extend %transition
+            &:hover
+                padding-left: 28px
+                font-weight: 500
+            //     background-color: $gray-200
+            &::after
+                    display: none
+        // &.nav__item--on
+        //     > .nav__name
+        //         background-color: $navHoverbgColor
+.nav__prev
+    width: $navBtnWidth
+    height: $headerPhoneHeight
+    border-style: solid
+    border-width: 0 1px 0 0
+    cursor: pointer
+    display: none
+    position: relative
+    &-icon
+        width: $navBtnWidth
+        height: $navBtnWidth
+        position: relative
+        &::after
+            content: ''
+            width: 5px
+            height: 5px
+            margin: auto
+            border-style: solid
+            border-width: 2px 2px 0 0
+            position: absolute
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            transform: rotate(-135deg)
+.header__seo
+    width: 100%
+    +font-size(13px)
+    color: #777
+    text-align: right
+.hamburger
+    width: 30px
+    height: 100%
+    margin: auto
+    position: relative
+    cursor: pointer
+    display: none
+    span
+        width: 20px
+        height: 1px
+        margin: auto
+        display: block
+        position: absolute
+        left: 0
+        top: 0
+        right: 0
+        bottom: 0
+        transition: all .5s ease-out
+        &:nth-child(2)
+            transform: translateY(-7px)
+        &:nth-child(3)
+            transform: translateY(7px)
+    .a-cover
+        height: 56px
+        top: -28px
+        background-color: transparent
+
+//header 搜尋
+.header__search
+    width: 36px
+    align-items: center
+    position: relative
+.header__search-icon
+    width: 36px
+    height: 100%
+    justify-content: center
+    align-items: center
+    cursor: pointer
+    font-size: $socialHeight
+.header__search-form
+    width: 70%
+    padding: 10px
+    box-shadow: 0 3px 7px rgba($black,0.2)
+    position: absolute
+    +calc('left','50% - 35%')
+    @extend %transition
+    z-index: -1
+    visibility: hidden
+    &--on
+        //bottom: -56px
+        opacity: 1
+        z-index: 11
+        visibility: visible
++rwd(1440)
+    .header__search-form
+        width: 100%
+        +calc('left','50% - 50%')
+.header__search-input
+    width: 100%
+    height: 36px
+    padding: 0 10px
+    // background: $white
+    box-sizing: border-box
+    border: none
+    font-size: 14px
+    line-height: 40px
+    appearance: none
+    &::placeholder
+        color: $placeholderColor
+    &:focus
+        &::placeholder
+            color: rgba($placeholderColor,.5)
+.header__search-btn
+    width: 36px
+    height: 36px
+    cursor: pointer
+    border: none
+    background-color: $white
+    font-size: 20px
+    color: $gray-600
+    appearance: none
+    position: absolute
+    right: 10px
+    top: 10px
+    display: flex
+    justify-content: center
+    align-items: center
+    @extend %transition
+.header__search-btn
+    &:hover
+        color: $gray-500
+//header 社群
+.header__social-box
+    width: 50px * map-get($view, "socialItem")
+    margin-top: 15px
+.header__social-btn
+    justify-content: center
+    align-items: center
+    display: none
+    cursor: pointer
+    i
+        font-size: 18px
+.header__social
+    width: 100%
+    height: 100%
+    justify-content: flex-end
+    align-items: center
+.header__social-item
+    width: 50px
+    display: inline-flex
+    justify-content: center
+    align-items: center
+    position: relative
+    @extend %transition
+    img
+        width: 30px
+        height: auto
+.header__social-link
+    width: 40px
+    height: 40px
+    display: flex
+    justify-content: center
+    align-items: center
+    &:hover
+        color: $textColor
+.header__social-icon
+    font-size: $socialHeight
+.header__social-facebook
+    color: #1877F2
+.header__social-instagram
+    &:hover
+        color: #de2d75
+.header__social-twitter
+    &:hover
+        color: #1DA1F2
+.header__social-youtube
+    &:hover
+        color: #EE3123
+.header__social-LINE
+    color: #00B900
+// 語系
+.language
+    width: $language
+    justify-content: center
+    align-items: center
+    cursor: pointer
+    position: relative
+    z-index: 11
+    span
+        display: none
+    &__icon
+        font-size: 20px
+        display: block
+    .option
+        width: 120px
+        padding: 15px 10px !important
+        +font-size(15px,20px)
+        padding: 0
+        box-shadow: 0 0 5px rgba($black,0.08)
+        position: absolute
+        top: 140%
+        right: -10px
+        visibility: hidden
+        opacity: 0
+        transform: translateY(10px)
+        @extend %transition
+        &::before
+            content: ""
+            position: absolute
+            right: 20px
+            top: -7px
+            width: 0
+            height: 0
+            border-style: solid
+            border-width: 0 6px 7px 6px
+            border-top-color: transparent
+            border-right-color: transparent
+            border-left-color: transparent
+        li
+            padding: 10px 12px
+            position: relative
+            color: $white
+            @extend %transition
+            &:hover
+                opacity: 0.6
+    &:hover
+        transform: translateY(0)
+        img
+            transform: translateY(0)
+        .option
+            visibility: visible
+            opacity: 1
+            transform: translateY(0)
+            
+// 詢價車
+.cart
+    width: $cart
+    padding: 0
+    z-index: 12
+
++rwd($headerRWD)
+    .header
+        //position: relative
+        z-index: 12
+    .header__inner
+        justify-content: start
+    //.header--fixed
+    //    //position: relative
+    //    .logo
+    //        height: $headerPhoneHeight
+    .logo
+        width: auto
+        //+calc('width','100% - 156px')
+        //height: $headerPhoneHeight
+    .logo__img
+        img
+            height: auto
+    .nav__box
+        width: 100%
+        height: 100%
+        padding-top: $headerPhoneHeight
+        overflow-x: hidden
+        overflow-y: auto
+        justify-content: flex-start
+        align-items: flex-start
+        // background: $main-color
+        position: fixed
+        top: 0
+        right: -100%
+        z-index: 20
+        transition: all .5s ease-in-out
+    .nav__box--on
+        right: 0
+    .nav
+        width: 100%
+        padding-left: 0
+        align-items: flex-start
+        align-content: flex-start
+        border-style: solid
+        border-width: 1px 0 0
+    .nav__item
+        width: 100%
+        height: auto
+        max-width: 100%
+        margin-right: 0
+        display: block
+        border-style: solid
+        border-width: 0 0 1px
+    .nav__name
+        // height: $navFont + 20px
+        padding: 10px 15px
+        align-items: flex-start
+        &::after
+            display: none
+    .nav__btn
+        width: 50px
+        right: 0
+        display: flex !important
+        .nav__btn-icon
+            transform: rotate(180deg)
+            &::after
+                width: 5px
+                height: 5px
+                border-width: 2px 2px 0 0
+                transform: rotate(-135deg)
+        &--on
+            .nav__btn-icon
+                transform: rotate(180deg)
+    .nav__layer
+        width: 100%
+        top: 0
+        position: relative
+        border-width: 1px 0 0 0
+        box-shadow: none
+        .nav__item
+            .nav__btn
+                height: $navFont + 20px
+                &-icon
+                    &::after
+                        transform: rotate(-135deg)
+            .nav__name
+                height: $navFont + 20px
+                padding: 5px 20px 5px 20px
+                color: $white
+                &::before
+                    display: none
+            .nav__layer
+                padding-left: 20px
+                top: 0
+                left: 0
+            &:first-child
+                border-top: 1px solid $navBorderColor
+            &:last-child
+                border-bottom: 0
+        &--on
+            display: flex
+    .nav__box--turnover
+        .nav__btn
+                &-icon
+                    transform: rotate(180deg)
+        .nav__layer
+            height: 100%
+            overflow-y: auto
+            display: flex
+            flex-wrap: wrap
+            align-items: flex-start
+            align-content: flex-start
+            background-color: $main-color
+            border-width: 0
+            position: fixed
+            left: 100%
+            z-index: 3
+            transition: left .3s ease-out
+            .nav__item
+                &:nth-child(1)
+                    border-top-width: 0
+                &:nth-child(2)
+                    border-top-width: 1px
+                &:last-child
+                    border-bottom-width: 1px
+            .nav__layer
+                padding-left: 0
+                left: 100%
+                &--on
+                    left: 0
+            &--on
+                left: 0
+                top: 0
+        .nav__prev
+            width: 50px
+            display: flex
+            justify-content: center
+            align-items: center
+    .hamburger
+        display: flex
+    .hamburger--on
+        height: $headerPhoneHeight
+        position: fixed
+        top: 0
+        right: 20px
+        z-index: 999
+        span
+            &:nth-child(4)
+                opacity: 0
+                transform: translateX(100%)
+            &:nth-child(2)
+                transform: translateY(0) rotate(45deg)
+            &:nth-child(3)
+                transform: translateY(0) rotate(-45deg)
+    .header__search
+        width: 40px
+        padding: 0 5px
+        margin-right: 0
+        position: relative
+        z-index: 3
+        &--on
+            z-index: 12
+    .header__social-box
+        width: 40px
+        margin-top: 0
+    .header__social-btn
+        height: 100%
+        display: flex
+    .header__search-icon
+        display: flex !important
+        .icon-x
+            z-index: 99
+            position: fixed
+            left: 50%
+            top: 40%
+            transform: translateX(-50%)
+            font-size: 30px
+            color: #ffffff !important
+            background: transparent
+    .header__search-form
+        width: 100%
+        height: 100vh
+        top: 0
+        left: 0
+        box-shadow: none
+        display: none
+        align-items: center
+        &--on
+            display: flex
+        &:after
+            width: 100%
+            height: 100%
+            position: absolute
+            top: 0
+            left: 0
+            background-color: rgba($black,0.75) !important
+            content: ""
+    .header__search-btn
+        height: 70px
+        position: initial
+        z-index: 1
+    .header__search-input
+        padding: 15px
+        height: auto
+        z-index: 1
+    .header__social
+        width: 100%
+        height: auto
+        padding: 15px 10px
+        position: fixed
+        top: 50px
+        left: 100%
+        background: $gray-200
+        justify-content: center
+        transition: left .3s ease-out
+        &--on
+            left: 0
+            z-index: 1
+    .header__social-item
+        justify-content: center
+    .header__textbtn
+        display: none
+    .language
+        width: 30px
+        span
+            display: none
+        &__icon
+            font-size: 20px
+            display: flex !important
+            position: relative
+            justify-content: center
+            align-items: center
+            z-index: 0
+            &::after
+                position: absolute
+                content: ""
+                left: 0
+                +calc('top','50% - 12.5px')
+                z-index: -1
+        .option
+            top: 140%
+            visibility: hidden !important
+            opacity: 0 !important
+            transform: translateY(10px) !important
+            &--on
+                visibility: visible !important
+                opacity: 1 !important
+                transform: translateY(0) !important
+    .cart
+        padding: 0 5px
+        z-index: 11
+//header topblock
+.header
+    .language,.cart-btn
+        @extend %transition
+    .topblock
+        .left-info
+            li
+                @extend %transition
+                a,span
+                    @extend %transition

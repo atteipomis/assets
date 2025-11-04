@@ -1,0 +1,386 @@
+//This is sass file
+
+input
+    line-height: $fontLh
+    box-shadow: none
+    //IOS去圓角
+    border-radius: 0
+    appearance: none
+    &[type="file"],&[type="button"],&[type="submit"],&[type="reset"]
+        appearance: none
+    &[type="date" i]
+        position: relative
+        z-index: 0
+        &::after
+            position: absolute
+            right: 15px
+            // top: 9px
+            font-family: 'icomoon'
+            font-size: 24px
+            color: $sub-color
+            content: "\e91c"
+            z-index: -1
+            @extend %transition
+        // +rwd(1025,min)
+        //     &:hover
+        //         &::after
+        //             color: $textColor
+    &[type="date"]
+        position: relative
+        &::-webkit-calendar-picker-indicator
+            width: 100%
+            height: 100%
+            position: absolute
+            left: 0
+            top: 0
+            color: transparent
+            background: transparent
+            cursor: pointer
+    &::placeholder
+        color: $placeholderColor
+    &:focus
+        &::placeholder
+            color: rgba($placeholderColor,.5)
+
+// input number不出現上下箭頭
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+    appearance: none !important
+
+select, textarea
+    //IOS去圓角
+    border-radius: 0
+    appearance: none
+    line-height: $fontLh
+
+textarea
+    width: 100%
+    max-width: 100%
+    padding: 5px
+    box-sizing: border-box
+    border: 1px solid $formLineColor
+//ie appearance
+select::-ms-expand
+    display: none
+
+/* form   */
+.form
+    @extend %clear
+    // form__標題vs隱藏
+    &__legend
+        padding: 10px
+        font-weight: bold
+        +font-size(24px,24px)
+        &--hide //隱藏標題
+            display: none
+        &-icon
+            margin-right: 10px
+            display: inline-block
+            vertical-align: middle
+    // form__橫列
+    &__group
+        padding: 5px 0
+    // form__欄位名vs隱藏
+    &__label
+        padding: 10px 10px 0 10px
+        &--hide
+            display: none
+        //靠右
+        &--right
+            text-align: right
+        //表單標題
+        .form__title
+            // padding: calc(($formHeight - $fontLh) / 2) 0 0 10px
+            padding: 0 0 0 10px
+            display: inline-block
+            position: relative
+        // form__必填
+        &--required
+            .form__title
+                &::before
+                    content: "*"
+                    margin-right: 5px
+                    font-weight: bold
+                    color: $requiredColor
+                    display: inline-block
+                    vertical-align: middle
+                    position: absolute
+                    left: 0
+                    top: 4px
+                    // top: (($formHeight - $fontLh)/2)
+    // form__填寫內容
+    &__field
+        padding: 10px
+        box-sizing: border-box
+    // form__日曆
+    &__calendar
+        position: relative
+    // 單行輸入欄位(文字、密碼)、下拉選單、多行輸入欄位(留言)
+    &__control
+        width: 100%
+        height: $formHeight
+        padding: calc(($formHeight - $fontLh)/2) 10px
+        box-sizing: border-box
+        color: $formColor
+        border: $formLineWidth solid $formLineColor
+        background: $formBgColor
+        border-radius: $formBdRs
+        position: relative
+        //欄位錯誤樣式
+        &.input-validation-error
+            border-color: $errorColor
+        //欄位成功樣式
+        &.input-validation-success
+            border-color: $successColor
+        //input欄位狀態
+        &[disabled],
+        &[readonly]
+            cursor: not-allowed
+            filter: opacity(65%)
+            box-shadow: none
+            opacity: .65
+            background: $formBgColor
+        //focus 樣式
+        &:focus
+            box-shadow: 0 0 5px rgba($formShadow,0.3)
+    // select設定
+    &__select
+        position: relative
+        padding: 0
+        select
+            width: calc(100% + #{$formLineWidth}*2)
+            height: calc(100% + #{$formLineWidth}*2)
+            margin: -($formLineWidth)
+            padding: 0 30px 0 15px
+            box-sizing: border-box
+            background-color: rgba(0,0,0,0)
+            border-width: 0
+            border-radius: $formBdRs
+            position: relative
+            z-index: 2
+            option
+                color: $textColor
+            //欄位錯誤樣式
+            &.input-validation-error
+                border: 1px solid $errorColor
+            //欄位成功樣式
+            &.input-validation-success
+                border: 1px solid $successColor
+            &:focus
+                box-shadow: 0 0 5px rgba($formShadow,0.3)
+        //三角形
+        &::after
+            content: ""
+            margin: auto
+            +triangle($selectArrowWidth $selectArrowHeight,$selectArrowColor,down)
+            position: absolute
+            top: 0
+            right: 10px
+            bottom: 0
+            z-index: 1
+    //textarea
+    &__textarea
+        height: $textareaHeight
+    // form__回饋與提示訊息
+    &__feedback,&__tips,.invalid-feedback
+        padding: 5px 10px 0 0
+        display: block
+        color: $tipsColor
+        &::before
+            font-family: 'icomoon'
+            margin: -2px 5px 0 0
+            display: inline-block
+            vertical-align: middle
+    &__tips
+        &::before
+            content: $tipsIcon
+            font-size: $tipsIconSize
+        span
+            display: inline-block
+            vertical-align: middle
+        a
+            color: #168800
+    //form__訊息文字
+    .field-validation-valid
+        display: none
+        &::before
+            content: $validIcon
+    // form__回饋-成功
+    .field-validation-success
+        color: $successColor
+        display: block
+        &::before
+            content: $successIcon
+    // form__回饋-失敗
+    .field-validation-error
+        color: $errorColor
+        display: block
+        &::before
+            content: $errorIcon
+    .is-invalid
+        border-color: #ff0000
+    // form__驗證碼img
+    &__img
+        display: inline-block
+        vertical-align: middle
+        padding: calc(($formHeight - $fontLh) / 2) 0
+        img
+            width: auto
+            height: $fontLh
+            margin-right: 10px
+            display: inline-block
+    // 驗證碼 reset
+    &__reset
+        display: inline-block
+        // vertical-align: middle
+        color: $resetColor
+        padding: 7px
+        border-radius: 5px
+        // background: $main-color
+        i
+            font-size: $fontLh
+            color: $main-color
+            display: inline-block
+            transition: all .5s ease-out
+        &:hover
+            color: $resetColor
+            i
+                transform: rotate(180deg)
+
+// 預設radio、checkbox
+input
+    // ======= input - 多擇一選項 =======
+    &[type=radio]
+        vertical-align: middle
+    // ======= input - checkbox核取方塊 =======
+    &[type=checkbox]
+        vertical-align: middle
+// radio、checkbox 框架
+.form-selection
+    padding: 5px 0
+    box-sizing: border-box
+    // 仿預設radio、checkbox
+    &__input
+        opacity: 0
+        position: absolute
+    //行內排列
+    &--inline
+        margin-right: 15px
+        display: inline-block
+        max-width: initial
+    // radio、checkbox-label 設定
+    &__label
+        cursor: pointer
+        display: block
+    //radio chckbox 文字
+    &__text
+        position: relative
+        vertical-align: middle
+        padding: 5px 10px 5px 0
+        font-weight: normal
+        max-width: initial
+        .form-selection__option,.form-selection__note
+            display: inline-block
+            vertical-align: top
+        .form-selection__option
+            margin-right: 5px
+            position: relative
+            // 單選-實心圓、複選-勾選
+            &::before
+                content: ''
+                position: absolute
+                transition: all .3s ease-out
+                display: none
+    //radio 選擇後填寫框
+    &__box
+        padding-top: 5px
+        padding-left: $radioSize
+        display: none
+// 單選-圓
+.form-selection__text--radiobox
+    line-height: $radioSize
+    .form-selection__option,.form-selection__option::before
+        border-radius: $radioBdRs
+    .form-selection__option
+        width: $radioSize
+        height: $radioSize
+        background-color: $radioBgColor
+        border: $radioLineWidth solid $radioLineColor
+        // 單選-實心圓
+        &::before
+            width: $radioSize - 10px
+            height: $radioSize - 10px
+            margin: auto
+            background: $radioCheckColor
+            position: absolute
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+// 複選-勾
+.form-selection__text--checkbox
+    line-height: $checkboxSize
+    .form-selection__option,.form-selection__note::before
+        border-radius: $checkboxBdRs
+    .form-selection__option
+        width: $checkboxSize
+        height: $checkboxSize
+        background-color: $radioBgColor
+        border: $checkboxLineWidth solid $checkboxLineColor
+        // 勾勾
+        &::before
+            width: $checkboxSize - 10px
+            height: $checkboxSize * 0.333
+            border-style: solid
+            border-color: $checkboxCheckColor
+            border-width: 0 0 3px 3px
+            margin: auto
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            transform: rotate(-45deg) translate(2px,-2px)
+// 仿按鈕
+.form-selection__text--btn
+    width: $choiceBtnWidth
+    height: $choiceBtnHeight
+    padding: calc(($choiceBtnHeight - $fontLh)/2) 10px
+    border: $choiceBtnLineWidth solid $choiceBtnLineColor
+    background-color: $choiceBtnColor
+    color: $choiceBtnTextColor
+    border-radius: $choiceBtnBdRs
+    text-align: center
+// 選項-checked
+.form-selection__input:checked + .form-selection__label > .form-selection__text--radiobox .form-selection__option::before,
+.form-selection__input:checked + .form-selection__label > .form-selection__text--checkbox .form-selection__option::before
+    display: block
+.form-selection__input:checked + .form-selection__label .form-selection__text--btn
+    border: $choiceBtnLineWidth solid $choiceBtnCheckLineColor
+    background-color: $choiceBtnCheckColor
+    color: $choiceBtnCheckTextColor
+.form-selection__input:checked + .form-selection__label > .form-selection__box
+    display: flex
+
+// disabled-input本身
+.form-selection__input
+    &[disabled]
+        cursor: not-allowed
+// disabled-文字
+.form-selection__input[disabled] + .form-selection__label
+    filter: opacity(50%)
+    opacity: 0.4
+    cursor: not-allowed
+
++rwd(768)
+    .form
+        &__field
+            padding: 0 15px
+        &__label
+            .form__title
+                padding-top: 0
+    .form-selection
+        padding: 0
++rwd(480)
+    .form
+        .form-selection
+            margin-bottom: 5px

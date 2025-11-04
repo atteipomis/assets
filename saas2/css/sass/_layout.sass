@@ -1,0 +1,536 @@
+//This is sass file
+
+/*===================layout===================*/
+
+*
+    box-sizing: border-box
+html
+    font-size: $fontSize
+    font-family: $font
+    line-height: $fontLh
+    letter-spacing: $letterSpacing
+    font-weight: 400
+
+body
+    position: relative
+    background-color: $white
+    word-break: break-word
+    -webkit-text-size-adjust: none
+
+//文字設定
+a
+    text-decoration: none
+    @extend %transition
+    &:hover
+        text-decoration: none
+
+img
+    display: block
+
+
+//layout 框架設定
+.wrapper
+    width: 100%
+    //寬度變化
+    @each $innerName,$innerSize,$innerGap  in $inner
+        @if $innerName == 'xl'
+                +inner($innerSize,$innerGap)
+                margin: 0 auto
+        @else if $innerName == 'fluid'
+            &--#{$innerName}
+                max-width: $innerSize
+                // @if $innerGap != 0
+                //     padding-left: $innerGap / 2 * 1px
+                //     padding-right: $innerGap / 2 * 1px
+                    
+        @else
+            &--#{$innerName}
+                +inner($innerSize,$innerGap)
++rwd(480)
+    .wrapper
+        padding: 0 15px
+
+// main
+.main
+    display: flex
+    flex-direction: column
+    &--line
+        padding-bottom: 30px
+        border-bottom: 1px solid $gray-200
++rwd(991)
+    .main
+        padding-top: 0 !important
+
+
+//other
+.hide
+    display: none
+.flex
+    display: -webkit-box
+    display: -ms-flexbox
+    display: flex
+    -ms-flex-wrap: wrap
+    flex-wrap: wrap
+.a-cover
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    z-index: 10
+.webeditor
+    padding: 15px 0
+    img
+        max-width: 100%
+        height: auto
+        display: inherit
+    p
+        margin: 1em 0
+    ul,ol
+        margin: 1em 0
+        padding-left: 40px
+    li
+        list-style-type: disc
+    pre
+        font-family: monospace
+        white-space: pre
+        margin: 1em 0
+    table
+        border-collapse: collapse
+    th
+        font-weight: bold
+        text-align: center
+        padding: 8px
+        border: 1px solid #cccccc
+    td
+        padding: 8px
+        border: 1px solid #cccccc
+    button
+        padding: 2px 6px
+        font: inherit
+        margin: 0
+    figure
+        margin: 1em 40px
+    legend
+        padding: 0
+        font-weight: bold
+.gotop
+    width: 40px
+    height: 40px
+    position: absolute
+    right: 20px
+    bottom: 20px
+    border-radius: 6px
+    justify-content: center
+    align-items: center
+    z-index: 2
+    opacity: 0.6
+    @extend %transition
+    i
+        margin-top: 5px
+        font-size: 24px
+    &:hover
+        opacity: 1
+        transform: translateY(-3px)
+//+rwd(991)
+//    .gotop
+//        bottom: 100px !important
+//+rwd(768)
+//    .gotop
+//        bottom: 20px !important
++rwd(600)
+    .gotop
+        bottom: 110px !important
+.right-icon
+    position: fixed
+    right: 20px
+    bottom: 150px
+    z-index: 2
+    a
+        width: 40px
+        height: 40px
+        margin-bottom: 6px
+        color: $white
+        border-radius: 6px
+        justify-content: center
+        align-items: center
+        @extend %transition
+        &:last-child
+            margin-bottom: 0
+        i
+            font-size: 26px
+        img
+            width: auto
+            height: 26px
+        span
+            display: none
+        &:hover
+            // color: $white
+            background-color: $gray-400 !important
++rwd(600)
+    .right-icon
+        width: 100%
+        right: 0
+        bottom: 0
+        display: -ms-flexbox
+        display: -webkit-box
+        display: flex
+        -ms-flex-wrap: wrap
+        flex-wrap: wrap
+        a
+            height: 60px
+            margin-bottom: 0
+            border-radius: 0
+            flex-direction: column
+            span
+                color: $white
+                font-size: 14px
+                display: block
+// title
+.title
+    +font-size(24px)
+    letter-spacing: 0.02rem
+    &--xl
+        +font-size(56px)
+    &--lg
+        +font-size(32px)
+    &--md
+        +font-size(20px)
+    &--sm
+        +font-size(18px)
++rwd(768)
+    .title
+        +font-size(22px)
+        &--xl
+            +font-size(48px)
+        &--lg
+            +font-size(30px)
+        &--md
+            +font-size(18px)
+        &--sm
+            +font-size(16px)
++rwd(480)
+    .title
+        +font-size(20px)
+        &--xl
+            +font-size(40px)
+        &--lg
+            +font-size(24px)
+
+/*===================cart===================*/
+.cart-drawer-push
+    overflow: hidden
+    position: relative
+    right: 0
+.cart-drawer
+    height: 100%
+    position: fixed
+    text-align: center
+    top: 0
+    width: 300px
+    padding: 20px
+    box-shadow: 0 -3px 6px rgba($black,0.3)
+    z-index: 12
+    a
+        &:hover
+            opacity: 0.6
+.cart-drawer-right
+    right: -300px
+    &.cart-drawer-open
+        right: 0
+.cart-drawer-pushtoleft
+    right: 300px
+.cart-drawer, .cart-drawer-push
+    @extend %transition
+.cart-btn
+    height: 100%
+    cursor: pointer
+    font-size: 20px
+    justify-content: center
+    align-items: center
+    .text
+        margin: 0 0 3px 5px
+        font-size: 15px
+        &::before
+            content: "( "
+        &::after
+            content: " )"
+.close-btn
+    cursor: pointer
+    position: absolute
+    top: 10px
+    right: 10px
+    font-size: 24px
+    @extend %transition
+    &:hover
+        opacity: 0.6
+.cart-inner
+    margin-top: 30px
+    &__row
+        padding: 0 10px 15px
+        margin-bottom: 15px
+        border-bottom: 1px $gray-300 solid
+        .img
+            width: 30%
+            img
+                width: 100%
+                height: auto
+        .info
+            width: 70%
+            padding-left: 15px
+            .pdt-name
+                margin-left: -12px
+                @extend %transition
+                &:hover
+                    margin-left: 0
+            .flex
+                margin-top: 6px
+                justify-content: flex-end
+                .qua,.delete-btn
+                    width: 50%
+                .qua
+                    padding-left: 10px
+                    text-align: left
+                .delete-btn
+                    text-align: right
+                    border: 0
+                    background: transparent
+                    cursor: pointer
+                    @extend %transition
+                    &:hover
+                        transform: translateY(-2px)
+                    
+/*===================banner===================*/
+.banner
+    position: relative
+    img
+        width: 100%
+        height: auto
+    .main-h1
+        position: absolute
+        +font-size(36px,40px)
+        +stroke(1,rgba($gray-100,0.6))
++rwd(768)
+    .banner
+        .main-h1
+            +font-size(28px)
++rwd(480)
+    .banner
+        .main-h1
+            +font-size(24px,28px)
+
+/*===================sidebar===================*/
+.sidebar
+    padding-right: 30px
++rwd(991)
+    .sidebar
+        display: none
+.accordion-menu
+    padding: 15px
+    // border: 1px $gray-300 solid
+    // border-width: 0 1px 0 0
+    box-shadow: -3px -3px 7px rgba($black,.05)
+    border-radius: 10px
+    position: relative
+    z-index: 0
+    display: block !important
+    &::after
+        +calc('width','100% - 20px')
+        +calc('height','100% - 20px')
+        position: absolute
+        left: 10px
+        top: 10px
+        content: ""
+        z-index: -1
+    li
+        a
+            padding: 10px 20px
+            display: block
+            @extend %transition
+            &:hover
+                padding-left: 22px
+        .sub-menu
+            padding: 0 0 10px 15px
+    > li
+        border-bottom: 1px dashed $gray-300
+        &:last-child
+            border-bottom: none
+        > a
+            padding: 15px 20px
+            &.active
+                    // color: $white
+                    // background-color: rgba($main-color,0.9)
+                    border-radius: 6px 6px 0 0
+        .active + .sub-menu
+            //background-color: $gray-100
+        .sublevel-1,.sublevel-2
+            .active
+                // color: $main-color
+                font-weight: 500
+        
+[data-accordion-menu]
+    .is-accordion-submenu-parent[aria-expanded="false"]
+        a
+            &::before
+                margin-right: 5px
+                content: "\f105"
+                font-family: 'icomoon'
+    >li
+        >a
+            &::before
+                margin-right: 5px
+                content: "\f105"
+                font-family: 'icomoon'
+[data-accordion-menu]
+    .is-accordion-submenu-parent[aria-expanded="true"]
+        >a
+            &::before
+                content: "\e912"
+                font-family: 'icomoon'
+.inner
+    >.title
+        margin-bottom: 10px
+        font-weight: 500
+        span
+            padding: 10px
+            &::before
+                content: "\e938"
+                font-size: 30px
+                font-family: 'icomoon'
+                font-weight: normal
+                margin-right: 10px
+                transform: rotate(240deg)
+                display: inline-block
+    .webeditor
+        padding: 15px
++rwd(480)
+    .inner
+        >.title
+            span
+                padding: 10px 0
+
+/*=================== product-共用 ===================*/
+.product
+    &__item
+        padding: 30px
+        .img
+            margin-bottom: 10px
+            overflow: hidden
+            position: relative
+            @extend %transition
+            img
+                width: 100%
+                height: auto
+                @extend %transition
+            &:hover
+                box-shadow: 0 8px 20px rgba($black,.3)
+        .text
+            padding: 10px
+            text-align: center
+            a,span
+                display: block
+            .name
+                margin-bottom: 5px
+            .model
+                font-size: 14px
+
+
+/*=================== news-共用 ===================*/
+.news
+    &__item
+        padding: 30px
+        .img
+            margin-bottom: 10px
+            overflow: hidden
+            position: relative
+            @extend %transition
+            img
+                width: 100%
+                height: auto
+                @extend %transition
+            &:hover
+                img
+                    transform: scale(1.05)
+        .info
+            padding: 10px 0 0
+            a,span
+                display: block
+            .title
+                +ellipsis(2)
+            .date
+                margin-top: 5px
+                //color: $gray-500
+            .description
+                margin: 10px 0
+                +ellipsis(4)
+
+/*=================== result ===================*/
+.result-inner
+    max-width: 1200px
+    padding: 50px 0
+    margin: auto
+    .img
+        margin-bottom: 30px
+        img
+            max-width: 320px
+            height: auto
+            margin: auto
+    .checkmark
+        margin: 0 auto
+        padding: 30px
+        text-align: center
+        svg
+            width: 350px
+    .info
+        text-align: center
++rwd(768)
+    .result-inner
+        .checkmark
+            svg
+                width: 70%
+        .info
+            padding-left: 0
+            .btnbox
+                text-align: center
+.path
+    stroke: $main-color
+    stroke-dasharray: 1000
+    stroke-dashoffset: 0
+    animation: dash 2s ease-in-out
+    -webkit-animation: dash 2s ease-in-out
+@-webkit-keyframes dash
+    0%
+        stroke-dashoffset: 1000
+    100%
+        stroke-dashoffset: 0
+@keyframes dash
+    0%
+        stroke-dashoffset: 1000
+    100%
+        stroke-dashoffset: 0
+.spin
+    stroke: $main-color
+    animation: spin 2s
+    -webkit-animation: spin 2s
+    -ms-transform-origin: 50% 50%
+        transform-origin: 50% 50%
+    -webkit-transform-origin: 50% 50%
+@-webkit-keyframes spin
+    0%
+        -webkit-transform: rotate(0deg)    
+    100%
+        -webkit-transform: rotate(360deg)
+@keyframes spin
+    0%
+        -webkit-transform: rotate(0deg)  
+    100%
+        -webkit-transform: rotate(360deg)
+
+
+
+
+
+
+
+
+    

@@ -1,0 +1,75 @@
+.pagination-box
+    width: 100%
+    margin: 20px 0
+.pagination
+    text-align: center
+    padding: 20px 0
+    a:link,
+    a:visited
+        color: $textColor
+    a:hover,
+    a:active
+        color: rgba($textColor, 0.8)
+    > a
+        min-width: 26px
+        padding: 0 5px
+        +font-size(16px, 30px)
+        display: inline-block
+        text-align: center
+        margin-left: 3px
+        background: $pageBg
+        overflow: hidden
+        &:first-child
+            margin-left: 0
+        &.active
+            background: $pageActiveBg
+            color: $pageHoverColor
+        &.disabled
+            color: $pageDisabled
+        &:hover
+            &:not([class*="disabled"])
+                background: $pageHoverBg
+                color: $pageHoverColor
+
+.pagination2
+    text-align: center
+    padding: 40px 0
+    width: 100%
+    .page-item
+        margin-left: 3px
+        display: inline
+        vertical-align: middle
+        button
+            border: 0
+        .page-link
+            width: 36px
+            height: 36px
+            +font-size(16px, 30px)
+            // color: rgba($black, 1)
+            display: inline-flex
+            // background: $pageBg
+            border-radius: 50%
+            overflow: hidden
+            justify-content: center
+            align-items: center
+            opacity: 0.5
+            cursor: pointer
+            @extend %transition
+        &.active
+            .page-link
+                cursor: context-menu
+                opacity: 1
+            &:hover
+                .page-link
+                    opacity: 1
+        &.disabled
+            .page-link
+                cursor: no-drop
+                opacity: 0.3
+        &:hover
+            .page-link
+                opacity: 0.8
+        &.disabled
+            &:hover
+                .page-link
+                    opacity: 0.3

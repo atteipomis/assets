@@ -1,0 +1,186 @@
+//This is sass file
+//background 設定
+=bg($img, $pos-x: 0, $pos-y: 0, $rep: no-repeat)
+    background-image: url("../images/#{$img}")
+    background-position: $pos-x $pos-y
+    background-repeat: $rep
+
+//rwd point 
+//+rwd(1920, max)
+=rwd($point, $mw: 'max')
+    @media only screen and (#{$mw}-width: $point * 1px)
+        @content
+
+//+icon(30px,30px,'\f138',25px, #999)
+=icon($width: auto, $height: auto, $icon_content: '', $font-size: 100%, $color:inherit)
+    position: relative
+    &:before
+        content: $icon_content
+        position: absolute
+        width: $width
+        height: $height
+        font-family: 'icomoon'
+        font-size: $font-size
+        line-height: $height
+        color: $color
+        @content
+
+//文字框線
+//+stroke(2,#eee)
+=stroke($s-width, $color)
+    $s-width: $s-width
+    $shadow: 0 0 0 transparent
+    $i: 0
+    $w: 1
+    @while ($s-width > $i)
+        $i: $i + 1
+        $j: 0
+        $w: $w + 2
+        @for $r from 1 through $w
+            @for $c from 1 through $w
+                $x: $c - calc($w / 2)
+                $y: $r - calc($w / 2)
+                $shadow: #{$shadow}, #{$x}px #{$y}px 0 $color
+    text-shadow: $shadow
+
+//case mixin
+//+inner(1920,30)
+//$inr-w 寬度
+//RWD $inr-gap 左右padding間距總和
+=inner($inr-w,$inr-gap: 0)
+    max-width: $inr-w * 1px
+    @if $inr-gap != 0
+        +rwd($inr-w + $inr-gap)
+            padding: 0 calc($inr-gap / 2) * 1px
+
+//文字隱藏 ellipsis(行高)
+//+ellipsis(3)
+=ellipsis($els_height: 1)
+    overflow: hidden
+    @if($els_height <= 1)
+        white-space: nowrap
+        text-overflow: ellipsis
+        @content
+    @else if($els_height > 1)
+        display: -webkit-box
+        text-overflow: ellipsis
+        -webkit-line-clamp: $els_height
+        -webkit-box-orient: vertical
+        @content
+
+
+//文字轉換 rem
+=font-size($inSize,$inLineHeight: 1px)
+    font-size: $inSize
+    $newLineHeight: ceil($inSize * $lineHeightLevel)
+    font-size: toRem($inSize)
+    @if $newLineHeight == 1px or $inLineHeight < $inSize
+        line-height: toRem($newLineHeight)
+    @else
+        line-height: toRem($inLineHeight)
+
+//文字倍率
+=font-level($fLevel)
+    @if($fLevel < 0)
+        $fLevel: 0
+    $newfont: $fontSize * (1 + $fLevel * $fontSizeLevel)
+    $fLevelLineHeight: ceil($newfont * $lineHeightLevel)
+    font-size: $newfont
+    font-size: toRem($newfont)
+    line-height: toRem($fLevelLineHeight)
+
+
+// triangle 三角形 mixin
+//+triangle(10px 12px, #ae0000,up)
+=triangle ($size, $color, $direction)
+    height: 0
+    width: 0
+    $width: nth($size, 1)
+    $height: nth($size, length($size))
+    $foreground-color: nth($color, 1)
+    $background-color: if(length($color) == 2, nth($color, 2), transparent)
+    @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left)
+        $width: calc($width / 2)
+        $height: if(length($size) > 1, $height, $height/2)
+        @if $direction == up
+            border-bottom: $height solid $foreground-color
+            border-left: $width solid $background-color
+            border-right: $width solid $background-color
+
+        @else if $direction == right
+            border-bottom: $width solid $background-color
+            border-left: $height solid $foreground-color
+            border-top: $width solid $background-color
+        @else if $direction == down
+            border-left: $width solid $background-color
+            border-right: $width solid $background-color
+            border-top: $height solid $foreground-color
+        @else if $direction == left
+            border-bottom: $width solid $background-color
+            border-right: $height solid $foreground-color
+            border-top: $width solid $background-color
+    @else if ($direction == up-right) or ($direction == up-left)
+        border-top: $height solid $foreground-color
+        @if $direction == up-right
+            border-left:  $width solid $background-color
+        @else if $direction == up-left
+            border-right: $width solid $background-color
+    @else if ($direction == down-right) or ($direction == down-left)
+        border-bottom: $height solid $foreground-color
+        @if $direction == down-right
+            border-left:  $width solid $background-color
+        @else if $direction == down-left
+            border-right: $width solid $background-color
+    @else if ($direction == inset-up)
+        border-color: $background-color $background-color $foreground-color
+        border-style: solid
+        border-width: $height $width
+    @else if ($direction == inset-down)
+        border-color: $foreground-color $background-color $background-color
+        border-style: solid
+        border-width: $height $width
+    @else if ($direction == inset-right)
+        border-color: $background-color $background-color $background-color $foreground-color
+        border-style: solid
+        border-width: $width $height
+    @else if ($direction == inset-left)
+        border-color: $background-color $foreground-color $background-color $background-color
+        border-style: solid
+        border-width: $width $height
+
+//置中， 'v'垂直置中、'h'水平置中、'b'垂直水平置中
+=center($position)
+    position: absolute
+    @if $position == 'v'
+        top: 50%
+        transform: translateY(-50%)
+    @else if $position == 'h'
+        left: 50%
+        transform: translate(-50%)
+    @else if $position == 'b'
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+
+//RWD 網格變換
+//$cooCol 網格數
+//$cooCols 網格佔格數
+//$cooGutter 間距 px em %
+//使用方式 +coo(6,2,10px)
+=coo($cooCol, $cooCols: 1, $cooGutter: $default-gutter, $grid-columns: $default-grid-columns)
+    width: span($cooCols, $cooCol, $cooGutter)
+    @if $cooGutter != 0
+        margin-left: calc(gutter($cooGutter) / 2)
+        margin-right: calc(gutter($cooGutter) / 2)
+        margin-bottom: calc(gutter($cooGutter))
+
+
+
+//calc
+//+calc(width,'100% - 50px')
+=calc($property, $expression)
+    #{$property}: -moz-calc(#{$expression})
+    #{$property}: -webkit-calc(#{$expression})
+    #{$property}: calc(#{$expression})
+
+

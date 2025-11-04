@@ -1,0 +1,65 @@
+//This is sass file
+
+.breadcrumb-box
+    width: 100%
+    margin-bottom: 40px
+    padding: 0 10px
+    border-bottom: 1px $gray-200 solid
+.breadcrumb
+    +inner(nth(nth($inner,2),2))
+    margin: 0 auto
+    padding: 10px 0
+    // align-content: flex-start
+    &__item
+        padding-right: 20px
+        margin-left: 10px
+        position: relative
+        font-size: 15px
+        letter-spacing: 0.05rem
+        display: inline-block
+        @extend %transition
+        i
+            font-size: 22px
+            color: $main-color
+            vertical-align: text-bottom
+        &::after
+            content: "\f105"
+            font-family: 'icomoon'
+            position: absolute
+            right: 0
+        &:first-child
+            &:before
+                content: "\e92f"
+                font-size: 16px
+                font-family: 'icomoon'
+                margin-right: 5px
+        &:last-child
+            &::after
+                display: none
+            &:hover
+                transform: translateX(0)
+        &:hover
+                color: $gray-600
+                transform: translateX(3px)
+    &__link
+        display: block
+        +font-size(14px,18px)
+        padding: 5px
++rwd(991)
+    .breadcrumb-box
+        margin-bottom: 40px
++rwd(768)
+    .breadcrumb-box
+        margin-bottom: 30px
++rwd(480)
+    .breadcrumb-box
+        margin-bottom: 10px
+    .breadcrumb
+        padding: 10px 0
+        &__item
+            font-size: 12px
+            padding-right: 10px
+            margin-left: 2px
+            &:first-child
+                &::after
+                    top: 5px
