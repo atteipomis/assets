@@ -1,0 +1,63 @@
+@mixin sm{
+  @media(min-width: 576px){
+    @content;
+  }
+}
+@mixin md{
+  @media(min-width: 768px){
+    @content;
+  }
+}
+@mixin lg{
+  @media(min-width: 992px){
+    @content;
+  }
+}
+@mixin xl{
+  @media(min-width: 1200px){
+    @content;
+  }
+}
+@mixin xxl{
+  @media(min-width: 1400px){
+    @content;
+  }
+}
+
+.header_top{
+  background-color: #000;
+  position: initial;
+  z-index: 999;
+  width: 100%;
+  @include md{
+    position: fixed;
+  }
+  @include xxl{
+    position: initial;
+  }
+}
+
+.bg-dark{
+  top: 2rem;
+  @include xxl{
+    top: auto!important;
+  }
+}
+.bg-dark2{
+  top: 2rem;
+  @include xxl{
+    top: 0!important;
+  }
+}
+.header_top span{
+  white-space:nowrap;
+  margin-right: 1rem;
+}
+.header_top .mail{
+  user-select: none;
+}
+.page-index{
+  @include md{
+    padding-top: 5rem;
+  }
+}

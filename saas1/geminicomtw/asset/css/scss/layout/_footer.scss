@@ -1,0 +1,165 @@
+@import "../helpers/variable";
+// ======================================
+// footer info
+// ======================================
+.layout__footer {
+    background-color: var(--primary-color-darken);
+    &.bg-style1 {
+        background-size: cover;
+        box-shadow: inset 0 3px 0 rgba(0, 0, 0, 0.08);
+    }
+}
+
+
+// Address
+.footer__info {
+    margin-top: 20px;
+
+    // Address
+    ul {
+        li {
+            color: #fff;
+            font-size: 15px;
+            line-height: 2.1;
+            display: inline-block;
+            margin: 0 10px 3px;
+
+            a {
+                color: #dbdbdb;
+            }
+
+            .title {
+                color: #fff;
+
+                &:after {
+                    content: '：';
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}
+
+// ======================================
+// copyright
+// ======================================
+
+.copyright {
+    font-size: 14px;
+    letter-spacing: 0.8px;
+    line-height: 1.65;
+    color: #a1a1a1;
+    padding: 2px 0;
+    background-color: #383838;
+
+    a {
+        color: #dddddd;
+
+        &:hover {
+            color: #ccc;
+        }
+    }
+    .copy-text,.sitemap {
+        display: inline-block;
+       text-transform: uppercase;
+    }
+    .sitemap {
+        margin-left: 15px;
+    }
+
+    .icon {
+        width: 17px;
+        height: 17px;
+        fill: white;
+        margin-right: 7px;
+        vertical-align: text-top;
+    }
+    .sitemap {
+        margin-top: 3px;
+    }
+}
+
+// ======================================
+// back-to-top
+// ======================================
+
+.back-to-top {
+    display: none;
+    left: auto;
+    right: 10px;
+    bottom: 10px;
+
+    .btn {
+        z-index: 1000;
+        cursor: pointer;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: var(--primary-color-darken);
+        width: 36px;
+        height: 36px;
+        line-height: 1.2;
+
+        &:hover,
+        &:focus {
+        }
+
+        .icon {
+            width: 14px;
+            fill: #fff;
+        }
+    }
+}
+
+// ======================================
+// footer GDPR
+// ======================================
+
+.advbox {
+    width: 320px;
+    right: 10px;
+    top: 10px;
+    background-color: #fcfcfc;
+    z-index: 9999;
+    padding: 14px;
+    border: 1px solid var(--primary-color-darken);
+    color: #656565;
+    line-height: 1.6;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+
+    .adv-body {
+        position: relative;
+        overflow: hidden;
+
+        .cookies_3 {
+            display: block;
+            margin-top: 8px;
+            margin-bottom: 11px;
+            text-align: center;
+        }
+
+        a {
+            //color: #32a436;
+
+            //&:hover {
+            //    color: #2d75e1;
+            //}
+        }
+
+        .closebtn {
+            display: block;
+            width: 70px;
+            color: #FFF;
+            z-index: 99;
+            background-color: var(--primary-color);
+            border: 0 solid #fff;
+            margin: auto;
+            border-radius: 20px;
+            padding: 2px;
+            font-size: 15px;
+
+            &:hover {
+                background-color: var(--primary-color-darken);
+            }
+        }
+    }
+}

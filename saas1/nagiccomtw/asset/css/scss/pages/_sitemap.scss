@@ -1,0 +1,14 @@
+@import "../helpers/mixins";
+@import "../helpers/variable";
+// ======================================
+// sitemap
+// ======================================
+.page-sitemap {
+    .sidebar-menu .subs-dropdown li:last-child {
+        margin-bottom: 10px;
+    }
+
+    .sidebar-menu .subs-dropdown {
+        margin: 6px 10px 0;
+    }
+}

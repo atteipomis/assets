@@ -1,0 +1,450 @@
+/* index banner css setting */
+.carousel,
+.carousel-item {
+  height: 100vh;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-item img {
+  object-fit: cover;
+  height: 100%;
+}
+
+.carousel-item .carousel-caption {
+  padding-right: 5%;
+  padding-left: 5%;
+  bottom: 40%;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.00) 0.52%, rgba(44, 46, 131, 1.00) 32.13%, rgba(37, 40, 104, 1.00) 45.08%, rgba(44, 46, 131, 1.00) 60.62%, rgba(255, 255, 255, 0.00) 100%);
+}
+
+.index-slider .carousel-caption h5,
+.index-slider .carousel-caption p {
+  letter-spacing: 1px;
+  margin-bottom: 0;
+}
+
+.index-slider .carousel-caption h5 {
+  font-size: 4rem;
+  margin-bottom: 5px;
+}
+
+.index-slider .carousel-caption p{
+  display: none;
+}
+
+/* 分頁器 */
+.carousel-indicators li {
+  width: 10px;
+  height: 10px;
+}
+
+/* banner rwd */
+@media screen and (max-width:991px) {
+  /* .index-slider .carousel-caption {
+    display: block !important;
+    position: initial;
+    background: var(--second-match-color) !important;
+    ;
+  } */
+}
+
+@media screen and (max-width:768px) {
+  .index-slider .carousel-caption {
+    display: block !important;
+  }
+}
+
+
+@media screen and (max-width:576px) {
+  .index-slider .carousel-caption h5 {
+    font-size: 16px;
+  }
+}
+
+/* index news css setting */
+.news_in {
+  background-image: none !important;
+}
+
+.news_mask {
+  padding: 70px 0 30px 0;
+  background-image: url(../images/news-bg.webp) !important;
+  background-position: bottom;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.news_in .ind_date {
+  display: none;
+}
+
+.news_in .title01 {
+  color: #FFF;
+}
+
+/* news img hover */
+.news_in .a_img {
+  width: 100%;
+  overflow: hidden;
+}
+
+.news_in .a_img img {
+  transition: 0.3s;
+}
+
+.news_in .col-md-4.col-sm-12:hover img {
+  opacity: 0.5;
+  background-color: #FFF;
+}
+
+/* news word */
+.indexNews-text p .line-height-limit {
+  color: #FFF;
+  z-index: 1;
+  position: sticky;
+}
+
+.news_in .col-md-4.col-sm-12:hover .indexNews-text .line-height-limit {
+  color: #FFF;
+}
+
+/* news word box  */
+.indexNews-text p {
+  position: relative;
+  text-align: center;
+  padding: 0.7rem 0;
+  width: 100%;
+  margin: 1rem 0;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.indexNews-text p::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: scaleX(.3);
+  transform: scaleX(.3);
+  opacity: 0;
+  transition: all .3s
+}
+
+.indexNews-text p:hover::before {
+  opacity: 1;
+  background-color: var(--main-color);
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  transition: -webkit-transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity .4s;
+  transition: transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity
+}
+
+/* news item hover */
+
+.news_in .col-md-4.col-sm-12:hover .indexNews-text p::before {
+  opacity: 1;
+  background-color: var(--main-color);
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  transition: -webkit-transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity .4s;
+  transition: transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity
+}
+
+
+
+
+
+
+
+/* index about css setting */
+section.about {
+  padding: 100px 0;
+  background-repeat: no-repeat;
+  background-image: url(../images/index-ab-bg.webp) !important;
+  background-size: cover;
+  background-position: bottom;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+
+.ab-title {
+  margin-bottom: 3.5rem;
+  font-size: 36px;
+  color: rgb(44, 62, 80);
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+}
+
+.ab-title::after {
+  content: "";
+  display: block;
+  margin: 1rem auto;
+  width: 45px;
+  height: 5px;
+  background-color: #657688;
+}
+
+.ab-content p {
+  line-height: 36px;
+  font-size: 18px;
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+
+
+
+
+
+/* index pdt css setting */
+.index-product .container {
+  padding-bottom: 0;
+}
+
+.index-product {
+  position: relative;
+  padding: 100px 0;
+  overflow: hidden;
+  background-color: #FFF;
+  background-image: none !important;
+}
+
+.index-product .pli_list {
+  flex-direction: column;
+}
+
+/* pdt pic */
+.pro_in1>a {
+  width: 100%;
+  overflow: hidden;
+}
+
+.pro_in1>a>img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* pdt word */
+.pro_in1 .pli_list .line-height-limit,
+.pro_in1 .pli_list a {
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif !important;
+  color: var(--main-color);
+  position: sticky;
+  z-index: 1;
+}
+
+.pro_in1:hover .pli_list .line-height-limit {
+  color: #FFF;
+}
+
+.pro_in1:hover .pli_list a {
+  color: #FFF;
+}
+
+/* pdt word box */
+.pli_list {
+  position: relative;
+  text-align: center;
+  padding: 0.7rem 0;
+  width: 100%;
+  margin: 1rem 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.pli_list::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: scaleX(.3);
+  transform: scaleX(.3);
+  opacity: 0;
+  transition: all .3s
+}
+
+.pli_list:hover::before {
+  opacity: 1;
+  background-color: var(--main-color);
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  transition: -webkit-transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity .4s;
+  transition: transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity
+}
+
+/* pdt item hover */
+
+.pro_in1:hover:hover .pli_list::before {
+  opacity: 1;
+  background-color: var(--main-color);
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  transition: -webkit-transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity .4s;
+  transition: transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity
+}
+
+/* index pdt rwd */
+@media screen and (min-width:992px) {
+  .pro_in1>a {
+    height: 300px;
+  }
+}
+
+@media screen and (min-width:767px) and (max-width:991px) {
+  .pro_in1>a {
+    height: 220px;
+  }
+}
+
+@media (max-width:991px) {
+  .index-product {
+    padding: 50px 0;
+  }
+}
+
+
+
+
+
+
+
+/* index slogan css setting */
+.slogan {
+  background-image: none !important;
+  background-color: #F9F9F9;
+}
+
+.slogan .container {
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.slogan .bg-custom {
+  display: none;
+}
+
+.slogan-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.slogan-item {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.slogan-item.img .slogan-inside{
+  width: 100%;
+  height: 100%;;
+}
+
+.slogan-item.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  min-height: 900px;
+}
+
+.slogan-item.img .slogan-inside {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.slogan-inside {
+  padding: 2rem 5rem;
+}
+
+.slogan-part {
+  padding: 1rem 0;
+}
+
+.slogan-part .icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.slogan-part .icon img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.slogan-part h4 {
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width:992px){
+  .slogan-item.img img{
+    min-height: unset;
+  }
+}
+
+/* 該站客製：首頁順序 */
+.page-index {
+  display: flex;
+  flex-direction: column;
+}
+
+#carouselExampleCaptions {
+  order: 0;
+}
+
+.about {
+  order: 1;
+}
+
+.news_in {
+  order: 2;
+}
+
+.pro_in.index-product {
+  order: 3;
+}
+
+.slogan.index-slogan{
+  order: 4;
+}

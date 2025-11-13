@@ -1,0 +1,23 @@
+/* spinProducts(360slider) */
+.slider360 {
+  z-index: 10000;
+}
+.slider360 .carousel-control-prev-icon, .slider360 .carousel-control-next-icon {
+  width: 30px;
+  height: 30px;
+  background-image: none;
+  background-color: #fff;
+  opacity: 0.8;
+}
+.slider360 .carousel-control-prev-icon svg, .slider360 .carousel-control-next-icon svg {
+  width: 30px;
+  height: 30px;
+  fill: #656565;
+  border: 1px solid;
+}
+.slider360 .carousel-control-prev-icon:hover, .slider360 .carousel-control-next-icon:hover {
+  background-color: #fff;
+  opacity: 1;
+}
+
+/*# sourceMappingURL=spin-products.css.map */

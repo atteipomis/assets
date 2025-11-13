@@ -1,0 +1,51 @@
+@import "../helpers/mixins";
+@import "../helpers/variable";
+// ======================================
+// news-index
+// ======================================
+//.pdtItem {
+//    margin-bottom: 30px;
+//
+//    .pdtItem-image {
+//        overflow: hidden;
+//
+//        img {
+//            transform: scale(1);
+//            transition: .2s ease-in-out;
+//        }
+//
+//        &:hover img {
+//            transform: scale(1.12) rotate(-5deg);
+//            @include transition(.2s ease-in-out);
+//        }
+//    }
+//    .pdtItem-text {
+//
+//        a {
+//            color: #2d3136;
+//            padding: 8px 15px;
+//        }
+//        h4 {
+//            padding: 10px 0;
+//            background: linear-gradient(to right, #efefef 0, white 50%, #efefef 100%);
+//            margin-bottom: 0;
+//            margin-top: 0;
+//            font-size: 18px;
+//        }
+//    }
+//
+//    .pdtList__limitTitle {
+//        @include line-height-limit(2, 65px)
+//    }
+//}
+
+.page-news-index {
+
+    .news-text .title {
+        font-size: 19px;
+        @include line-height-limit(2,70px);
+    }
+    .description {
+        @include line-height-limit(3, 173px);
+    }
+}

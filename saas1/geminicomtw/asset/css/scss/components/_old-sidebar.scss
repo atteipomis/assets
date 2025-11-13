@@ -1,0 +1,40 @@
+@import "../helpers/mixins";
+@import "../helpers/variable";
+// ======================================
+// sidebar
+// ======================================
+.sidebar {
+    // single level
+    &.sidebar-single {
+        ul {
+            > li {
+                margin-bottom: 2px;
+
+                > a {
+                    color: #000;
+                    font-size: 16px;
+                    font-weight: 500;
+                    display: block;
+                    padding: 15px 0 15px 31px;
+                    background-color: #EEE;
+
+                    &:hover {
+                        background-color: darken(#eee, 8%);
+                    }
+                }
+
+                &.active {
+
+                    a {
+                        color: #fff;
+                        background-color: var(--primary-color);
+
+                        &:hover {
+                            background-color: var(--primary-color-darken);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

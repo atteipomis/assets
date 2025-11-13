@@ -1,0 +1,56 @@
+.qt1 {
+  display: flex;
+}
+
+.to-top {
+  background-color: red;
+}
+
+.carousel {
+  margin-bottom: 2rem;
+}
+
+.nav_pagenumber {
+  display: flex;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.nav_pagenumber ul {
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+}
+
+.nav_pagenumber li {
+  font-size: 1.5rem;
+  margin-right: 2rem;
+}
+
+.nav_pagenumber a {
+  color: #666;
+}
+
+.nav_pagenumber .active a {
+  background-color: #f0ad4e;
+  padding: 0.5rem 1rem;
+  font-weight: bolder;
+  color: #fff;
+}
+
+.hot_pdt_card {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hot_pdt_card .card-text {
+  color: #fff;
+  background-color: #0a567a;
+}
+
+.hot_pdt_readmore {
+  padding-top: 3rem;
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=mainStyle.css.map */

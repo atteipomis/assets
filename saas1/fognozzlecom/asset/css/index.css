@@ -1,0 +1,233 @@
+.pli_list {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  background: #b60006c2;
+}
+.pli_list a {
+  color: #FFF;
+}
+
+/* .pro_in1:hover .pli_list {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  background-image: linear-gradient(130deg, rgba(var(--main-color-rgba), 0.68) 58.04%, rgba(var(--main-color-rgba), 0.72) 58.04%, rgba(var(--main-color-rgba), 0.72) 94.3%, rgba(var(--main-color-rgba), 1) 94.3%);
+} */
+.pro_in1:hover .pli_list a {
+  color: #fff;
+}
+
+.pli_list span a {
+  padding-top: 9px;
+  display: block;
+  font-weight: bold;
+  font-family: "moon", "Microsoft JhengHei";
+  margin-top: 1rem;
+}
+.pli_list a:hover {
+  color: white;
+}
+
+.a_img img {
+  width: 100%;
+  height: auto;
+  min-width: 100%;
+}
+
+/* .indexNews-text-line {
+  position: relative;
+  width: 1px;
+  height: 100%;
+  margin: 30px 15px 0 15px;
+  background: #000;
+} */
+
+.indexNews-content-inner .indexNews-text-line-inner {
+  height: 100%;
+}
+
+/* .indexNews-text {
+  background: #fff;
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+} */
+.indexNews-text .indexNews-text-line .indexNews-text-line-inner {
+  position: relative;
+  width: 1px;
+  height: 0;
+  margin: 30px 15px 0 15px;
+  background: #000;
+  display: none;
+}
+
+.indexNews-text-line, .indexNews .indexNews-text p {
+  display: none;
+  vertical-align: top;
+}
+
+.indexNews-text {
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/* .indexNews-text p {
+  position: relative;
+  font-weight: 300;
+  line-height: 1.3;
+  text-align: left;
+  color: #000;
+  padding: 30px 37px 0 0;
+  white-space: normal;
+  width: 90%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+} */
+@media all and (min-width: 320px) {
+  .indexNews-text p {
+    font-size: 18px;
+  }
+}
+@media all and (min-width: 576px) {
+  .indexNews-text p {
+    font-size: 22px;
+  }
+}
+
+.news_in {
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.news_mask {
+  background-size: cover;
+}
+
+.about {
+  position: relative;
+  padding: 100px 0;
+  background-repeat: no-repeat;
+  background-position: right center/cover #222;
+  background-attachment: fixed;
+  color: #fff;
+  overflow: hidden;
+}
+
+body {
+  letter-spacing: 0.15rem;
+}
+
+.ab_ind {
+  max-width: 500px;
+  font-family: "moon", "Microsoft JhengHei";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 25px;
+}
+.ab_ind h2 {
+  font-family: "moon", "Microsoft JhengHei";
+  letter-spacing: 5px;
+}
+.ab_ind h2 span {
+  color: var(--main-color);
+  font-weight: bolder;
+}
+
+.pf li {
+  float: left;
+  list-style-position: inside;
+  color: white;
+  border: 1px solid #6f6f6f;
+  list-style-image: none;
+  list-style-type: none;
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-left: 0px;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+ul.pf {
+  padding-left: 0px !important;
+  margin-top: 25px;
+  display: block;
+}
+
+.slogan {
+  width: 100%;
+  background-size: cover;
+  padding: 200px 60px 200px 0;
+  background-position: center center;
+}
+
+/* .slogan h2 {
+  color: #FFFFFF;
+  font-family: "moon", "Microsoft JhengHei";
+  font-size: 36px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+} */
+.slogan h3 {
+  color: #FFFFFF;
+  font-family: "moon", "Microsoft JhengHei";
+  font-size: 16px;
+  max-width: 600px;
+  font-weight: bolder;
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .about {
+    position: relative;
+    padding: 100px 0;
+    background-image: none, linear-gradient(122deg, #1f1f1f 0%, #262626 64.76%, #111111 64.76%);
+    background-attachment: initial;
+    color: #fff;
+    overflow: hidden;
+    background-color: #1D1D1D;
+  }
+
+  .slogan {
+    width: 100%;
+    background-size: cover;
+    padding: 200px 60px 200px 0;
+    background-position: right center;
+  }
+}
+@media screen and (max-width: 480px) {
+  .about {
+    position: relative;
+    padding: 100px 0;
+    background-image: none, linear-gradient(122deg, #1f1f1f 0%, #262626 64.76%, #111111 64.76%);
+    background-attachment: initial;
+    color: #fff;
+    overflow: hidden;
+    background-color: #1D1D1D;
+  }
+
+  .slogan {
+    width: 100%;
+    background-size: cover;
+    padding: 200px 60px 200px 0;
+    background-position: right center;
+  }
+}
+/* 210917 seo section */
+.index-seo {
+  padding: 15px 0;
+  background-image: none!important;
+  text-align: right;
+  background: #b60006;
+}
+.index-seo h1 {
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+/* 210917 seo section *

@@ -1,0 +1,116 @@
+.header_top {
+    background-color: #000;
+    position: initial;
+    z-index: 999;
+    width: 100%;
+    background-color: hsla(349,91%,41%,0.00);
+    border-top: 2px solid #c8092b;
+}
+.mail{
+    padding-left: 10px;
+    /*padding-right: 10px;*/
+}
+.mail i{ padding-left: 10px;
+    padding-right: 10px;}
+@media (min-width: 768px) {
+  .header_top {
+    position: fixed;
+  }
+}
+@media (min-width: 1400px) {
+  .header_top {
+    position: initial;
+  }
+}
+
+.bg-dark {
+}
+@media (min-width: 1400px) {
+  .bg-dark {
+    top: auto !important;
+  }
+}
+
+.bg-dark2 {
+  top: 0;
+}
+@media (min-width: 1400px) {
+  .bg-dark2 {
+    top: 0 !important;
+    border-bottom: 1px solid hsla(0,0%,92%,1.00);
+  }
+}
+@media  screen and (max-width: 480px){
+    .header_top span {
+    white-space: nowrap;
+    background: #c8092b;
+    text-align: center;
+    float: none!important;
+}
+    .header_top .col-md-12{
+        text-align: center
+    }
+}
+
+
+@media (max-width: 1400px) {
+.header_top {
+    background-color: #000;
+    position: initial;
+    z-index: 999;
+    width: 100%;
+    background-color: hsl(346deg 100% 39%);
+    border-top: 2px solid #c8092b;
+}
+.mail{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.mail i{ padding-left: 10px;
+    padding-right: 10px;}
+
+
+.header_top .col-md-12 span:last-child::after{
+    content: '  ';
+    width: 0px;
+    height: auto;
+    display: inline-block;
+    padding: 0px;
+    background-image: -webkit-linear-gradient(315deg,rgba(200,9,43,1.00) 58.02%,rgba(255,255,255,1.00) 58.02%);
+    background-image: -moz-linear-gradient(315deg,rgba(200,9,43,1.00) 58.02%,rgba(255,255,255,1.00) 58.02%);
+    background-image: -o-linear-gradient(315deg,rgba(200,9,43,1.00) 58.02%,rgba(255,255,255,1.00) 58.02%);
+    background-image: linear-gradient(135deg,rgba(200,9,43,1.00) 58.02%,rgba(255,255,255,1.00) 58.02%);
+}
+.header_top .col-md-12 span:first-child::before{
+    content: '  ';
+    width: 0px;
+    height: auto;
+    display: inline-block;
+    padding: 0px;
+    background-image: -webkit-linear-gradient(225deg,rgba(200,9,43,1.00) 58.02%,rgba(255,255,255,1.00) 58.02%);
+    background-image: -moz-linear-gradient(225deg,rgba(200,9,43,1.00) 58.02%,rgba(255,255,255,1.00) 58.02%);
+    background-image: -o-linear-gradient(225deg,rgba(200,9,43,1.00) 58.02%,rgba(255,255,255,1.00) 58.02%);
+    background-image: linear-gradient(225deg,rgba(200,9,43,1.00) 58.02%,rgba(255,255,255,1.00) 58.02%);
+}
+}
+
+
+.header_top span {
+    white-space: nowrap;
+    background: #c8092b;
+    float: left;
+   
+}
+
+.header_top .mail {
+  user-select: none;    color: #FFF;
+}
+
+@media (min-width: 768px) {
+  .page-index {
+    padding-top: 5rem;
+  }
+}
+.search-dropdown.iqw {
+clear: both;
+}

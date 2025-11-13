@@ -1,0 +1,308 @@
+.carousel-control-next, .carousel-control-prev {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+          align-items: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  width: 7%;
+  color: #fff;
+  text-align: center;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.15s ease;
+  transition: opacity 0.15s ease;
+}
+
+.pli_list a {
+  color: #2abba9;
+}
+
+.pro_in1:hover .pli_list a {
+  color: white !important;
+}
+
+.pli_list span a {
+  padding-top: 9px;
+  display: block;
+  font-weight: bold;
+  font-family: "Arial", "Microsoft JhengHei";
+}
+
+.pli_list a:hover {
+  color: white !important;
+}
+
+.p_s {
+  border: 5px solid #ededed;
+  padding-top: 2%;
+  padding-right: 2%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  background-position: right top;
+  background-repeat: no-repeat;
+  margin-bottom: 20px;
+}
+
+.news_date {
+  background-color: #ffffff;
+  color: #2189a7;
+  padding-top: 6px;
+  padding-right: 15px;
+  padding-bottom: 6px;
+  padding-left: 15px;
+  display: inline-block;
+  border: 1px solid #E3E3E3;
+  margin-bottom: 10px;
+}
+
+.pli_list_s a {
+  font-family: "moon", "Microsoft JhengHei";
+  font-weight: bold;
+  font-size: 27px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.pin .pli_list {
+  position: relative;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  border-top: 1px solid #2ABBA9;
+  background-color: #FFFFFF;
+}
+
+.pin .pro_in1:hover .pli_list {
+  position: relative;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  background-color: #FFFFFF;
+  color: white !important;
+}
+
+.pin .pro_in1:hover .pli_list a {
+  color: #454545 !important;
+}
+
+.zimg .carousel-indicators li {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  -ms-flex: 0 1 auto;
+  -webkit-box-flex: 0;
+          flex: 0 1 auto;
+  width: 30px;
+  height: 3px;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-indent: -999px;
+  cursor: pointer;
+  background-color: var(--main-color);
+  background-clip: padding-box;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.4s ease;
+  transition: opacity 0.4s ease;
+}
+
+.zimg .carousel-indicators {
+  position: static;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  padding-left: 0;
+  margin-right: 15%;
+  margin-left: 15%;
+  list-style: none;
+  margin-top: 10px;
+}
+
+.zimg .carousel-indicators .active {
+  opacity: 1;
+}
+
+.zoom {
+  display: inline-block;
+  position: relative;
+}
+
+.zoom img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.zoom img::-moz-selection {
+  background-color: transparent;
+}
+
+.zoom img::selection {
+  background-color: transparent;
+}
+
+#ex2 img:hover {
+  cursor: url(grab.cur), default;
+}
+
+.slick-slide .pro_model {
+  text-align: center;
+}
+
+.pro_model {
+  font-family: "moon", "Microsoft JhengHei";
+  margin-bottom: 8px;
+  color: #969696;
+  font-size: 14px;
+}
+
+.pro_con_s {
+  font-family: "moon", "Microsoft JhengHei";
+  color: #6f6f6f;
+}
+
+/* 產品敘述標題 */
+.web_title {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--brown-color);
+  font-weight: bold;
+  font-size: 20px;
+  padding-left: 10px;
+  margin: 30px 0 20px 0;
+  padding-left: 2.5rem;
+}
+
+.web_title.title-icon{
+  position: relative;
+
+}
+
+.web_title.title-icon::before{
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  top: 0;
+  left: 0;
+  background-image: url(../images/pdt-title-icon.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+.inquiry_in {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  position: relative;
+}
+.inquiry_in:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffffffc9;
+  width: 100%;
+  height: 100%;
+}
+.inquiry_in > .container {
+  position: relative;
+}
+
+.des {
+  background-color: #F7F7F7;
+  padding-top: 21px;
+  padding-right: 11px;
+  padding-bottom: 21px;
+  padding-left: 11px;
+  -webkit-box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.15) !important;
+          box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.15) !important;
+  color: #2d2c2d;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: block;
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .p_s {
+    border: 5px solid #ededed;
+    padding-top: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    background-position: right top;
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 480px) {
+  .p_s {
+    border: 5px solid #ededed;
+    padding-top: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    background-position: right top;
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+.product-slider:not(.product-slider.slider-hoverZoom) .slider {
+  width: 100%;
+}
+.product-slider:not(.product-slider.slider-hoverZoom) .slick-slide {
+  margin: 0;
+}
+.product-slider:not(.product-slider.slider-hoverZoom) .slick-arrow:before {
+  color: var(--main-color);
+}
+.product-slider:not(.product-slider.slider-hoverZoom) .slick-next {
+  right: 10px;
+}
+.product-slider:not(.product-slider.slider-hoverZoom) .slick-prev {
+  left: 5px;
+  z-index: 1;
+}
+.product-slider:not(.product-slider.slider-hoverZoom) .slick-prev:before, .product-slider:not(.product-slider.slider-hoverZoom) .slick-next:before {
+  font-size: 24px;
+}
+.product-slider.slider-small2big .slider-for .news-image:hover {
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.slick-lightbox .slick-arrow:before {
+  color: #fff;
+  font-size: 2rem;
+}
+.slick-lightbox .slick-next {
+  right: 30px;
+}
+.slick-lightbox .slick-prev {
+  left: 20px;
+  z-index: 99;
+}
+
+.product-slider.slider-clickZoom {
+  /* display: block; */
+}
+.product-slider.slider-small2big {
+  /* display: block; */
+}

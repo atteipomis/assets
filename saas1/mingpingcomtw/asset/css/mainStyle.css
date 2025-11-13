@@ -1,0 +1,55 @@
+.header_top {
+  background-color: var(--main-color);
+  position: initial;
+  z-index: 999;
+  width: 100%;
+}
+
+.header_top a, .header_top span{
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .header_top {
+    position: initial;
+  }
+}
+
+@media (min-width: 1400px) {
+  .header_top {
+    position: initial;
+  }
+}
+
+.bg-dark {
+  top: auto !important;
+}
+
+@media (min-width: 1400px) {
+  .bg-dark {
+    top: auto !important;
+  }
+}
+
+.bg-dark2 {
+  top: 0rem;
+}
+
+@media (min-width: 1400px) {
+  .bg-dark2 {
+    top: 0 !important;
+  }
+}
+
+.header_top span {
+  white-space: nowrap;
+  margin-right: 1rem;
+}
+
+.header_top .mail {
+  user-select: none;
+}
+
+.search-dropdown.iqw {
+  clear: both;
+}

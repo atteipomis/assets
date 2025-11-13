@@ -1,0 +1,327 @@
+.pli_list {
+    position: relative;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    border-top: 2px solid var(--main-color);
+
+    background-image: -webkit-linear-gradient(315deg,rgb(231 240 234) 52.33%, rgb(212 227 220) 52.33%);
+    background-image: -moz-linear-gradient(315deg,rgb(231 240 234) 52.33%, rgb(212 227 220) 52.33%);
+    background-image: -o-linear-gradient(315deg,rgb(231 240 234) 52.33%, rgb(212 227 220) 52.33%);
+    background-image: linear-gradient(135deg,rgb(231 240 234) 52.33%, rgb(212 227 220) 52.33%);
+}
+.pli_list a {
+  color: #FFF;
+  color: #333;
+}
+
+.pro_in1:hover .pli_list {
+    position: relative;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    /* border-top: 2px solid hsl(13deg 25% 11%); */
+    background-color: var(--main-color);
+    /* background-image: -webkit-linear-gradient(270deg,rgba(230,60,46,1.00) 0%,rgba(25,25,25,1.00) 100%);
+    background-image: -moz-linear-gradient(270deg,rgba(230,60,46,1.00) 0%,rgba(25,25,25,1.00) 100%);
+    background-image: -o-linear-gradient(270deg,rgba(230,60,46,1.00) 0%,rgba(25,25,25,1.00) 100%);
+    background-image: linear-gradient(180deg,rgba(230,60,46,1.00) 0%,rgba(25,25,25,1.00) 100%); */
+    background-image: var(--main-color) !important;
+}
+
+.pro_in1 .pli_list p{
+  margin-bottom: 0;
+}
+
+.pro_in1:hover .pli_list a {
+  color: #fff;
+}
+
+.pli_list span a {
+  padding-top: 9px;
+  display: block;
+  font-weight: bold;
+  font-family: "moon", "Microsoft JhengHei";
+}
+.pli_list a:hover {
+  color: white;
+}
+
+.a_img img {
+  width: 100%;
+  height: auto;
+  min-width: 100%;
+}
+
+.indexNews-text-line {
+  position: relative;
+  width: 1px;
+  height: 100%;
+  margin: 30px 15px 0 15px;
+  background: #000;
+}
+
+.indexNews-content-inner .indexNews-text-line-inner {
+  height: 100%;
+}
+
+.indexNews-text {
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+}
+.indexNews-text .indexNews-text-line .indexNews-text-line-inner {
+  position: relative;
+  width: 1px;
+  height: 0;
+  margin: 30px 15px 0 15px;
+  background: #000;
+}
+
+.indexNews-text-line, .indexNews .indexNews-text p {
+      display: none;
+  vertical-align: top;
+}
+
+.indexNews-text {
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+  background: var(--main-color);
+    margin-top: 10px;
+    position: relative;
+}
+
+
+.indexNews-text p {
+    position: relative;
+    font-weight: 300;
+    line-height: 1.3;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    color: #000;
+    /* padding: 30px 37px 0 0; */
+    white-space: normal;
+    width: 90%;
+    top: -30px;
+    background: #fff;
+    box-sizing: border-box;
+    padding: 10px;
+    border-top: 2px solid var(--main-color);
+    margin-bottom: 0;
+}
+@media all and (min-width: 320px) {
+  .indexNews-text p {
+    font-size: 18px;
+  }
+}
+@media all and (min-width: 576px) {
+  .indexNews-text p {
+    font-size: 22px;
+  }
+}
+
+.news_in {
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.news_mask {
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.about {
+  position: relative;
+  padding: 100px 0;
+  background-repeat: no-repeat;
+  background-position: right center/cover #222;
+  background-attachment: fixed;
+  color: #fff;
+  overflow: hidden;
+}
+
+body {
+  letter-spacing: 0.15rem;
+}
+
+.ab_ind {
+  max-width: 500px;
+  font-family: "moon", "Microsoft JhengHei";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 25px;
+}
+.ab_ind h2 {
+  font-family: "moon", "Microsoft JhengHei";
+  letter-spacing: 5px;
+}
+.ab_ind h2 span {
+      color: rgb(230 60 46);
+  font-weight: bolder;
+}
+.page-index{
+   display: flex;flex-wrap: wrap;
+}
+ .page-index .index-slider{
+order:1
+}
+.page-index .news_in{
+order:4
+}
+.page-index .index-product{
+order:2
+}
+.page-index .index-slogan{
+order:5
+}
+.page-index .about{
+order:3
+}
+
+ 
+.page-index section{
+    width: 100%;
+}
+
+
+
+.pf li {
+  float: left;
+  list-style-position: inside;
+  color: white;
+  border: 1px solid #6f6f6f;
+  list-style-image: none;
+  list-style-type: none;
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-left: 0px;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+ul.pf {
+  padding-left: 0px !important;
+  margin-top: 25px;
+  display: block;
+}
+
+.slogan {
+  width: 100%;
+  background-size: cover;
+  padding: 200px 60px 200px 0;
+  background-position: center center;
+  
+}
+
+.slogan h2 {
+  color: #FFFFFF;
+  font-family: "moon", "Microsoft JhengHei";
+  font-size: 36px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+.slogan h3 {
+  color: #FFFFFF;
+  font-family: "moon", "Microsoft JhengHei";
+  font-size: 16px;
+  max-width: 600px;
+  font-weight: bolder;
+}
+
+.page-index .index-slider{
+  width: 100%;
+  height: 100vh;
+}
+
+.carousel-inner,.carousel-item{
+  height: 100%;
+}
+
+.page-index .index-slider img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slogan {
+  background-position: center center !important; 
+}
+
+.about {
+  background-position: top right;
+  background-size: cover;
+}
+
+.page-index .index-slogan{
+  background-position: left center !important;
+}
+
+@media screen and (max-width:1200px) {
+  .about {
+    position: relative;
+    padding: 100px 0;
+    background-image:none, linear-gradient(122deg, #545454 0%, #211f1f 64.76%, #505050 64.76%) !important;
+    background-attachment: initial;
+    color: #fff;
+    overflow: hidden;
+    background-color: #1D1D1D;
+    padding-bottom: 0px;
+  }
+
+  section.about > .container{
+    width: 100%;
+    max-width: 100%;
+    padding: 48px 48px;
+    margin: auto;
+  }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+
+  .slogan {
+    width: 100%;
+    background-size: cover;
+    padding: 200px 60px 200px 0;
+    background-position: right center;
+  }
+}
+@media screen and (max-width: 480px) {
+  .about {
+    position: relative;
+    padding: 100px 0;
+    background-image: none, linear-gradient(122deg, #1f1f1f 0%, #262626 64.76%, #111111 64.76%);
+    background-attachment: initial;
+    color: #fff;
+    overflow: hidden;
+    background-color: #1D1D1D;
+  }
+
+  .slogan {
+    width: 100%;
+    background-size: cover;
+    padding: 200px 60px 200px 0;
+    background-position: right center;
+  }
+}
+
+@media screen and (max-width:1400px) {
+  .page-index .index-slider{
+      height: 55vw !important;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .news_in .col-md-4{
+      margin-top: 24px;
+  }
+
+  .news_in .col-md-4:nth-child(1){
+    margin-top: 0px;
+  }
+}
+
+
+
+/*# sourceMappingURL=index.css.map */

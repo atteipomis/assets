@@ -1,0 +1,5 @@
+@import "mixins";
+@import "variable";
+%first-letter {
+    color: var(--main-color);
+}

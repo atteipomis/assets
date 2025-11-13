@@ -1,0 +1,46 @@
+@import "mixin";
+
+.download_in {
+    padding: 80px 0;
+    background-image: none !important;
+    background-color: #222;
+    .container {
+        padding-bottom: 0;
+    }
+    ul.dl-list {
+        padding: 15px;
+        list-style: none;
+        background-color: rgba(255,255,255,.1);
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            + li {
+                margin-top: 15px;
+            }
+            .itemTitle {
+                flex: 1;
+                word-break: break-all;
+                &:hover {
+                    color: $main-color;
+                }
+            }
+            .itemLink {
+                display: flex;
+                align-items: center;
+                padding: 10px 15px;
+                font-size: 14px;
+                color: #fff;
+                background: $main-color;
+                &:hover {
+                    opacity: 0.9;
+                }
+                img {
+                    width: 25px;
+                    height: 25px;
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,53 @@
+@import "../helpers/mixins";
+@import "../helpers/variable";
+
+.page-news-index {
+
+    .news-text .title {
+        font-size: 19px;
+        @include line-height-limit(2,70px);
+    }
+    .description {
+        @include line-height-limit(3, 173px);
+    }
+}
+
+
+.page-news-item {
+
+    .news-text .title {
+        font-size: 19px;
+        @include line-height-limit(2,70px);
+    }
+    .description {
+        @include line-height-limit(6, 173px);
+    }
+    .icon {
+        @include width-height(16px);
+        margin-top: 2px;
+    }
+}
+
+
+.page__news-list {
+
+    .title {
+        @include line-height-limit(2,70px);
+    }
+    .description {
+        @include line-height-limit(6, 173px);
+    }
+    .icon {
+        @include width-height(16px);
+        margin-top: 2px;
+    }
+}
+
+.newsList-item {
+    border: 1px solid #ddd;
+    transition: .3s ease;
+
+    &:hover {
+        border-color: var(--primary-color);
+    }
+}

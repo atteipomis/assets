@@ -1,0 +1,24 @@
+/* spinProducts(360slider) */
+.slider360 {
+    z-index: 10000;
+
+    .carousel-control-prev-icon, .carousel-control-next-icon {
+        width: 30px;
+        height: 30px;
+        background-image: none;
+        background-color: #fff;
+        opacity: 0.8;
+
+        svg {
+            width: 30px;
+            height: 30px;
+            fill: #656565;
+            border: 1px solid;
+        }
+
+        &:hover {
+            background-color: #fff;
+            opacity: 1;
+        }
+    }
+}

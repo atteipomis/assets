@@ -1,0 +1,25 @@
+.qty {
+  width: 40px;
+  font-size: 18px;
+  text-align: center;
+  border: 0;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+}
+.qt1{
+    width: 100px;
+}
+
+input.qtyplus {
+  width: 25px;
+  font-size: 18px;
+  border: 1px solid #aaa;
+  background: #f8f8f8;
+}
+
+input.qtyminus {
+  width: 25px;
+  font-size: 18px;
+  border: 1px solid #aaa;
+  background: #f8f8f8;
+}

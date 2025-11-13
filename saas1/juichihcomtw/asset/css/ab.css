@@ -1,0 +1,25 @@
+.abin {
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 0 4px #cecece !important;
+          box-shadow: 0 0 4px #cecece !important;
+  background-position: center top;
+  background-size: 100% auto;
+  margin-bottom: 20px;
+  border-left: 5px solid var(--main-color);
+  margin-top: 20px;
+}
+
+.abin:hover {
+  background-color: #FFF;
+  -webkit-box-shadow: 0 0 4px #cecece !important;
+          box-shadow: 0 0 4px #cecece !important;
+  background-image: none;
+  background-position: center top;
+  background-size: 100% auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.abin a {
+  color: #292929;
+}

@@ -1,0 +1,125 @@
+@import "mixins";
+
+/* Breadcrumb 麵包屑
+ * #############################
+*/
+.jh-breadcrumb {
+    background-color: transparent;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 15px;
+    padding: 8px 15px 8px 0;
+
+    ol {
+        list-style-type: none;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    li {
+        font-size: 15px;
+
+        a {
+            font-weight: 500;
+            color: #2aa4a5;
+
+            &:hover {
+                color: #248d8e;
+                text-decoration: underline;
+            }
+        }
+
+        &:first-child:before {
+            //@include fontAwesome-icon;
+            //font: normal normal normal 14px/1 FontAwesome;
+            //content: "\f015";
+            //margin-right: 10px;
+        }
+
+        &:not(:last-child):after {
+            content: "/";
+            font-weight: normal;
+            font-family: FontAwesome;
+            padding-right: 7px;
+            padding-left: 7px;
+            color: #cccccc;
+            text-decoration: none;
+        }
+
+        &:last-child {
+            color: var(--secondary-color);
+        }
+
+        .active {
+            color: var(--primary-color);
+        }
+    }
+}
+
+.custom-breadcrumb {
+    display: inline-block;
+}
+
+/* Pagination 分頁
+ * #############################
+*/
+.jh-pagination-wraper {
+    display: inline-block;
+    width: auto;
+    margin: auto;
+}
+
+.pagination {
+    float: left;
+    display: block;
+    vertical-align: middle;
+}
+
+ul.pagination-numbers,
+.pagination .pagination-numbers,
+.pagination-numbers {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-left: 0;
+    text-align: right;
+    width: 100%;
+}
+
+.pagination-numbers {
+    li {
+        display: inline-block;
+        float: left;
+        list-style: outside none none;
+        margin-bottom: 0;
+        padding: 0 4px;
+
+        a {
+            border: 1px solid #eee;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            display: block;
+            float: left;
+            font-size: 12px;
+            font-weight: 400;
+            height: 34px;
+            line-height: 33px;
+            padding: 0 12px;
+            transition: all 0.2s linear 0s;
+            -moz-transition: all 0.2s linear 0s;
+            -o-transition: all 0.2s linear 0s;
+            -webkit-transition: all 0.2s linear 0s;
+            color: #282828;
+            border-radius: 99px;
+            background-color: #ccc;
+
+            &:hover, &.active {
+                color: #fff;
+                border-radius: 99px;
+                background-image: linear-gradient(141deg, rgba(6, 158, 227, 1) 41.97%, rgb(6, 112, 185) 41.97%);
+            }
+        }
+    }
+}
