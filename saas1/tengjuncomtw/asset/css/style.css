@@ -1069,7 +1069,7 @@ header {
     position: relative;
     font-family: "moon", "Microsoft JhengHei";
 }
-.nb, aside {
+aside {
     display: none !important;
 }
 }
@@ -1131,7 +1131,7 @@ header {
     position: relative;
     font-family: "moon", "Microsoft JhengHei";
 }
-.nb, aside {
+ aside {
     display: none !important;
 }
 }
@@ -1907,3 +1907,8 @@ section.index-seo_h {background:#c9c9c9 !important;}
 main.page-pdt-index.page-pdt .row.pin .col-md-4{
 	width: 100% !important;
 }
+
+.cookies_3{
+    background-color: #000 !important;
+}
+
