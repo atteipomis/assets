@@ -1,8 +1,5 @@
 # 系統更新日誌 (Changelog)
 
-本文件記錄系統各版本的功能更新與變更內容，最新版本置於最上方。
-格式參考 [Keep a Changelog](https://keepachangelog.com/zh-TW/)，並遵循語意化版本（Semantic Versioning）原則。
-
 ---
 
 ## [3.4.2] － 2026-07-01
