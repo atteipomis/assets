@@ -289,29 +289,29 @@
             }
         }
 
-        // templateResizeWidth();
+        templateResizeWidth();
     });
 
-    // templateResizeWidth();
+    templateResizeWidth();
 
-    // function templateResizeWidth(retries = 3) {
-    //     let header = document.querySelector('header.header-template14, header.header-template15');
-    //
-    //     if (header) {
-    //         document.querySelectorAll('main, footer')
-    //             .forEach(el => el.style.marginLeft = `${(win_width < 992) ? '0' : header.offsetWidth}px`);
-    //         document.querySelectorAll('.header-template14 .header__inner .nav > .nav__item > .nav__layer')
-    //             .forEach(el => el.style.setProperty('left', (win_width < 992) ? '100%' : `${header.offsetWidth}px`));
-    //
-    //         retries = 0;
-    //     }
-    //
-    //     if ((!header) && retries > 0) {
-    //         setTimeout(() => {
-    //             templateResizeWidth(retries - 1);
-    //         }, 100);
-    //     }
-    // }
+    function templateResizeWidth(retries = 3) {
+        let header14 = document.querySelector('header.header-template14');
+
+        if (header14) {
+            document.querySelectorAll('main, footer')
+                .forEach(el => el.style.marginLeft = `${(win_width < 992) ? '0' : header14.offsetWidth}px`);
+            document.querySelectorAll('.header-template14 .header__inner .nav > .nav__item > .nav__layer')
+                .forEach(el => el.style.setProperty('left', (win_width < 992) ? '100%' : `${header14.offsetWidth}px`));
+
+            retries = 0;
+        }
+
+        if ((!header14) && retries > 0) {
+            setTimeout(() => {
+                templateResizeWidth(retries - 1);
+            }, 100);
+        }
+    }
 
     //螢幕寬度 
     function screenWidth(width) {
@@ -672,14 +672,151 @@ function initializeFoundationAndExpandMenu() {
     expandActiveMenu();
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const listItems = document.querySelectorAll(".left-info li");
 
-    listItems.forEach(function (li) {
-        const textContent = li.textContent.trim();
+/*-------------------------- header-template21 --------------------------*/
+document.addEventListener("DOMContentLoaded", () => {
+    const topBlock = document.querySelector('.header-template21 .topblock');
+    const logoImg = document.querySelector('.header-template21 .logo__img img');
+    const navBox = document.querySelector('.header-template21 .nav__box')
+    const [originalSrc, scrolledSrc] = ["archive/logo-w.png", "archive/logo.png"];
 
-        if (!textContent) {
-            li.style.display = "none";
+    const updateLogo = () => {
+        const scrollY = window.scrollY;
+        const windowWidth = window.innerWidth;
+
+        // 設定 logo 圖片
+        logoImg.src = scrollY > 50 ? scrolledSrc : originalSrc;
+
+        // 設定預設值（桌機）
+        let paddingLeft = scrollY > 50 ? "5%" : "9%";
+        let topWidth = scrollY > 50 ? "84%" : "80%";
+
+        // 根據不同裝置尺寸調整
+        if (windowWidth < 992) {
+            // 手機
+            paddingLeft = scrollY > 50 ? "0%" : "0%";
+            topWidth = scrollY > 50 ? "100%" : "100%";
+        } else if (windowWidth < 1441) {
+            // 平板
+            paddingLeft = scrollY > 50 ? "1.5%" : "5%";
+            topWidth = scrollY > 50 ? "87%" : "82%";
         }
+
+        // 套用樣式
+        navBox.style.paddingLeft = paddingLeft;
+        topBlock.style.width = topWidth;
+    };
+
+    window.addEventListener("scroll", updateLogo);
+    updateLogo();
+});
+
+
+/*-------------------------- FAQ --------------------------*/
+$(document).ready(function() {
+    $('.accordion-header').on('click', function() {
+        const $currentItem = $(this).closest('.item');
+        const $container = $(this).closest('.accordion__wrapper');
+
+        // 從 HTML 讀取 data-auto-close 的值 (這裡寫得很正確！)
+        const autoCloseOthers = $container.data('auto-close');
+
+        if (autoCloseOthers) {
+            $currentItem.siblings()
+                .removeClass('active')
+                .find('.accordion-content')
+                .slideUp(300);
+        }
+
+        $currentItem.toggleClass('active');
+        $currentItem.find('.accordion-content').slideToggle(300);
     });
 });
+
+
+/**
+ * 設置 Swiper 影片控制功能。
+ */
+function setupSwiperVideoControls() {
+
+    // --- 1. 輔助函式：用來發送「暫停」命令 ---
+    // 將這個函式包在內部，避免汙染全域
+    function pauseYouTubeVideo(iframe) {
+        if (iframe && iframe.contentWindow) {
+            iframe.contentWindow.postMessage(JSON.stringify({
+                "event": "command",
+                "func": "pauseVideo"
+            }), "*");
+        }
+    }
+
+    // --- 2. 等待 DOM 載入完成後才執行 ---
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // 3. 尋找 Swiper 容器元素
+        // (如果您的 Swiper 容器不是 .swiper，請修改這個選擇器)
+        const swiperContainer = document.querySelector('.swiper');
+
+        // 4. 檢查 Swiper 實例 (instance) 是否已存在於該元素上
+        if (swiperContainer && swiperContainer.swiper) {
+
+            // 取得已經被初始化的 Swiper 實例
+            const mySwiper = swiperContainer.swiper;
+
+            // --- 5A. 結合的代碼：強制停止自動輪播 ---
+            // 檢查 autoplay 模組是否存在，且是否正在運行
+            if (mySwiper.autoplay && mySwiper.autoplay.running) {
+                mySwiper.autoplay.stop();
+                console.log('Swiper 自動輪播已強制停止。');
+            }
+
+            // --- 5B. 結合的代碼：綁定 slideChange 事件來暫停影片 ---
+            mySwiper.on('slideChange', function () {
+                // console.log('Swiper 切換，暫停所有影片...');
+
+                // 選取 Swiper 容器內 *所有* 的 iframe
+                const allIframes = mySwiper.el.querySelectorAll('iframe');
+
+                // 迴圈遍歷所有 iframe 並發送暫停命令
+                allIframes.forEach(pauseYouTubeVideo);
+            });
+
+            // (可選) 處理手動點擊 Swiper 導航按鈕的狀況
+            // (如果您的 Swiper 有導航按鈕)
+            const nextButton = mySwiper.navigation.nextEl;
+            const prevButton = mySwiper.navigation.prevEl;
+
+            const buttons = [nextButton, prevButton].filter(el => el); // 過濾掉不存在的按鈕
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // 點擊按鈕時，slideChange 事件通常會觸發
+                    // 但以防萬一，我們也可以在這裡手動觸發一次暫停
+                    // (使用 setTimeout 確保在 slide 動畫開始後執行)
+                    setTimeout(() => {
+                        const allIframes = mySwiper.el.querySelectorAll('iframe');
+                        allIframes.forEach(pauseYouTubeVideo);
+                    }, 50); // 延遲 50 毫秒
+                });
+            });
+
+            console.log('Swiper 影片控制功能已成功綁定。');
+
+        } else {
+            // 這個警告很重要，如果出現，代表您的 Swiper 初始化代碼
+            // 可能比這段代碼更晚執行，或者選擇器錯誤。
+            console.warn('在 DOMContentLoaded 時未找到 Swiper 實例 (.swiper.swiper)。');
+        }
+    });
+}
+
+// --- 6. 呼叫(執行) 這個函式 ---
+// 確保這段代碼被引入到您的 HTML 中
+setupSwiperVideoControls();
+
+
+
+
+
+
+
