@@ -34,7 +34,7 @@
   clear: both;
 }
 
-.accordion__wrapper .item .accordion-header i, .accordion__wrapper .item .accordion-header, .sitemap__item ul li a, .sitemap__item h3 a, .inquirycart td .delete-btn, .inquirycart td .pdt-name-a, .download__item .file-name, .description .tab-content, .SwiperSm .swiper-button-prev, .SwiperSm .swiper-button-next, input[type=date i]::after, .pagination2 .page-item .page-link, .breadcrumb__item, .news__item .img img, .news__item .img, .product__item .img img, .product__item .img, .accordion-menu li a, .cart-inner__row .info .flex .delete-btn, .cart-inner__row .info .pdt-name, .close-btn, .cart-drawer, .cart-drawer-push, .right-icon a, .gotop, a {
+.accordion__wrapper .item .accordion-header i, .accordion__wrapper .item .accordion-header, .sitemap__item ul li a, .sitemap__item h3 a, .inquirycart td .delete-btn, .inquirycart td .pdt-name-a, .filter__item .form__field-wrapper .form__field, .filter__item .form__field-wrapper, .filter__item .item-title:after, .product-table-block .product-table tbody tr, .download__item .file-name, .description .tab-content, .SwiperSm .swiper-button-prev, .SwiperSm .swiper-button-next, input[type=date i]::after, .pagination2 .page-item .page-link, .breadcrumb__item, .news__item .img img, .news__item .img, .product__item .img img, .product__item .img, .accordion-menu li a, .cart-inner__row .info .flex .delete-btn, .cart-inner__row .info .pdt-name, .close-btn, .cart-drawer, .cart-drawer-push, .right-icon a, .gotop, a {
   transition: all 500ms ease-in-out;
 }
 
@@ -2820,6 +2820,245 @@ input[type=checkbox] {
   background-color: transparent;
 }
 
+/*=================== product item - table ===================*/
+.product-table-block {
+  width: 100%;
+  overflow-x: auto;
+}
+.product-table-block .product-table {
+  width: 100%;
+  min-width: max-content;
+}
+.product-table-block .product-table td {
+  padding: 7px 13px;
+  border: 1px solid #cccccc;
+}
+.product-table-block .product-table thead td {
+  background-color: #777;
+  color: #fff;
+  text-align: center;
+}
+.product-table-block .product-table tbody tr:nth-child(even) {
+  background-color: #f6f6f6;
+}
+.product-table-block .product-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+.product-table-block .product-table tbody tr td.p-img {
+  width: 130px;
+}
+.product-table-block .product-table tbody tr td.p-img img {
+  max-width: 100px;
+  height: auto;
+  margin: auto;
+}
+.product-table-block .product-table tbody tr td.p-btn {
+  width: 100px;
+}
+.product-table-block .product-table tbody tr td.p-btn .btnset {
+  width: 100%;
+  margin: 0;
+  border-radius: 3px;
+}
+
+/*=================== product item - single ===================*/
+.product--single .product__item {
+  margin-bottom: 30px;
+  padding: 20px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 2fr 5fr;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.product--single .product__item:last-child {
+  margin-bottom: 0;
+}
+.product--single .product__item .img {
+  margin-bottom: 0;
+}
+.product--single .product__item .img:hover {
+  box-shadow: none;
+}
+.product--single .product__item .img:hover img {
+  transform: scale(1.05);
+}
+.product--single .product__item .text .name, .product--single .product__item .text .model {
+  text-align: left;
+  margin-bottom: 15px;
+}
+.product--single .product__item .text .text-field {
+  text-align: left;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+@media only screen and (max-width: 600px) {
+  .product--single .product__item {
+    grid-template-columns: 1fr;
+  }
+}
+/*=================== product item - inner & filter ===================*/
+.product-inner {
+  display: grid;
+  gap: 30px;
+}
+.product-inner.filter-none {
+  grid-template-columns: 1fr;
+}
+.product-inner.filter-none .filter {
+  display: none;
+}
+.product-inner.filter-side {
+  grid-template-columns: 290px 1fr;
+}
+.product-inner.filter-fluid {
+  grid-template-columns: 1fr;
+}
+.product-inner.filter-fluid .filter {
+  /* 滿版篩選器呈現方式 */
+  display: flex;
+  flex-wrap: wrap;
+}
+.product-inner.filter-fluid .filter .global-controls {
+  width: 100%;
+}
+.product-inner.filter-fluid .filter .filter__item {
+  flex: 1;
+}
+.product-inner.filter-fluid .filter .filter__item .form__field-wrapper .form__field {
+  padding: 10px;
+}
+.product-inner.filter-fluid .filter .filter__item.is-closed .form__field-wrapper .form__field {
+  padding: 0 10px;
+}
+.product-inner.filter-fluid .filter .form__btn {
+  width: 130px;
+  padding: 0 0 0 10px;
+}
+
+@media only screen and (max-width: 991px) {
+  .product-inner.filter-side {
+    grid-template-columns: 1fr;
+  }
+  .product-inner.filter-fluid .filter {
+    display: block;
+  }
+  .product-inner.filter-fluid .filter .filter__item .form__field-wrapper .form__field {
+    padding: 10px 0;
+  }
+  .product-inner.filter-fluid .filter .filter__item.is-closed .form__field-wrapper .form__field {
+    padding: 0;
+  }
+  .product-inner.filter-fluid .filter .form__btn {
+    width: 100%;
+    padding-left: 0;
+  }
+}
+.filter__item {
+  margin-bottom: 10px;
+  padding: 0;
+  border-radius: 5px;
+  border: 1px #fff solid;
+}
+.filter__item .item-title {
+  padding: 10px;
+  background-color: #e5e5e5;
+  border: 1px #cccccc solid;
+  border-width: 0 1px 1px 0;
+  position: relative;
+}
+.filter__item .item-title:after {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-family: "icomoon";
+  content: "\e912";
+}
+.filter .global-controls {
+  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.filter .global-controls .btn-toggle-all {
+  /* 全部展開收合按鈕 */
+  width: max-content;
+  min-width: 100px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.filter .global-controls .btn-toggle-all:hover {
+  transform: translateY(0);
+}
+.filter .form__label {
+  cursor: pointer;
+}
+.filter__item .form__field-wrapper {
+  /* 用 CSS Grid 控制高度，預設展開 (1fr) */
+  display: grid;
+  grid-template-rows: 1fr;
+}
+.filter__item .form__field-wrapper .form__field {
+  padding: 10px 0;
+  overflow: hidden;
+}
+.filter__item .form__field-wrapper .form__field > .row {
+  align-items: center;
+  justify-content: space-between;
+}
+.filter__item .form__field-wrapper .form__field > .row .form__control {
+  flex: 1;
+}
+.filter__item .form__field-wrapper .form__field > .row .unit {
+  width: max-content;
+  padding-left: 6px;
+  font-size: 14px;
+}
+.filter__item .form__field-wrapper .form__field > .row .symbol {
+  width: max-content;
+  padding: 0 6px;
+  font-size: 14px;
+}
+.filter__item.is-closed .item-title:after {
+  transform: rotate(-90deg);
+}
+.filter__item.is-closed .form__field-wrapper {
+  /* 當 JS 加上 .is-closed 類別時，改變高度與箭頭方向 */
+  grid-template-rows: 0fr;
+}
+.filter__item.is-closed .form__field-wrapper .form__field {
+  padding: 0;
+}
+.filter .form__btn .btnset {
+  width: 100%;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 5px;
+}
+.filter .form__btn .btnset i {
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.filter .form__btn .btnset:hover {
+  transform: translateY(0);
+}
+
+.form:not(.enable-toggle) {
+  /* 若父層沒有 .enable-toggle，自動隱藏全域按鈕區塊 */
+}
+.form:not(.enable-toggle) .global-controls .btnset {
+  display: none;
+}
+.form:not(.enable-toggle) .filter__item .item-title {
+  cursor: auto;
+}
+.form:not(.enable-toggle) .filter__item .item-title:after {
+  display: none;
+}
+
 /*=================== news-模組 ===================*/
 .news--list {
   margin-top: 30px;
@@ -2828,7 +3067,7 @@ input[type=checkbox] {
   margin-bottom: 30px;
   box-shadow: 0 4px 3px rgba(0, 0, 0, 0.15);
   border-radius: 6px;
-  border-bottom: 1px #e5e5e5 dashed;
+  border-bottom: 1px #d0d0d0 dashed;
 }
 .news--list .news__item .img {
   margin-bottom: 0;
@@ -2865,6 +3104,9 @@ input[type=checkbox] {
 }
 .contact-block__info {
   padding-left: 30px;
+  position: sticky;
+  align-self: flex-start;
+  top: 10vw;
 }
 
 @media only screen and (max-width: 991px) {

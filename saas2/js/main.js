@@ -640,26 +640,33 @@ $('.lazy').Lazy({
 
 function initializeFoundationAndExpandMenu() {
 
-    // 初始化 Foundation
-    $(document).foundation();
+    // 1. 靜默檢查：只有在 jQuery 和 Foundation 存在時才初始化
+    if (typeof $ !== 'undefined' && typeof $.fn.foundation === 'function') {
+        $(document).foundation();
+    }
 
-    // 展开当前活跃的菜单
+    // 2. 獲取選單元素
+    const menuItems = document.querySelectorAll('.is-accordion-submenu-parent');
+
+    // 3. 效能與防呆檢查：如果頁面沒有該選單，直接退出不執行
+    if (menuItems.length === 0) {
+        return;
+    }
+
+    // 4. 展開當前活躍的菜單
     function expandActiveMenu() {
-        const menuItems = document.querySelectorAll('.is-accordion-submenu-parent');
-
         menuItems.forEach(menuItem => {
             const activeLink = menuItem.querySelector('a.active');
+            const subMenu = menuItem.querySelector('.sub-menu'); // 移到外層，避免重複宣告
 
             if (activeLink) {
                 menuItem.setAttribute('aria-expanded', 'true');
-                const subMenu = menuItem.querySelector('.sub-menu');
                 if (subMenu) {
                     subMenu.style.display = 'block';
                     subMenu.setAttribute('aria-hidden', 'false');
                 }
             } else {
                 menuItem.setAttribute('aria-expanded', 'false');
-                const subMenu = menuItem.querySelector('.sub-menu');
                 if (subMenu) {
                     subMenu.style.display = 'none';
                     subMenu.setAttribute('aria-hidden', 'true');
@@ -668,48 +675,11 @@ function initializeFoundationAndExpandMenu() {
         });
     }
 
-    // 页面加载时展开菜单
+    // 執行展開菜單動作
     expandActiveMenu();
 }
 
 
-/*-------------------------- header-template21 --------------------------*/
-document.addEventListener("DOMContentLoaded", () => {
-    const topBlock = document.querySelector('.header-template21 .topblock');
-    const logoImg = document.querySelector('.header-template21 .logo__img img');
-    const navBox = document.querySelector('.header-template21 .nav__box')
-    const [originalSrc, scrolledSrc] = ["archive/logo-w.png", "archive/logo.png"];
-
-    const updateLogo = () => {
-        const scrollY = window.scrollY;
-        const windowWidth = window.innerWidth;
-
-        // 設定 logo 圖片
-        logoImg.src = scrollY > 50 ? scrolledSrc : originalSrc;
-
-        // 設定預設值（桌機）
-        let paddingLeft = scrollY > 50 ? "5%" : "9%";
-        let topWidth = scrollY > 50 ? "84%" : "80%";
-
-        // 根據不同裝置尺寸調整
-        if (windowWidth < 992) {
-            // 手機
-            paddingLeft = scrollY > 50 ? "0%" : "0%";
-            topWidth = scrollY > 50 ? "100%" : "100%";
-        } else if (windowWidth < 1441) {
-            // 平板
-            paddingLeft = scrollY > 50 ? "1.5%" : "5%";
-            topWidth = scrollY > 50 ? "87%" : "82%";
-        }
-
-        // 套用樣式
-        navBox.style.paddingLeft = paddingLeft;
-        topBlock.style.width = topWidth;
-    };
-
-    window.addEventListener("scroll", updateLogo);
-    updateLogo();
-});
 
 
 /*-------------------------- FAQ --------------------------*/
@@ -718,7 +688,7 @@ $(document).ready(function() {
         const $currentItem = $(this).closest('.item');
         const $container = $(this).closest('.accordion__wrapper');
 
-        // 從 HTML 讀取 data-auto-close 的值 (這裡寫得很正確！)
+        // 從 HTML 讀取 data-auto-close 的值
         const autoCloseOthers = $container.data('auto-close');
 
         if (autoCloseOthers) {
@@ -733,86 +703,558 @@ $(document).ready(function() {
     });
 });
 
-
+/*-------------------------- 設置 Swiper 影片控制功能 --------------------------*/
 /**
- * 設置 Swiper 影片控制功能。
+ * Swiper Video Autoplay — 精簡版
+ * 支援 YouTube (IFrame API) 與 <video>，自動播放當前投影片、其餘暫停。
+ * 不需修改 HTML；載入順序不限；頁面無 Swiper 時靜默結束。
+ * Debug: ?swiperVideoDebug=1
  */
-function setupSwiperVideoControls() {
+(function () {
+    'use strict';
 
-    // --- 1. 輔助函式：用來發送「暫停」命令 ---
-    // 將這個函式包在內部，避免汙染全域
-    function pauseYouTubeVideo(iframe) {
-        if (iframe && iframe.contentWindow) {
-            iframe.contentWindow.postMessage(JSON.stringify({
-                "event": "command",
-                "func": "pauseVideo"
-            }), "*");
-        }
+    var CFG = {
+        selector: '.swiper',
+        autoplay: true,           // 播放當前投影片
+        advanceOnEnd: true,       // 播完切下一張
+        stopSwiperAutoplay: true, // 停掉 Swiper 定時輪播
+        unmuteButton: true,
+        restartOnEnter: true,
+        pauseWhenHidden: true,
+        settleDelays: [80, 300, 800, 1400], // 切換後多段校正
+        watchdog: 1500,           // 定期校正保底，0 為關閉
+        topControls: '.player-middle-controls', // 播放 YouTube 時提到最上層，空字串為關閉
+        poll: 200,
+        maxWait: 20000
+    };
+
+    var DEBUG = window.SWIPER_VIDEO_DEBUG === true ||
+        /[?&]swiperVideoDebug=1/.test(location.search);
+
+    var soundOn = false, visible = true, uid = 0, swipers = [];
+
+    function log() {
+        if (DEBUG) console.log.apply(console, ['[SwiperVideo]'].concat([].slice.call(arguments)));
+    }
+    function q(root, sel) {
+        return root ? [].slice.call(root.querySelectorAll(sel)) : [];
+    }
+    function isYT(el) {
+        return el.tagName === 'IFRAME' &&
+            /(?:youtube\.com|youtube-nocookie\.com)\/embed\//i.test(el.getAttribute('src') || '');
+    }
+    function media(root) {
+        return q(root, 'iframe,video').filter(function (el) {
+            return el.tagName === 'VIDEO' || isYT(el);
+        });
     }
 
-    // --- 2. 等待 DOM 載入完成後才執行 ---
-    document.addEventListener('DOMContentLoaded', () => {
+    // 標記「這次暫停是腳本發出的」。帶時間戳，1 秒內未被消耗即自動失效，
+    // 避免旗標卡住導致之後的使用者操作被誤判。
+    function markScript(el) { el._byScript = Date.now(); }
+    function wasScript(el) {
+        var t = el._byScript || 0;
+        el._byScript = 0;
+        return Date.now() - t < 1000;
+    }
 
-        // 3. 尋找 Swiper 容器元素
-        // (如果您的 Swiper 容器不是 .swiper，請修改這個選擇器)
-        const swiperContainer = document.querySelector('.swiper');
+    // 影片識別鍵：loop 重建 DOM 時元素會換，但同一支影片的 key 不變
+    function vkey(el) {
+        var src = el.getAttribute('src') || el.currentSrc || '';
+        if (isYT(el)) {
+            var m = src.match(/embed\/([\w-]+)/);
+            return 'yt:' + (m ? m[1] : src);
+        }
+        return 'v:' + src;
+    }
 
-        // 4. 檢查 Swiper 實例 (instance) 是否已存在於該元素上
-        if (swiperContainer && swiperContainer.swiper) {
+    function markUserPaused(sw, el) {
+        el._userPaused = true;
+        (sw._paused = sw._paused || {})[vkey(el)] = true;
+    }
 
-            // 取得已經被初始化的 Swiper 實例
-            const mySwiper = swiperContainer.swiper;
+    function clearUserPaused(sw, el) {
+        el._userPaused = false;
+        if (sw._paused) delete sw._paused[vkey(el)];
+    }
 
-            // --- 5A. 結合的代碼：強制停止自動輪播 ---
-            // 檢查 autoplay 模組是否存在，且是否正在運行
-            if (mySwiper.autoplay && mySwiper.autoplay.running) {
-                mySwiper.autoplay.stop();
-                console.log('Swiper 自動輪播已強制停止。');
+    function isUserPaused(sw, el) {
+        return !!(el._userPaused || (sw._paused && sw._paused[vkey(el)]));
+    }
+
+    /* ---------- YouTube IFrame API ---------- */
+
+    var ytState = 'idle', ytQueue = [];
+
+    function loadYT(cb) {
+        if (window.YT && window.YT.Player) return cb();
+        ytQueue.push(cb);
+        if (ytState === 'loading') return;
+        ytState = 'loading';
+
+        var prev = window.onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = function () {
+            if (typeof prev === 'function') try { prev(); } catch (e) {}
+            log('YouTube API ready');
+            var queue = ytQueue.slice(); ytQueue = [];
+            queue.forEach(function (fn) { try { fn(); } catch (e) {} });
+        };
+
+        var s = document.createElement('script');
+        s.src = 'https://www.youtube.com/iframe_api';
+        s.async = true;
+        s.onerror = function () { log('YouTube API failed to load (CSP or blocker?)'); };
+        (document.head || document.body).appendChild(s);
+    }
+
+    function prepSrc(el) {
+        var src = el.getAttribute('src');
+        if (!src) return;
+        try {
+            var url = new URL(src, location.href), changed = false;
+            var params = [['enablejsapi', '1'], ['playsinline', '1'], ['mute', '1'], ['rel', '0']];
+            if (/^https?:$/.test(location.protocol)) params.push(['origin', location.origin]);
+
+            params.forEach(function (p) {
+                if (url.searchParams.get(p[0]) !== p[1]) { url.searchParams.set(p[0], p[1]); changed = true; }
+            });
+            if (changed) el.setAttribute('src', url.toString());
+            el.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+        } catch (e) { log('Bad YouTube URL:', e); }
+    }
+
+    function setupYT(el, sw) {
+        // loop 複製的 slide 會沿用同一個 id，查回來不是自己就換新的
+        if (!el.id || document.getElementById(el.id) !== el) {
+            el.id = 'sv-yt-' + (++uid) + Math.random().toString(36).slice(2, 6);
+        }
+        prepSrc(el);
+
+        loadYT(function () {
+            try {
+                el._p = new YT.Player(el.id, {
+                    events: {
+                        onReady: function (e) {
+                            el._ready = true;
+                            log('YouTube player ready:', el.id);
+                            try { e.target.mute(); } catch (err) {}
+
+                            if (el._want && visible) {
+                                if (soundOn) try { e.target.unMute(); } catch (err) {}
+                                e.target.playVideo();
+                            } else {
+                                // 只在真的播放中才暫停：對 UNSTARTED 呼叫 pauseVideo
+                                // 不會產生 PAUSED 事件，旗標會卡住
+                                try {
+                                    var st = e.target.getPlayerState ? e.target.getPlayerState() : -1;
+                                    if (st === YT.PlayerState.PLAYING || st === YT.PlayerState.BUFFERING) {
+                                        markScript(el);
+                                        e.target.pauseVideo();
+                                    }
+                                } catch (err) {}
+                            }
+                        },
+                        onStateChange: function (e) {
+                            if (e.data === YT.PlayerState.ENDED) {
+                                if (CFG.advanceOnEnd) try { sw.slideNext(); } catch (err) {}
+                            } else if (e.data === YT.PlayerState.PAUSED) {
+                                if (wasScript(el)) return;
+                                el._want = false;
+                                markUserPaused(sw, el);
+                                log('User paused YouTube, autoplay suspended');
+                            } else if (e.data === YT.PlayerState.PLAYING) {
+                                clearUserPaused(sw, el); // 使用者自己按播放，解除封鎖
+                            }
+                        },
+                        onError: function (e) { log('YouTube error code:', e && e.data, el.id); }
+                    }
+                });
+            } catch (err) { log('Failed to create YouTube player:', err); el._init = false; }
+        });
+    }
+
+    /* ---------- 統一播放 / 暫停 ---------- */
+
+    function play(sw, el, entry) {
+        if (isUserPaused(sw, el)) return; // 使用者按過暫停，除非索引改變才會解除
+        if (entry) clearUserPaused(sw, el);
+
+        if (isYT(el)) {
+            el._want = true;
+            var p = el._p;
+            if (!p || !el._ready) return; // onReady 會補播
+            try {
+                var st = p.getPlayerState ? p.getPlayerState() : -1;
+                if (st === YT.PlayerState.PLAYING || st === YT.PlayerState.BUFFERING) return;
+                if (st === YT.PlayerState.ENDED && !entry) return;
+                soundOn ? p.unMute() : p.mute();
+                if (entry && st === YT.PlayerState.ENDED && CFG.restartOnEnter) p.seekTo(0);
+                p.playVideo();
+            } catch (e) { log('playVideo failed:', e); }
+            return;
+        }
+
+        try {
+            if (!el.paused && !el.ended) return;
+            if (el.ended && !entry) return;
+
+            el.muted = !soundOn;
+            el.playsInline = true;
+            if (entry && CFG.restartOnEnter && (el.ended || el.currentTime > 0)) {
+                try { el.currentTime = 0; } catch (e) {}
             }
 
-            // --- 5B. 結合的代碼：綁定 slideChange 事件來暫停影片 ---
-            mySwiper.on('slideChange', function () {
-                // console.log('Swiper 切換，暫停所有影片...');
-
-                // 選取 Swiper 容器內 *所有* 的 iframe
-                const allIframes = mySwiper.el.querySelectorAll('iframe');
-
-                // 迴圈遍歷所有 iframe 並發送暫停命令
-                allIframes.forEach(pauseYouTubeVideo);
+            var pr = el.play();
+            if (pr && pr.catch) pr.catch(function (err) {
+                log('mp4 blocked, retrying muted:', err && err.name);
+                el.muted = true;
+                el.play().catch(function (e2) { log('mp4 still blocked:', e2 && e2.name); });
             });
+        } catch (e) { log('video play failed:', e); }
+    }
 
-            // (可選) 處理手動點擊 Swiper 導航按鈕的狀況
-            // (如果您的 Swiper 有導航按鈕)
-            const nextButton = mySwiper.navigation.nextEl;
-            const prevButton = mySwiper.navigation.prevEl;
+    function pause(el) {
+        if (isYT(el)) {
+            el._want = false;
+            var p = el._p;
+            if (!p || !el._ready) return;
+            try {
+                var st = p.getPlayerState ? p.getPlayerState() : -1;
+                if (st !== YT.PlayerState.PLAYING && st !== YT.PlayerState.BUFFERING) return;
+                markScript(el);
+                p.pauseVideo();
+            } catch (e) {}
+            return;
+        }
+        try {
+            if (el.paused) return;
+            markScript(el);
+            el.pause();
+        } catch (e) {}
+    }
 
-            const buttons = [nextButton, prevButton].filter(el => el); // 過濾掉不存在的按鈕
+    /* ---------- 播放中控制項置頂 ---------- */
 
-            buttons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // 點擊按鈕時，slideChange 事件通常會觸發
-                    // 但以防萬一，我們也可以在這裡手動觸發一次暫停
-                    // (使用 setTimeout 確保在 slide 動畫開始後執行)
-                    setTimeout(() => {
-                        const allIframes = mySwiper.el.querySelectorAll('iframe');
-                        allIframes.forEach(pauseYouTubeVideo);
-                    }, 50); // 延遲 50 毫秒
+    // iframe 是 replaced element，單靠 z-index 不一定生效，
+    // 需讓控制項自成堆疊脈絡（position + z-index）才能穩定壓在上面。
+    function injectStyle() {
+        if (!CFG.topControls || document.getElementById('sv-style')) return;
+
+        var sel = CFG.selector + ' ' + CFG.topControls;
+        var s = document.createElement('style');
+        s.id = 'sv-style';
+        s.textContent =
+            sel + '{position:relative;z-index:30;}' +
+            CFG.selector + ' iframe,' + CFG.selector + ' video{position:relative;z-index:1;}' +
+            '.sv-yt-playing ' + CFG.topControls + '{z-index:60;pointer-events:auto;}';
+        (document.head || document.documentElement).appendChild(s);
+        log('Stacking style injected for', CFG.topControls);
+    }
+
+    function isPlayingYT(el) {
+        if (!isYT(el) || !el._p || !el._ready) return false;
+        try {
+            var st = el._p.getPlayerState ? el._p.getPlayerState() : -1;
+            return st === YT.PlayerState.PLAYING || st === YT.PlayerState.BUFFERING;
+        } catch (e) { return false; }
+    }
+
+    function updateTopLayer(sw, slide) {
+        if (!CFG.topControls) return;
+        var playing = !!slide && media(slide).some(isPlayingYT);
+        if (playing === sw._ytPlaying) return;
+        sw._ytPlaying = playing;
+        sw.el.classList[playing ? 'add' : 'remove']('sv-yt-playing');
+        log(playing ? 'YouTube playing — controls raised' : 'YouTube stopped — controls restored');
+    }
+
+    /* ---------- 校正（冪等，每次都重掃以涵蓋 loop 複製品） ---------- */
+
+    function ensureMedia(sw) {
+        media(sw.el).forEach(function (el) {
+            if (el._init) return;
+            el._init = true;
+
+            if (isYT(el)) return setupYT(el, sw);
+
+            el.muted = true;
+            el.setAttribute('muted', '');
+            el.setAttribute('playsinline', '');
+            el.setAttribute('webkit-playsinline', '');
+
+            el.addEventListener('pause', function () {
+                if (wasScript(el)) return;
+                if (el.ended) return;
+                markUserPaused(sw, el);
+                log('User paused video, autoplay suspended');
+            });
+            el.addEventListener('play', function () { clearUserPaused(sw, el); });
+            if (CFG.advanceOnEnd) {
+                el.addEventListener('ended', function () { try { sw.slideNext(); } catch (e) {} });
+            }
+            log('Video element initialized');
+        });
+    }
+
+    function activeSlide(sw) {
+        return sw.el.querySelector('.swiper-slide-active') ||
+            (sw.slides && sw.slides[sw.activeIndex]) || null;
+    }
+
+    function reconcile(sw) {
+        if (!sw.el || !document.body.contains(sw.el)) return;
+        ensureMedia(sw);
+
+        var slide = activeSlide(sw);
+
+        // 用 realIndex 判斷是否換頁：loop 重建 DOM 時元素會換，但索引不變，
+        // 改用元素比對會讓 watchdog 誤判成換頁而清掉使用者的暫停狀態。
+        var idx = typeof sw.realIndex === 'number' ? sw.realIndex : sw.activeIndex;
+        var entry = idx !== sw._lastIdx;
+        if (entry) {
+            sw._lastIdx = idx;
+            sw._paused = {}; // 換頁才重置暫停紀錄
+            log('Entered slide index', idx);
+        }
+        sw._active = slide;
+
+        media(sw.el).forEach(function (el) {
+            if (!slide || !slide.contains(el)) pause(el);
+        });
+
+        if (!CFG.autoplay || !slide || !visible || sw._offscreen) {
+            updateTopLayer(sw, null);
+            return;
+        }
+        media(slide).forEach(function (el) { play(sw, el, entry); });
+        updateTopLayer(sw, slide);
+    }
+
+    function sync(sw) {
+        sw._seq = (sw._seq || 0) + 1;
+        var seq = sw._seq;
+        CFG.settleDelays.forEach(function (d) {
+            setTimeout(function () { if (seq === sw._seq) reconcile(sw); }, d);
+        });
+    }
+
+    function pauseAll(sw) {
+        media(sw.el).forEach(pause);
+    }
+
+    /* ---------- 開啟聲音按鈕 ---------- */
+
+    // 線性 icon（24x24，stroke 跟隨 currentColor）
+    var ICON = {
+        off: '<path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9.5l5 5m0-5l-5 5"/>',
+        on:  '<path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.8a4.5 4.5 0 0 1 0 6.4"/>' +
+            '<path d="M19.5 6.2a8.5 8.5 0 0 1 0 11.6"/>'
+    };
+
+    function iconSvg(state) {
+        return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" ' +
+            'stroke="currentColor" stroke-width="1.6" stroke-linecap="round" ' +
+            'stroke-linejoin="round" aria-hidden="true">' + ICON[state] + '</svg>';
+    }
+
+    function addUnmuteBtn(sw) {
+        if (!CFG.unmuteButton || sw.el.querySelector('.sv-unmute-btn')) return;
+
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'sv-unmute-btn';
+        btn.style.cssText = 'position:absolute;right:12px;bottom:12px;z-index:20;' +
+            'width:40px;height:40px;display:flex;align-items:center;justify-content:center;' +
+            'border:0;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;cursor:pointer;' +
+            'padding:0;backdrop-filter:blur(4px);transition:background .2s;';
+
+        function render() {
+            btn.innerHTML = iconSvg(soundOn ? 'on' : 'off');
+            var label = soundOn ? '關閉聲音' : '開啟聲音';
+            btn.setAttribute('aria-label', label);
+            btn.title = label;
+        }
+        render();
+
+        btn.addEventListener('mouseenter', function () {
+            btn.style.background = 'rgba(0,0,0,.8)';
+        });
+        btn.addEventListener('mouseleave', function () {
+            btn.style.background = 'rgba(0,0,0,.55)';
+        });
+
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            soundOn = !soundOn;
+            render();
+
+            media(activeSlide(sw)).forEach(function (el) {
+                if (isYT(el)) {
+                    if (el._p && el._ready) try { soundOn ? el._p.unMute() : el._p.mute(); } catch (err) {}
+                } else el.muted = !soundOn;
+            });
+        });
+
+        if (getComputedStyle(sw.el).position === 'static') sw.el.style.position = 'relative';
+        sw.el.appendChild(btn);
+    }
+
+    /* ---------- 綁定 ---------- */
+
+    var bound = new WeakSet();
+
+    function bind(sw) {
+        if (!sw || !sw.el || bound.has(sw)) return;
+        bound.add(sw);
+        swipers.push(sw);
+        ensureMedia(sw);
+
+        if (CFG.stopSwiperAutoplay && sw.autoplay && sw.autoplay.running) {
+            try { sw.autoplay.stop(); log('Swiper autoplay stopped'); } catch (e) {}
+        }
+
+        if (sw.on) {
+            ['slideChange', 'slideChangeTransitionEnd', 'transitionEnd', 'loopFix', 'activeIndexChange']
+                .forEach(function (ev) { sw.on(ev, function () { sync(sw); }); });
+
+            sw.on('destroy', function () {
+                pauseAll(sw);
+                clearInterval(sw._dog);
+                bound.delete(sw);
+                var i = swipers.indexOf(sw);
+                if (i > -1) swipers.splice(i, 1);
+            });
+        }
+
+        if (CFG.watchdog > 0) {
+            sw._dog = setInterval(function () {
+                if (!document.body.contains(sw.el)) return clearInterval(sw._dog);
+                if (visible && !sw._offscreen) reconcile(sw);
+            }, CFG.watchdog);
+        }
+
+        if (CFG.pauseWhenHidden && window.IntersectionObserver) {
+            new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) {
+                    sw._offscreen = !en.isIntersecting;
+                    en.isIntersecting ? sync(sw) : pauseAll(sw);
+                });
+            }, { threshold: 0.25 }).observe(sw.el);
+        }
+
+        addUnmuteBtn(sw);
+        sync(sw);
+        log('Swiper bound:', sw.el);
+    }
+
+    /* ---------- 啟動 ---------- */
+
+    function bindAll() {
+        var els = q(document, CFG.selector), n = 0;
+        els.forEach(function (el) { if (el.swiper) { bind(el.swiper); n++; } });
+        return { total: els.length, bound: n };
+    }
+
+    var timer = null, waited = 0;
+
+    function poll() {
+        if (timer) return;
+        waited = 0;
+        timer = setInterval(function () {
+            waited += CFG.poll;
+            var r = bindAll();
+            if (r.total > 0 && r.bound >= r.total) {
+                clearInterval(timer); timer = null;
+                log('Bound after ' + waited + 'ms');
+            } else if (waited >= CFG.maxWait) {
+                clearInterval(timer); timer = null;
+                log('No Swiper instance found, polling stopped');
+            }
+        }, CFG.poll);
+    }
+
+    function start() {
+        injectStyle();
+
+        if (CFG.pauseWhenHidden) {
+            document.addEventListener('visibilitychange', function () {
+                visible = !document.hidden;
+                swipers.forEach(function (sw) {
+                    if (document.body.contains(sw.el)) visible ? sync(sw) : pauseAll(sw);
                 });
             });
-
-            console.log('Swiper 影片控制功能已成功綁定。');
-
-        } else {
-            // 這個警告很重要，如果出現，代表您的 Swiper 初始化代碼
-            // 可能比這段代碼更晚執行，或者選擇器錯誤。
-            console.warn('在 DOMContentLoaded 時未找到 Swiper 實例 (.swiper.swiper)。');
         }
+
+        if (window.MutationObserver) {
+            new MutationObserver(function (muts) {
+                for (var i = 0; i < muts.length; i++) {
+                    var added = muts[i].addedNodes;
+                    for (var j = 0; j < added.length; j++) {
+                        var n = added[j];
+                        if (n.nodeType !== 1) continue;
+                        if ((n.matches && n.matches(CFG.selector)) ||
+                            (n.querySelector && n.querySelector(CFG.selector))) {
+                            log('New Swiper container detected');
+                            return poll();
+                        }
+                    }
+                }
+            }).observe(document.body, { childList: true, subtree: true });
+        }
+
+        var r = bindAll();
+        if (r.total > 0 && r.bound >= r.total) return log('Bound immediately');
+        poll();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+    } else start();
+})();
+
+
+
+/*-------------------------- Filter 展開收合 --------------------------*/
+function initAccordion() {
+    const form = document.querySelector('.form');
+
+    // 加入 class 判斷：如果父層沒有 enable-toggle 這個 class，就中斷執行
+    if (!form || !form.classList.contains('enable-toggle')) return;
+
+    const globalBtn = document.getElementById('btn-global');
+    if (!globalBtn) return;
+
+    // 從 HTML 的 data 屬性取得常數文字
+    const textCollapse = globalBtn.dataset.textCollapse;
+    const textExpand = globalBtn.dataset.textExpand;
+
+    // 1. 個別點擊：使用「事件代理」監聽整個表單，完美支援後台動態新增的區塊
+    form.addEventListener('click', (e) => {
+        const label = e.target.closest('.form__label');
+        if (!label) return; // 點擊的若不是標題則略過
+
+        // 切換被點擊區塊的收闔狀態
+        label.closest('.filter__item').classList.toggle('is-closed');
+
+        // 實時計算數量並更新全域按鈕文字 (使用常數變數)
+        const total = form.querySelectorAll('.filter__item').length;
+        const closedCount = form.querySelectorAll('.filter__item.is-closed').length;
+        globalBtn.textContent = (total === closedCount) ? textExpand : textCollapse;
+    });
+
+    // 2. 全域點擊：控制所有區塊
+    globalBtn.addEventListener('click', () => {
+        const items = form.querySelectorAll('.filter__item');
+        const isOpening = globalBtn.textContent === textExpand; // 根據按鈕文字判斷行為
+
+        // toggle 的第二個參數：true代表加上class(收合)，false代表移除class(展開)
+        items.forEach(item => item.classList.toggle('is-closed', !isOpening));
+        globalBtn.textContent = isOpening ? textCollapse : textExpand;
     });
 }
 
-// --- 6. 呼叫(執行) 這個函式 ---
-// 確保這段代碼被引入到您的 HTML 中
-setupSwiperVideoControls();
+// 當網頁載入完成後執行
+document.addEventListener('DOMContentLoaded', initAccordion);
 
 
 
