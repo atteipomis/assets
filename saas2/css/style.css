@@ -3038,6 +3038,9 @@ input[type=checkbox] {
   padding: 8px 10px;
   border-radius: 5px;
 }
+.filter .form__btn .btnset + .btnset {
+  margin-top: 10px;
+}
 .filter .form__btn .btnset i {
   margin-right: 6px;
   vertical-align: middle;
